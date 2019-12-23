@@ -9,5 +9,6 @@ namespace SCM_System.API.Controllers
 {
     public class BuyController : ApiController
     {
+        public void Options() { }  //这是预请求
     }
 }
