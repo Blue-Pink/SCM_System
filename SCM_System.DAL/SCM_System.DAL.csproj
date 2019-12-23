@@ -54,6 +54,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DAL_BasicModuel.cs" />
+    <Compile Include="DAL_BuyModuel.cs" />
+    <Compile Include="DAL_PdskcModuel.cs" />
+    <Compile Include="DAL_PublicModuel.cs" />
+    <Compile Include="DAL_SystemModuel.cs" />
     <Compile Include="DAL_UniversalModuel.cs" />
     <Compile Include="UniversalPager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

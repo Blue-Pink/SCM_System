@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Results;
 using Ninject;
 using SCM_System.DAL;
 using SCM_System.Model;
@@ -15,11 +16,18 @@ namespace SCM_System.API.Controllers
     [RoutePrefix("api/Home")]
     public class HomeController : ApiController
     {
+        #region API测试代码
         [Inject]
+        //通用模块
         public DAL_UniversalModuel<CheckDepot> universalModuel { get; set; }
         [Inject]
-        public UniversalPager<CheckDepot,dynamic> pager { get; set; }
-        #region API测试代码
+        //项目对应模块
+        public DAL_BasicModuel<CheckDepot> basicModuel { get; set; }
+        [Inject]
+        //分页器
+        public UniversalPager<CheckDepot, dynamic> pager { get; set; }
+
+
         [HttpGet]
         [Route("GetCDsA")]
         public async Task<List<CheckDepot>> GetCDsA()
@@ -111,14 +119,21 @@ namespace SCM_System.API.Controllers
 
         [HttpGet]
         [Route("GetPaging")]
-        public Dictionary<string,dynamic> GetPaging()
+        public dynamic GetPaging()
         {
             pager.IsAsc = true;
-            pager.PageSize = 3;
+            pager.PageSize = 100;
             pager.OrderByLambda = a => a.CDID;
-            pager.WhereLambda = a => true;
+            pager.WhereLambda = a => a.CDState==4;
             pager.PageIndex = 1;
-            return new Dictionary<string, dynamic>() { {"count", pager.Count },{"data",pager.Paging()} };
+            return new Dictionary<string, dynamic>() { {"data", pager.Paging() },{"count", pager.Count }};
+        }
+
+        [HttpGet]
+        [Route("GetTest")]
+        public async Task<dynamic> GetTest()
+        {
+            return await basicModuel.Select_All();
         }
         #endregion
     }
