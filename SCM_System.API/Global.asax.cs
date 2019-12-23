@@ -18,12 +18,5 @@ namespace SCM_System.API
 
             GlobalConfiguration.Configure(WebApiConfig.Register);
         }
-
-        public override void Init()
-        {
-            //¿ªÆôWebApiÏÂµÄSession
-            this.PostAuthenticateRequest += (sender, e) => HttpContext.Current.SetSessionStateBehavior(System.Web.SessionState.SessionStateBehavior.Required);
-            base.Init();
-        }
     }
 }
