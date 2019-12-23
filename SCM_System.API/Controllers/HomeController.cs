@@ -30,13 +30,13 @@ namespace SCM_System.API.Controllers
 
         [HttpGet]
         [Route("GetCDsA")]
-        //GetCheckDepotsAll
         public async Task<List<CheckDepot>> GetCDsA()
         {
-            return await universalModuel.Select_All().ConfigureAwait(false);
+            return await universalModuel.Select_All();
         }
-        
+
         [HttpGet]
+
         [Route("GetCDA/{key}")]
         public async Task<CheckDepot> GetCDA([FromUri]dynamic key)
         {
@@ -45,11 +45,10 @@ namespace SCM_System.API.Controllers
 
         [HttpGet]
         [Route("GetCDsA_P")]
-        //GetCheckDepots_properties_json
         public async Task<List<CheckDepot>> GetCDsA_P([FromUri]string properties_json)
         {
             Dictionary<string, dynamic> properties = universalModuel.JsonToDictionary(properties_json);
-            return await universalModuel.Select_Properties(properties).ConfigureAwait(false);
+            return await universalModuel.Select_Properties(properties);
         }
 
         [HttpGet]
@@ -71,14 +70,14 @@ namespace SCM_System.API.Controllers
         public async Task<int> DeleteCD_P([FromUri]string properties_json)
         {
             Dictionary<string, dynamic> properties = universalModuel.JsonToDictionary(properties_json);
-            return await universalModuel.Delete_Properties(properties).ConfigureAwait(false);
+            return await universalModuel.Delete_Properties(properties);
         }
 
         [HttpPost]
         [Route("PostCDI")]
         public async Task<int> PostCDI([FromBody]CheckDepot checkDepot)
         {
-            return await universalModuel.Insert(checkDepot).ConfigureAwait(false) ;
+            return await universalModuel.Insert(checkDepot);
         }
 
         [HttpPut]
@@ -93,14 +92,14 @@ namespace SCM_System.API.Controllers
         public async Task<int> PutCD_P([FromUri]string properties_json, [FromBody]CheckDepot checkDepot)
         {
             Dictionary<string, dynamic> properties = universalModuel.JsonToDictionary(properties_json);
-            return await universalModuel.Update_Properties(properties, checkDepot).ConfigureAwait(false) ;
+            return await universalModuel.Update_Properties(properties, checkDepot);
         }
 
         [HttpGet]
         [Route("GetCDCA")]
         public async Task<int> GetCDCA()
         {
-            return await universalModuel.ObtainCount_All().ConfigureAwait(false);
+            return await universalModuel.ObtainCount_All();
         }
 
         [HttpGet]
@@ -108,7 +107,7 @@ namespace SCM_System.API.Controllers
         public async Task<int> GetCDC_P([FromUri]string properties_json)
         {
             Dictionary<string, dynamic> properties = universalModuel.JsonToDictionary(properties_json);
-            return await universalModuel.ObtainCount_Properties(properties).ConfigureAwait(false);
+            return await universalModuel.ObtainCount_Properties(properties);
         }
 
         [HttpGet]
@@ -134,10 +133,8 @@ namespace SCM_System.API.Controllers
         [Route("GetTest")]
         public async Task<dynamic> GetTest()
         {
-            return await basicModuel.Select_All().ConfigureAwait(false);
+            return await basicModuel.Select_All();
         }
         #endregion
-
-        public void Options() { }  //这是预请求
     }
 }

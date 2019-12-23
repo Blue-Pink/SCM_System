@@ -13,15 +13,17 @@ namespace SCM_System.UI.Controllers
             return View();
         }
 
-        public ActionResult Main()
+        public ActionResult About()
         {
+            ViewBag.Message = "Your application description page.";
 
-            
             return View();
         }
 
-        public ActionResult Login()
+        public ActionResult Contact()
         {
+            ViewBag.Message = "Your contact page.";
+
             return View();
         }
     }
