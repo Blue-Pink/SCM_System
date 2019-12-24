@@ -31,10 +31,10 @@ namespace SCM_System.API.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [Route("GetVw_CDUsAsync")]
-        public  int GetVw_CDUsAsync()
+        [Route("GetCDUs")]
+        public async Task<List<Vw_CDU>> GetCDUs()
         {
-            return 1;
+            return await basicModuel.GetVwCDUs().ConfigureAwait(false);
         }
 
         public void Options() { }  //这是预请求

@@ -19,7 +19,7 @@ namespace SCM_System.DAL
 
         //entities ==db
 
-        public async Task<List<Vw_CDU>> GetVw_CDUs() {
+        public async Task<List<Vw_CDU>> GetVwCDUs() {
             
             List<Vw_CDU> list = new List<Vw_CDU>();
             await Task.Run(() => {
