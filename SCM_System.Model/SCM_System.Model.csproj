@@ -242,6 +242,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
+    <None Include="Model层内自建视图标注文档.docx" />
     <None Include="packages.config" />
     <None Include="SCM_System.edmx.diagram">
       <DependentUpon>SCM_System.edmx</DependentUpon>
