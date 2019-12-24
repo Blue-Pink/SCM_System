@@ -221,6 +221,8 @@
     <Compile Include="UsersRole.cs">
       <DependentUpon>SCM_System.tt</DependentUpon>
     </Compile>
+    <Compile Include="Vw_CUD.cs" />
+    <Compile Include="Vw_PTC.cs" />
     <Compile Include="V_InDepot.cs">
       <DependentUpon>SCM_System.tt</DependentUpon>
     </Compile>
