@@ -22,12 +22,12 @@
                 },
                 el: "#app",
                 data: {
-                    ls:[],
+                    data:[],
                 },
                 created: function () {
-                    this.$http.get("http://localhost:50086/api/buy/GetStocks").then(d => {
-                        this.ls = d.data;
-                        console.log(d.data);
+                    this.$http.get("http://localhost:8625/api/buy/GetSs").then(result => {
+                        this.data = result.data;
+                        console.log(result.data);
                     });
                 },
             });
@@ -105,7 +105,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="(s,index) in ls">
+                    @*<tr v-for="(s,index) in ls">
                         <td>
                             {{s.StockID}}
                         </td>
@@ -128,8 +128,7 @@
                             {{s.StockDesc}}
                         </td>
                         <td><a @@click="aa(s)" href="#">查看</a> | <a href="#">审核</a> | <a href="javascript:;" @@click="del(s,index)">删除</a> | <a href="#" onclick='    $("#div1").load("/buy/StocksEdit.html")'>修改</a></td>
-                    </tr>
-
+                    </tr>*@
                 </tbody>
             </table>
             <div align="center">
