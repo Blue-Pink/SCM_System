@@ -46,5 +46,9 @@ namespace SCM_System.DAL
             });
             return list;
         }
+
+        #region Blue-Pink 代码区域
+
+        #endregion
     }
 }
