@@ -3,7 +3,22 @@
     ViewBag.Title = "Reserve";
 }
 @section CustomJs{
-
+    <script>
+        window.addEventListener("load",function () {
+            var app = new Vue({
+                el: "#app",
+                data: {
+                    ls:[]
+                },
+                created: function () {
+                    this.$http.get("http://localhost:50086/api/buy/GetDepotStocks").then(d => {
+                        this.ls = d.data;
+                        console.log(d.data);
+                    })
+                }
+            });
+        });
+    </script>
 }
 
 <div id="app">
@@ -89,14 +104,16 @@
                             {{s.DSAmount}}
                         </td>
                         <td>
+                           
                         </td>
                         <td>
+                           
                         </td>
 
                         <td></td>
                         <td><a href="#" onclick='$("#div1").load("/buy/ReserveDetail.html")'>查看</a></td>
                     </tr>
-
+                    
                 </tbody>
             </table>
             <div align="center">
@@ -124,19 +141,3 @@
     </div>
 </div>
 
-<script>
-    window.addEventListener("load", function () {
-         new Vue({
-            el: "#app",
-            data: {
-                ls: []
-            },
-            created: function () {
-                this.$http.get("http://localhost:8625/api/buy/GetDS_P_Ds").then(d => {
-                    this.ls = d.data;
-                    console.log(d.data);
-                })
-            }
-        });
-    });
-</script>
