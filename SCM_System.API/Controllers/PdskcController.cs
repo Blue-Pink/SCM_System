@@ -50,7 +50,7 @@ namespace SCM_System.API.Controllers
         [Route("DelVwCDUid/{CDID}")]
         public async Task<int> DelVwCDUid(string CDID)
         {
-            return await universalModuel.Delete_Key(CDID);
+            return await universalModuel.Delete_Key(CDID).ConfigureAwait(false);
         }
 
 
