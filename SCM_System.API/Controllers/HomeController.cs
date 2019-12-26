@@ -22,7 +22,7 @@ namespace SCM_System.API.Controllers
         public DAL_UniversalModuel<CheckDepot> universalModuel { get; set; }
         [Inject]
         //项目对应模块
-        //public DAL_BasicModuel<CheckDepot> basicModuel { get; set; }
+        public DAL_BasicModuel<CheckDepot> basicModuel { get; set; }
 
         [Inject]
         //分页器
