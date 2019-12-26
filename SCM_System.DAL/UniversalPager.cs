@@ -8,7 +8,6 @@ namespace SCM_System.DAL
 {
     public class UniversalPager<T,TKey>:IDAL.IUniversalPager<T,TKey> where T : class
     {
-
         /// <summary>
         /// 筛选 T 内单例,此属性不可为空,无条件使用时请赋予该属性:变量名 => true
         /// </summary>
