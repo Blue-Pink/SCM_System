@@ -1631,22 +1631,7 @@
             <Parameter Name="OrderType" Mode="In" Type="Boolean" />
             <Parameter Name="strWhere" Mode="In" Type="String" />
           </FunctionImport>
-          <EntitySet Name="V_DS_P_PT" EntityType="SCMModel.V_DS_P_PT" />
         </EntityContainer>
-        <EntityType Name="V_DS_P_PT">
-          <Key>
-            <PropertyRef Name="DSID" />
-          </Key>
-          <Property Name="DSID" Type="Int32" Nullable="false" />
-          <Property Name="ProName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="ProWorkShop" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="ProPrice" Type="Decimal" Precision="10" Scale="2" />
-          <Property Name="DSAmount" Type="Int32" />
-          <Property Name="ProInPrice" Type="Decimal" Precision="10" Scale="2" />
-          <Property Name="ProMax" Type="Int32" />
-          <Property Name="ProMin" Type="Int32" />
-          <Property Name="PTName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2379,21 +2364,6 @@
           <FunctionImportMapping FunctionImportName="proc_StockInDepot" FunctionName="SCMModel.Store.proc_StockInDepot" />
           <FunctionImportMapping FunctionImportName="proc_StockOutDepot" FunctionName="SCMModel.Store.proc_StockOutDepot" />
           <FunctionImportMapping FunctionImportName="PS_proc_CommonPager" FunctionName="SCMModel.Store.PS_proc_CommonPager" />
-          <EntitySetMapping Name="V_DS_P_PT">
-            <EntityTypeMapping TypeName="SCMModel.V_DS_P_PT">
-              <MappingFragment StoreEntitySet="V_DS_P_PT">
-                <ScalarProperty Name="PTName" ColumnName="PTName" />
-                <ScalarProperty Name="ProMin" ColumnName="ProMin" />
-                <ScalarProperty Name="ProMax" ColumnName="ProMax" />
-                <ScalarProperty Name="ProInPrice" ColumnName="ProInPrice" />
-                <ScalarProperty Name="DSAmount" ColumnName="DSAmount" />
-                <ScalarProperty Name="ProPrice" ColumnName="ProPrice" />
-                <ScalarProperty Name="ProWorkShop" ColumnName="ProWorkShop" />
-                <ScalarProperty Name="ProName" ColumnName="ProName" />
-                <ScalarProperty Name="DSID" ColumnName="DSID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
