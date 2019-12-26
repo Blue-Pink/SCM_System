@@ -12,8 +12,9 @@ namespace SCM_System.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class Splits
+    public partial class Splits : BaseModel
     {
+        [System.ComponentModel.DataAnnotations.Key]
         public string SplitID { get; set; }
         public string DepotID { get; set; }
         public string ProID { get; set; }
