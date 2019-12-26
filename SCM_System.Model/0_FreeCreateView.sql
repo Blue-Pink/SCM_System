@@ -1,16 +1,4 @@
-﻿    --P         -> 商品表(Products)
---S         -> 采购单(Stocks)
---PL       -> 供货商(ProductLend)
---U        -> 用户表(Users)
---DS      -> 库存表(DepotStock) 
---D        -> 仓库(Depots)
---PT       -> 商品类别(ProductTypes)
---CD      -> 盘点单(CheckDepot)
---CDD   -> 盘点单详单(CheckDepotDetail)
-if(exists(select * from sysobjects where name='V_DS_P_PT'))
-drop view V_DS_P_PT
-go
-create view V_DS_P_PT
+﻿create view V_DS_P_PT
 as 
 select DS_P.DSID,
                         DS_P.ProName,
