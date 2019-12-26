@@ -257,7 +257,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="0_FreeCreateView.sql" />
     <Content Include="SCM_System.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>SCM_System.Context.cs</LastGenOutput>
