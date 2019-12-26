@@ -35,7 +35,7 @@ namespace SCM_System.API.Controllers
             return await buyModuel.GetS_PL_Us().ConfigureAwait(false);
         }
 
-        [HttpGet]
+        [HttpGet]    
         [Route("GetDS_P_Ds")]
         public dynamic GetDS_P_Ds(int ps, int pi)
         {

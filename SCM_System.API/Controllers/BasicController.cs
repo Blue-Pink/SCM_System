@@ -16,7 +16,7 @@ namespace SCM_System.API.Controllers
     {
         [Inject]
         //通用模块
-        //商品分类表
+        //商品分类表  
         public DAL_UniversalModuel<ProductTypes> universalModuelProductTypes { get; set; }
 
         [Inject]
