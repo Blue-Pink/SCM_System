@@ -17,6 +17,8 @@ namespace SCM_System.API.Controllers
 
         [Inject]
         public DAL.DAL_BuyModuel<BaseModel> buyModuel { get; set; }
+        [Inject] 
+        public UniversalPager<V_DS_P_PT,int> Pager_V_DS_P_PT { get; set; }
         #region 表名标注
         //P     -> 商品表(Products)
         //S     -> 采购单(Stocks)
@@ -35,10 +37,16 @@ namespace SCM_System.API.Controllers
 
         [HttpGet]
         [Route("GetDS_P_Ds")]
-        public async Task<dynamic> GetDS_P_Ds()
+        public dynamic GetDS_P_Ds(int ps, int pi)
         {
-            var temp = await buyModuel.GetDS_P_D().ConfigureAwait(false);
-            return temp;
+            Pager_V_DS_P_PT.PageSize = ps;
+            Pager_V_DS_P_PT.PageIndex = pi;
+            Pager_V_DS_P_PT.IsAsc = true;
+            Pager_V_DS_P_PT.WhereLambda = a => true;
+            Pager_V_DS_P_PT.OrderByLambda = a => a.DSID;
+            var temp = Pager_V_DS_P_PT.Paging();
+            //var temp = await buyModuel.GetDS_P_D(ps, pi).ConfigureAwait(false);
+            return new Dictionary<string, dynamic>() { { "data",temp},{ "total",Pager_V_DS_P_PT.PageCount} };
         }
 
         public void Options() { }  //这是预请求

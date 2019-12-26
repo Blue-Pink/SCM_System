@@ -81,13 +81,13 @@ namespace SCM_System.API.Controllers
         {
             return await universalModuel.Insert(checkDepot).ConfigureAwait(false) ;
         }
-
-        [HttpPut]
-        [Route("PutCD_K")]
-        public async Task<int> PutCD_K([FromUri] dynamic key, [FromBody]CheckDepot checkDepot)
-        {
-            return await universalModuel.Update_Key(key, checkDepot);
-        }
+            
+        //[HttpPut]
+        //[Route("PutCD_K")]
+        //public async Task<int> PutCD_K([FromUri] dynamic key, [FromBody]CheckDepot checkDepot)
+        //{
+        //    return await universalModuel.Update_Key(key, checkDepot);
+        //}
 
         [HttpPut]
         [Route("PutCD_P")]

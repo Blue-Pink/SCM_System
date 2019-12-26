@@ -226,6 +226,9 @@
     </Compile>
     <Compile Include="Vw_CUD.cs" />
     <Compile Include="Vw_PTC.cs" />
+    <Compile Include="V_DS_P_PT.cs">
+      <DependentUpon>SCM_System.tt</DependentUpon>
+    </Compile>
     <Compile Include="V_InDepot.cs">
       <DependentUpon>SCM_System.tt</DependentUpon>
     </Compile>
@@ -254,6 +257,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="0_FreeCreateView.sql" />
     <Content Include="SCM_System.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>SCM_System.Context.cs</LastGenOutput>
