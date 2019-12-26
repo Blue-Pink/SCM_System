@@ -12,8 +12,9 @@ namespace SCM_System.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class CustomerOrderDetail
+    public partial class CustomerOrderDetail : BaseModel
     {
+        [System.ComponentModel.DataAnnotations.Key]
         public int CODID { get; set; }
         public string COID { get; set; }
         public string ProID { get; set; }

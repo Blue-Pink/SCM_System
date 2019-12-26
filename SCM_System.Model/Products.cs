@@ -12,8 +12,9 @@ namespace SCM_System.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class Products
+    public partial class Products : BaseModel
     {
+        [System.ComponentModel.DataAnnotations.Key]
         public string ProID { get; set; }
         public Nullable<int> PTID { get; set; }
         public Nullable<int> PUID { get; set; }

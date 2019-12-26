@@ -12,8 +12,9 @@ namespace SCM_System.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class DevolveDetail
+    public partial class DevolveDetail : BaseModel
     {
+        [System.ComponentModel.DataAnnotations.Key]
         public int DevDID { get; set; }
         public string DevID { get; set; }
         public string ProID { get; set; }

@@ -22,7 +22,7 @@ namespace SCM_System.API.Controllers
         public DAL_UniversalModuel<CheckDepot> universalModuel { get; set; }
         [Inject]
         //项目对应模块
-        //public DAL_BasicModuel<CheckDepot> basicModuel { get; set; }
+        public DAL_BasicModuel<CheckDepot> basicModuel { get; set; }
 
         [Inject]
         //分页器
@@ -81,13 +81,13 @@ namespace SCM_System.API.Controllers
         {
             return await universalModuel.Insert(checkDepot).ConfigureAwait(false) ;
         }
-            
-        //[HttpPut]
-        //[Route("PutCD_K")]
-        //public async Task<int> PutCD_K([FromUri] dynamic key, [FromBody]CheckDepot checkDepot)
-        //{
-        //    return await universalModuel.Update_Key(key, checkDepot);
-        //}
+
+        [HttpPut]
+        [Route("PutCD_K")]
+        public async Task<int> PutCD_K([FromUri] dynamic key, [FromBody]CheckDepot checkDepot)
+        {
+            return await universalModuel.Update_Key(key, checkDepot);
+        }
 
         [HttpPut]
         [Route("PutCD_P")]
