@@ -11,9 +11,10 @@ namespace SCM_System.Model
 {
     using System;
     using System.Collections.Generic;
-    
-    public partial class CheckDepotDetail
+
+    public partial class CheckDepotDetail : BaseModel
     {
+        [System.ComponentModel.DataAnnotations.Key]
         public int CDDID { get; set; }
         public string CDID { get; set; }
         public string ProID { get; set; }

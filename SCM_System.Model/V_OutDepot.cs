@@ -12,8 +12,9 @@ namespace SCM_System.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class V_OutDepot
+    public partial class V_OutDepot : BaseModel
     {
+        [System.ComponentModel.DataAnnotations.Key]
         public int IODID { get; set; }
         public string DepotID { get; set; }
         public Nullable<int> IODType { get; set; }

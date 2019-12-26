@@ -12,16 +12,15 @@ namespace SCM_System.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class V_DS_P_PT
+    public partial class Vw_CDU
     {
-        public int DSID { get; set; }
-        public string ProName { get; set; }
-        public string ProWorkShop { get; set; }
-        public Nullable<decimal> ProPrice { get; set; }
-        public Nullable<int> DSAmount { get; set; }
-        public Nullable<decimal> ProInPrice { get; set; }
-        public Nullable<int> ProMax { get; set; }
-        public Nullable<int> ProMin { get; set; }
-        public string PTName { get; set; }
+        public string CDID { get; set; }
+        public string DepotID { get; set; }
+        public Nullable<System.DateTime> CDDate { get; set; }
+        public Nullable<int> UserID { get; set; }
+        public string CDDesc { get; set; }
+        public Nullable<int> CDState { get; set; }
+        public string DepotName { get; set; }
+        public string UsersName { get; set; }
     }
 }

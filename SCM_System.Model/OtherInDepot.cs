@@ -12,8 +12,9 @@ namespace SCM_System.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class OtherInDepot
+    public partial class OtherInDepot : BaseModel
     {
+        [System.ComponentModel.DataAnnotations.Key]
         public string OIDID { get; set; }
         public string DepotID { get; set; }
         public Nullable<System.DateTime> OIDDate { get; set; }

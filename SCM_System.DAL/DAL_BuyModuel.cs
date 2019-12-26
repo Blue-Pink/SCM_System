@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using SCM_System.Model;
@@ -53,18 +52,15 @@ namespace SCM_System.DAL
                 }
                 ).ToListAsync();
             return new Dictionary<string, dynamic>() { { "data", temp } };
-        }
+        } 
         #endregion
 
-        public async Task<Dictionary<string, dynamic>> GetDS_P_D(int pagesize, int pageindex)
+        public async Task<Dictionary<string,dynamic>> GetDS_P_D()
         {
-            var count = entities.DepotStock.Count();
-            var temp = await entities.DepotStock.OrderBy(DS => DS.DSID)
-                .Join(entities.Products,
+            var temp = await entities.DepotStock.OrderBy(DS=>DS.DSID).Join(entities.Products,
                 DS => DS.ProID,
                 P => P.ProID,
-                (DS, P) => new
-                {
+                (DS, P) => new {
                     DS.DSID,
                     P.ProName,
                     P.ProWorkShop,
@@ -75,10 +71,9 @@ namespace SCM_System.DAL
                     P.ProMax,
                     P.ProMin,
                 }).Join(entities.ProductTypes,
-                    DS_P => DS_P.PTID,
-                    PT => PT.PTID,
-                    (DS_P, PT) => new
-                    {
+                    DS_P=>DS_P.PTID,
+                    PT=>PT.PTID,
+                    (DS_P,PT)=>new {
                         DS_P.DSID,
                         DS_P.ProName,
                         DS_P.ProWorkShop,
@@ -90,11 +85,8 @@ namespace SCM_System.DAL
                         DS_P.ProMin,
                     }
                 )
-                .OrderBy(a=>a.DSID)
-                .Skip(pagesize * (pageindex - 1))
-                .Take(pagesize)
                 .ToListAsync();
-            return new Dictionary<string, dynamic>() { { "data", temp },{ "total", count%pagesize==0?count/pagesize:count/pagesize+1 } };
+            return new Dictionary<string, dynamic>() { { "data",temp} };
         }
     }
 }
