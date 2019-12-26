@@ -131,16 +131,16 @@ namespace SCM_System.DAL
         /// <returns>结果集</returns>
         public async Task<List<T>> Select_All()
         {
-            //try
-            //{
+            try
+            {
                 var set = await entities.Set(t).Cast<T>().ToListAsync();
                 return set;
-            //}
-            //catch (Exception e)
-            //{
+            }
+            catch (Exception e)
+            {
 
-            //    throw new Exception(e.Message);
-            //}
+                throw new Exception(e.Message);
+            }
         }
 
         /// <summary>
@@ -162,6 +162,11 @@ namespace SCM_System.DAL
             }
         }
 
+        /// <summary>
+        /// 针对 T 内属性获取对应所有数据
+        /// </summary>
+        /// <param name="properties">T 内属性,键值格式为: {"属性名","条件值"}</param>
+        /// <returns>结果集</returns>
         public async Task<List<T>> Select_Properties(Dictionary<string, dynamic> properties)
         {
             try
