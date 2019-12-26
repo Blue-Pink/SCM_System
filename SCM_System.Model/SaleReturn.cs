@@ -12,9 +12,8 @@ namespace SCM_System.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class SaleReturn : BaseModel
+    public partial class SaleReturn
     {
-        [System.ComponentModel.DataAnnotations.Key]
         public string SRID { get; set; }
         public string CusID { get; set; }
         public string DepotID { get; set; }

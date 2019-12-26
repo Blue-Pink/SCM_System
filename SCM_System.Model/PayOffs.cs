@@ -12,9 +12,8 @@ namespace SCM_System.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class PayOffs : BaseModel
+    public partial class PayOffs
     {
-        [System.ComponentModel.DataAnnotations.Key]
         public string POID { get; set; }
         public string DepotID { get; set; }
         public Nullable<System.DateTime> PODate { get; set; }

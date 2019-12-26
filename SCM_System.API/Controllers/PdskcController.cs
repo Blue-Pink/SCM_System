@@ -65,7 +65,7 @@ namespace SCM_System.API.Controllers
         [Route("GetVProducts/{DepotID}")]
         public async Task<List<V_Products>> GetVProducts(String DepotID)
         {
-            return await ssss.Select_KeyProduct(DepotID).ConfigureAwait(false);
+            return await ssss.Select_All().ConfigureAwait(false);
         }
 
 
