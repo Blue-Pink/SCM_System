@@ -38,7 +38,7 @@ namespace SCM_System.API.Controllers
         [HttpGet]
         [Route("GetDS_P_Ds")]
         public dynamic GetDS_P_Ds(int ps, int pi)
-        {
+        { 
             Pager_V_DS_P_PT.PageSize = ps;
             Pager_V_DS_P_PT.PageIndex = pi; 
             Pager_V_DS_P_PT.IsAsc = true;
