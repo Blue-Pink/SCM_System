@@ -16,7 +16,7 @@ namespace SCM_System.API.Controllers
     {
         [Inject]
         //通用模块
-        //商品分类表 
+        //商品分类表
         public DAL_UniversalModuel<ProductTypes> universalModuelProductTypes { get; set; }
 
         [Inject]
@@ -34,10 +34,10 @@ namespace SCM_System.API.Controllers
         //供应商表
         public DAL_UniversalModuel<ProductLend> universalModuelProductLend { get; set; }
 
-        //[Inject]
+        [Inject]
         //通用模块
         //商品资料表
-        //public DAL_UniversalModuel<Vw_CL> universalModuelCustomers { get; set; }
+        public DAL_UniversalModuel<Vw_CL> universalModuelCustomers { get; set; }
 
         //[Inject]
         ////项目对应模块
@@ -69,11 +69,11 @@ namespace SCM_System.API.Controllers
             return await universalModuelProductLend.Select_All();
         }
 
-        //[Route("GetCustomers")]
-        //public async Task<List<Vw_CL>> GetCustomers()
-        //{
-        //    return await universalModuelCustomers.Select_All();
-        //}
+        [Route("GetCustomers")]
+        public async Task<List<Vw_CL>> GetCustomers()
+        {
+            return await universalModuelCustomers.Select_All();
+        }
 
 
 

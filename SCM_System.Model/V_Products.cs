@@ -12,9 +12,8 @@ namespace SCM_System.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class V_Products : BaseModel
+    public partial class V_Products
     {
-        [System.ComponentModel.DataAnnotations.Key]
         public string ProID { get; set; }
         public Nullable<int> PTID { get; set; }
         public Nullable<int> PUID { get; set; }

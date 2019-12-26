@@ -12,9 +12,8 @@ namespace SCM_System.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class Compose : BaseModel
+    public partial class Compose
     {
-        [System.ComponentModel.DataAnnotations.Key]
         public string ComposeID { get; set; }
         public string DepotID { get; set; }
         public string ProID { get; set; }
