@@ -47,6 +47,41 @@ namespace SCM_System.DAL
                 }
                 ).ToListAsync();
             return new Dictionary<string, dynamic>() { { "data", temp } };
+        } 
+        #endregion
+
+        public async Task<Dictionary<string,dynamic>> GetDS_P_D()
+        {
+            var temp = await entities.DepotStock.OrderBy(DS=>DS.DSID).Join(entities.Products,
+                DS => DS.ProID,
+                P => P.ProID,
+                (DS, P) => new {
+                    DS.DSID,
+                    P.ProName,
+                    P.ProWorkShop,
+                    P.PTID,
+                    P.ProPrice,
+                    DS.DSAmount,
+                    P.ProInPrice,
+                    P.ProMax,
+                    P.ProMin,
+                }).Join(entities.ProductTypes,
+                    DS_P=>DS_P.PTID,
+                    PT=>PT.PTID,
+                    (DS_P,PT)=>new {
+                        DS_P.DSID,
+                        DS_P.ProName,
+                        DS_P.ProWorkShop,
+                        DS_P.ProPrice,
+                        DS_P.DSAmount,
+                        DS_P.ProInPrice,
+                        PT.PTName,
+                        DS_P.ProMax,
+                        DS_P.ProMin,
+                    }
+                )
+                .ToListAsync();
+            return new Dictionary<string, dynamic>() { { "data",temp} };
         }
     }
 }
