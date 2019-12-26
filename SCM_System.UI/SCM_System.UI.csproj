@@ -555,6 +555,12 @@
     <Content Include="Views\System\UsersAdd.cshtml" />
     <Content Include="Views\System\UsersEdit.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Basic\supplier.cshtml" />
+    <Content Include="Views\Basic\supplieradd.cshtml" />
+    <Content Include="Views\Basic\supplierEdit.cshtml" />
+    <Content Include="Views\Basic\type.cshtml" />
+    <Content Include="Views\Basic\typeadd.cshtml" />
+    <Content Include="Views\Basic\typeedit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

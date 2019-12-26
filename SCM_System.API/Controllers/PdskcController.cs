@@ -61,12 +61,12 @@ namespace SCM_System.API.Controllers
             return await universalModuel.Select_Key(CDID).ConfigureAwait(false);
         }
 
-        [HttpGet]
-        [Route("GetVProducts/{DepotID}")]
-        public async Task<List<V_Products>> GetVProducts(String DepotID)
-        {
-            return await ssss.Select_All().ConfigureAwait(false);
-        }
+        //[HttpGet]
+        //[Route("GetVProducts/{DepotID}")]
+        //public async Task<List<V_Products>> GetVProducts(String DepotID)
+        //{
+        //    return await ssss.Select_KeyProduct(DepotID).ConfigureAwait(false);
+        //}
 
 
 

@@ -16,13 +16,14 @@ namespace SCM_System.DAL
 {
     public class DAL_PdskcModuel<T> : DAL_UniversalModuel<T>, IDAL.IDAL_UniversalModuel<T> where T : class
     {
-        
+
         //entities ==db
         /// <summary>
         /// 库存盘点
         /// </summary>
         /// <returns></returns>
-        public async Task<Dictionary<string, dynamic>> GetVwCDUs() {
+        public async Task<Dictionary<string, dynamic>> GetVwCDUs()
+        {
 
             var temp = await entities.CheckDepot.Join(entities.Depots,
                 S => S.DepotID,
@@ -33,16 +34,16 @@ namespace SCM_System.DAL
                     盘点仓库 = PL.DepotName,
                     盘点日期 = S.CDDate,
                     盈亏总额 = 100,
-                    备注     = S.CDDesc,
-                    状态     = (S.CDState == 1 ? "盘点中" : S.CDState == 2 ? "盘点核算" : "盘点结束"),
-                    US=S.UserID
+                    备注 = S.CDDesc,
+                    状态 = (S.CDState == 1 ? "盘点中" : S.CDState == 2 ? "盘点核算" : "盘点结束"),
+                    US = S.UserID
                 }
                 ).Join(entities.Users,
                 S => S.US,
                 U => U.UsersID,
                 (S, U) => new
                 {
-                    
+
                     S.盘点编号,
                     S.盘点仓库,
                     S.盘点日期,
@@ -93,6 +94,7 @@ namespace SCM_System.DAL
         //        }
         //        ).ToListAsync();
         //    return new Dictionary<string, dynamic>() { { "data", temp } };
-        ////}
+        //    //}
+        //}
     }
-}
+    }
