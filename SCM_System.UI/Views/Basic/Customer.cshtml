@@ -144,33 +144,46 @@
 </div>
 
 <script>
-    var myVue = new Vue({
+    window.addEventListener('load', function () {
+        alert(1)
+        var app = new Vue({
         el: "#app",
-        methods: {
-            //跳转到添加/修改页面
-            ShowPage: function (id) {
-                var url = "";
-                var mes = "";
-                if (!id) {
-                    url = "/basic/customeradd.html";
-                    mes = "添加成功!";
-                } else {
-                    url = "/basic/customerEdit.html?id=" + id;
-                    mes = "修改成功!";
-                }
-                layer.open({
-                    type: 2,
-                    shade: false,
-                    area: ['500px', '550px'],
-                    maxmin: true,
-                    content: url,
-                    zIndex: layer.zIndex,
-                    end: function () { //子页面关闭时调用
-                        layer.alert(mes);
-                    }
-                });
-            }
+        data: {
+            ProductLend:[],
+        },
+        created: function () {
+            this.$http.get("http://localhost:8625/api/Basic/GetProductLend")
+                .then(d => {
+                    alert(2)
+                    this.ProductLend = d.data;
+                })
         }
+        //methods: {
+        //    //跳转到添加/修改页面
+        //    ShowPage: function (id) {
+        //        var url = "";
+        //        var mes = "";
+        //        if (!id) {
+        //            url = "/basic/customeradd.html";
+        //            mes = "添加成功!";
+        //        } else {
+        //            url = "/basic/customerEdit.html?id=" + id;
+        //            mes = "修改成功!";
+        //        }
+        //        layer.open({
+        //            type: 2,
+        //            shade: false,
+        //            area: ['500px', '550px'],
+        //            maxmin: true,
+        //            content: url,
+        //            zIndex: layer.zIndex,
+        //            end: function () { //子页面关闭时调用
+        //                layer.alert(mes);
+        //            }
+        //        });
+        //    }
+        //}
     });
+    })
 </script>
 

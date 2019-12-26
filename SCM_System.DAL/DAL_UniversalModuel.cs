@@ -131,16 +131,16 @@ namespace SCM_System.DAL
         /// <returns>结果集</returns>
         public async Task<List<T>> Select_All()
         {
-            try
-            {
+            //try
+            //{
                 var set = await entities.Set(t).Cast<T>().ToListAsync();
                 return set;
-            }
-            catch (Exception e)
-            {
+            //}
+            //catch (Exception e)
+            //{
 
-                throw new Exception(e.Message);
-            }
+            //    throw new Exception(e.Message);
+            //}
         }
 
         /// <summary>
@@ -267,45 +267,45 @@ namespace SCM_System.DAL
         /// <param name="key">T 内主键</param>
         /// <param name="model">修改所需新数据</param>
         /// <returns>操作结果</returns>
-        public async Task<int> Update_Key(dynamic key, T model)
-        {
-            try
-            {
-                var temp = entities.Set<T>().FindAsync(key).Result;
-                if (temp == null)
-                    throw new Exception("指定主键无效,无法执行后续操作");
-                //获取 T 内所有属性
-                var properties = t.GetProperties();
-                foreach (var item in properties)
-                {
-                    //判断当前属性项是否为 T 内主键
-                    if (item.CustomAttributes.Count() > 0)
-                    {
-                        if (item.CustomAttributes.ToList()[0].AttributeType.Name == "KeyAttribute")
-                        {
-                            //判断指定主键与操作单例主键是否相同
-                            if (item.GetValue(model) != null)
-                            {
-                                if (item.GetValue(model).ToString().Trim() != key.ToString().Trim())
-                                    throw new Exception("指定主键与操作单例主键不相同");
-                                else
-                                    item.SetValue(model, null);
-                            }
-                        }
-                    }
-                    //将新数据内非空属性的值赋予当前单例对应属性
-                    if (item.GetValue(model) != null)
-                        item.SetValue(temp, item.GetValue(model));
-                }
-                entities.Entry(temp).State = EntityState.Modified;
-                var result = await entities.SaveChangesAsync();
-                return result;
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
-            }
-        }
+        //public async Task<int> Update_Key(dynamic key, T model)
+        //{
+        //    try
+        //    {
+        //        var temp = entities.Set<T>().FindAsync(key).Result;
+        //        if (temp == null)
+        //            throw new Exception("指定主键无效,无法执行后续操作");
+        //        //获取 T 内所有属性
+        //        var properties = t.GetProperties();
+        //        foreach (var item in properties)
+        //        {
+        //            //判断当前属性项是否为 T 内主键
+        //            if (item.CustomAttributes.Count() > 0)
+        //            {
+        //                if (item.CustomAttributes.ToList()[0].AttributeType.Name == "KeyAttribute")
+        //                {
+        //                    //判断指定主键与操作单例主键是否相同
+        //                    if (item.GetValue(model) != null)
+        //                    {
+        //                        if (item.GetValue(model).ToString().Trim() != key.ToString().Trim())
+        //                            throw new Exception("指定主键与操作单例主键不相同");
+        //                        else
+        //                            item.SetValue(model, null);
+        //                    }
+        //                }
+        //            }
+        //            //将新数据内非空属性的值赋予当前单例对应属性
+        //            if (item.GetValue(model) != null)
+        //                item.SetValue(temp, item.GetValue(model));
+        //        }
+        //        entities.Entry(temp).State = EntityState.Modified;
+        //        var result = await entities.SaveChangesAsync();
+        //        return result;
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        throw new Exception(e.Message);
+        //    }
+        //}
 
         /// <summary>
         /// (无条件)针对 T 获取对应数据条数

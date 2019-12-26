@@ -23,6 +23,7 @@ namespace SCM_System.API.Controllers
         [Inject]
         //项目对应模块
         public DAL_BasicModuel<CheckDepot> basicModuel { get; set; }
+
         [Inject]
         //分页器
         public UniversalPager<CheckDepot, dynamic> pager { get; set; }

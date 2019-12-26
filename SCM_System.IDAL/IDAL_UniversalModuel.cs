@@ -56,7 +56,7 @@ namespace SCM_System.IDAL
         /// <param name="key">T 内主键</param>
         /// <param name="model">修改所需新数据</param>
         /// <returns>操作结果</returns>
-        Task<int> Update_Key(dynamic key,T model);
+        //Task<int> Update_Key(dynamic key,T model);
 
         /// <summary>
         /// 针对 T 内属性进行修改

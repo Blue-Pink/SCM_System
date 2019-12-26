@@ -46,7 +46,23 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    <tr v-for="(t,index) in Depots">
+                        <td scope="row">
+                            {{t.DepotID}}
+                        </td>
+                        <td>{{t.DepotName}}</td>
+                        <td>
+                            {{t.DepotMan}}
+
+                        </td>
+                        <td>{{t.DepotTel}}</td>
+                        <td>{{t.DepotAddress}}</td>
+                        <td>{{t.DepotDesc}}</td>
+                        <td>默认</td>
+                        <td><a href="javascript:;">删除</a> | <a href="javascript:;" v-on:click="ShowPage(1)">修改</a></td>
+
+                    </tr>
+                    @*<tr>
                         <td scope="row">
                             1
                         </td>
@@ -77,23 +93,7 @@
                         <td>aa</td>
                         <td><a href="javascript:;">删除</a> | <a href="javascript:;" v-on:click="ShowPage(1)">修改</a></td>
 
-                    </tr>
-                    <tr>
-                        <td scope="row">
-                            1
-                        </td>
-                        <td>株洲仓库</td>
-                        <td>
-                            刘先生
-
-                        </td>
-                        <td>151515151515</td>
-                        <td>株洲市</td>
-                        <td>aa</td>
-                        <td>aa</td>
-                        <td><a href="javascript:;">删除</a> | <a href="javascript:;" v-on:click="ShowPage(1)">修改</a></td>
-
-                    </tr>
+                    </tr>*@
                 </tbody>
             </table>
             <div align="center">
@@ -122,34 +122,18 @@
 </div>
 
 <script>
-    var myVue = new Vue({
+    var app = new Vue({
         el: "#app",
-        methods: {
-            //跳转到添加/修改页面
-            ShowPage: function (id) {
-                var url = "";
-                var mes = "";
-                if (!id) {
-                    url = "/basic/storeadd.html";
-                    mes = "添加成功!";
-                } else {
-                    url = "/basic/storeEdit.html?id=" + id;
-                    mes = "修改成功!";
-                }
-                layer.open({
-                    type: 2,
-                    shade: false,
-                    area: ['500px', '550px'],
-                    maxmin: true,
-                    content: url,
-                    zIndex: layer.zIndex,
-                    end: function () { //子页面关闭时调用
-                        layer.alert(mes);
-                    }
-                });
-            }
+        data: {
+            Depots:[],
+        },
+        created: function () {
+            this.$http.get("http://localhost:8625/api/Basic/GetDepots")
+                .then(d => {
+                    this.Depots = d.data;
+                })
         }
-    });
+    })
 </script>
 
 
