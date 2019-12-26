@@ -44,11 +44,11 @@ namespace SCM_System.API.Controllers
             Pager_V_DS_P_PT.IsAsc = true;
             Pager_V_DS_P_PT.WhereLambda = a => true;
             Pager_V_DS_P_PT.OrderByLambda = a => a.DSID;
-            var temp = Pager_V_DS_P_PT.Paging();
+            var temp = Pager_V_DS_P_PT.Paging();    
             //var temp = await buyModuel.GetDS_P_D(ps, pi).ConfigureAwait(false);
             return new Dictionary<string, dynamic>() { { "data",temp},{ "total",Pager_V_DS_P_PT.PageCount} };
         }
-
+           
         public void Options() { }  //这是预请求
     }
 }
