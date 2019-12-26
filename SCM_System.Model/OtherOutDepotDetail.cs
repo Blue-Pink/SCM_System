@@ -12,9 +12,8 @@ namespace SCM_System.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class OtherOutDepotDetail : BaseModel
+    public partial class OtherOutDepotDetail
     {
-        [System.ComponentModel.DataAnnotations.Key]
         public int OODDID { get; set; }
         public string OODID { get; set; }
         public string ProID { get; set; }

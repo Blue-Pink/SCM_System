@@ -12,9 +12,8 @@ namespace SCM_System.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class ProduceOutDepotDetail : BaseModel
+    public partial class ProduceOutDepotDetail
     {
-        [System.ComponentModel.DataAnnotations.Key]
         public int PODDID { get; set; }
         public string PODID { get; set; }
         public string ProID { get; set; }

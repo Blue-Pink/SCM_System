@@ -12,9 +12,8 @@ namespace SCM_System.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class Customers : BaseModel
+    public partial class Customers
     {
-        [System.ComponentModel.DataAnnotations.Key]
         public string CusID { get; set; }
         public Nullable<int> CLID { get; set; }
         public string CusName { get; set; }

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SCMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="SCMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="CheckDepot">
           <Key>
             <PropertyRef Name="CDID" />
@@ -555,7 +555,7 @@
             <PropertyRef Name="StockID" />
           </Key>
           <Property Name="StockID" Type="char" MaxLength="14" Nullable="false" />
-          <Property Name="PPID" Type="char" MaxLength="12" />
+          <Property Name="PPID" Type="char" MaxLength="14" />
           <Property Name="StockDate" Type="datetime" />
           <Property Name="StockInDate" Type="datetime" />
           <Property Name="StockUser" Type="int" />
@@ -669,6 +669,21 @@
           <Property Name="PCName" Type="nvarchar" MaxLength="50" />
           <Property Name="PSName" Type="nvarchar" MaxLength="50" />
           <Property Name="DepotName" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“SCM.dbo.Vw_CL”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="Vw_CL">
+          <Key>
+            <PropertyRef Name="CusID" />
+          </Key>
+          <Property Name="CusID" Type="char" MaxLength="14" Nullable="false" />
+          <Property Name="CLID" Type="int" />
+          <Property Name="CusName" Type="nvarchar" MaxLength="100" />
+          <Property Name="CusCompany" Type="nvarchar" MaxLength="200" />
+          <Property Name="CusMan" Type="nvarchar" MaxLength="50" />
+          <Property Name="CusDesc" Type="nvarchar" MaxLength="2000" />
+          <Property Name="CLAgio" Type="int" />
+          <Property Name="CLName" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <Function Name="proc_CFNO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="no" Type="varchar" Mode="InOut" />
@@ -855,9 +870,20 @@
     [V_Products].[DepotName] AS [DepotName]
     FROM [dbo].[V_Products] AS [V_Products]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="Vw_CL" EntityType="Self.Vw_CL" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Vw_CL].[CusID] AS [CusID], 
+    [Vw_CL].[CLID] AS [CLID], 
+    [Vw_CL].[CusName] AS [CusName], 
+    [Vw_CL].[CusCompany] AS [CusCompany], 
+    [Vw_CL].[CusMan] AS [CusMan], 
+    [Vw_CL].[CusDesc] AS [CusDesc], 
+    [Vw_CL].[CLAgio] AS [CLAgio], 
+    [Vw_CL].[CLName] AS [CLName]
+    FROM [dbo].[Vw_CL] AS [Vw_CL]</DefiningQuery>
+          </EntitySet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SCMModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1411,7 +1437,7 @@
             <PropertyRef Name="StockID" />
           </Key>
           <Property Name="StockID" Type="String" MaxLength="14" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="PPID" Type="String" MaxLength="12" FixedLength="true" Unicode="false" />
+          <Property Name="PPID" Type="String" MaxLength="14" FixedLength="true" Unicode="false" />
           <Property Name="StockDate" Type="DateTime" Precision="3" />
           <Property Name="StockInDate" Type="DateTime" Precision="3" />
           <Property Name="StockUser" Type="Int32" />
@@ -1575,7 +1601,7 @@
           <EntitySet Name="V_OutDepot" EntityType="Self.V_OutDepot" />
           <EntitySet Name="V_Products" EntityType="Self.V_Products" />
           <FunctionImport Name="proc_CFNO">
-            <Parameter Name="no" Mode="InOut" Type="String" />
+          <Parameter Name="no" Mode="InOut" Type="String" />
           </FunctionImport>
           <FunctionImport Name="proc_common_create_flowNo">
             <Parameter Name="tableName" Mode="In" Type="String" />
@@ -1584,43 +1610,43 @@
             <Parameter Name="no" Mode="InOut" Type="String" />
           </FunctionImport>
           <FunctionImport Name="proc_CPNO">
-            <Parameter Name="no" Mode="InOut" Type="String" />
+          <Parameter Name="no" Mode="InOut" Type="String" />
           </FunctionImport>
           <FunctionImport Name="proc_CusOrder">
-            <Parameter Name="no" Mode="InOut" Type="String" />
+          <Parameter Name="no" Mode="InOut" Type="String" />
           </FunctionImport>
           <FunctionImport Name="proc_Cust_no">
-            <Parameter Name="no" Mode="InOut" Type="String" />
+          <Parameter Name="no" Mode="InOut" Type="String" />
           </FunctionImport>
           <FunctionImport Name="proc_Losts">
-            <Parameter Name="no" Mode="InOut" Type="String" />
+          <Parameter Name="no" Mode="InOut" Type="String" />
           </FunctionImport>
           <FunctionImport Name="proc_PayOffs">
-            <Parameter Name="no" Mode="InOut" Type="String" />
+          <Parameter Name="no" Mode="InOut" Type="String" />
           </FunctionImport>
           <FunctionImport Name="proc_ProID">
-            <Parameter Name="no" Mode="InOut" Type="String" />
+          <Parameter Name="no" Mode="InOut" Type="String" />
           </FunctionImport>
           <FunctionImport Name="proc_SaleReturn">
-            <Parameter Name="no" Mode="InOut" Type="String" />
+          <Parameter Name="no" Mode="InOut" Type="String" />
           </FunctionImport>
           <FunctionImport Name="proc_SCNO">
-            <Parameter Name="no" Mode="InOut" Type="String" />
+          <Parameter Name="no" Mode="InOut" Type="String" />
           </FunctionImport>
           <FunctionImport Name="proc_SDNO">
-            <Parameter Name="no" Mode="InOut" Type="String" />
+          <Parameter Name="no" Mode="InOut" Type="String" />
           </FunctionImport>
           <FunctionImport Name="proc_SLNO">
-            <Parameter Name="no" Mode="InOut" Type="String" />
+          <Parameter Name="no" Mode="InOut" Type="String" />
           </FunctionImport>
           <FunctionImport Name="proc_StID">
-            <Parameter Name="no" Mode="InOut" Type="String" />
+          <Parameter Name="no" Mode="InOut" Type="String" />
           </FunctionImport>
           <FunctionImport Name="proc_StockInDepot">
-            <Parameter Name="no" Mode="InOut" Type="String" />
+          <Parameter Name="no" Mode="InOut" Type="String" />
           </FunctionImport>
           <FunctionImport Name="proc_StockOutDepot">
-            <Parameter Name="no" Mode="InOut" Type="String" />
+          <Parameter Name="no" Mode="InOut" Type="String" />
           </FunctionImport>
           <FunctionImport Name="PS_proc_CommonPager">
             <Parameter Name="tblName" Mode="In" Type="String" />
@@ -1631,7 +1657,21 @@
             <Parameter Name="OrderType" Mode="In" Type="Boolean" />
             <Parameter Name="strWhere" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="Vw_CL" EntityType="SCMModel.Vw_CL" />
         </EntityContainer>
+        <EntityType Name="Vw_CL">
+          <Key>
+            <PropertyRef Name="CusID" />
+          </Key>
+          <Property Name="CusID" Type="String" Nullable="false" MaxLength="14" FixedLength="true" Unicode="false" />
+          <Property Name="CLID" Type="Int32" />
+          <Property Name="CusName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CusCompany" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CusMan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CusDesc" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="CLAgio" Type="Int32" />
+          <Property Name="CLName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2364,6 +2404,20 @@
           <FunctionImportMapping FunctionImportName="proc_StockInDepot" FunctionName="SCMModel.Store.proc_StockInDepot" />
           <FunctionImportMapping FunctionImportName="proc_StockOutDepot" FunctionName="SCMModel.Store.proc_StockOutDepot" />
           <FunctionImportMapping FunctionImportName="PS_proc_CommonPager" FunctionName="SCMModel.Store.PS_proc_CommonPager" />
+          <EntitySetMapping Name="Vw_CL">
+            <EntityTypeMapping TypeName="SCMModel.Vw_CL">
+              <MappingFragment StoreEntitySet="Vw_CL">
+                <ScalarProperty Name="CLName" ColumnName="CLName" />
+                <ScalarProperty Name="CLAgio" ColumnName="CLAgio" />
+                <ScalarProperty Name="CusDesc" ColumnName="CusDesc" />
+                <ScalarProperty Name="CusMan" ColumnName="CusMan" />
+                <ScalarProperty Name="CusCompany" ColumnName="CusCompany" />
+                <ScalarProperty Name="CusName" ColumnName="CusName" />
+                <ScalarProperty Name="CLID" ColumnName="CLID" />
+                <ScalarProperty Name="CusID" ColumnName="CusID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

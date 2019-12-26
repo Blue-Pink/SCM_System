@@ -12,15 +12,15 @@ namespace SCM_System.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class QuotePriceDetail
+    public partial class Vw_CL
     {
-        public int QPDID { get; set; }
-        public string QPID { get; set; }
-        public string ProID { get; set; }
-        public Nullable<int> QPDAmount { get; set; }
-        public Nullable<decimal> QPDPrice { get; set; }
-        public Nullable<int> QPDDiscont { get; set; }
-        public Nullable<decimal> QPDDisPrice { get; set; }
-        public string QPDDesc { get; set; }
+        public string CusID { get; set; }
+        public Nullable<int> CLID { get; set; }
+        public string CusName { get; set; }
+        public string CusCompany { get; set; }
+        public string CusMan { get; set; }
+        public string CusDesc { get; set; }
+        public Nullable<int> CLAgio { get; set; }
+        public string CLName { get; set; }
     }
 }
