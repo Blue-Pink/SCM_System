@@ -12,8 +12,9 @@ namespace SCM_System.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class PopedomRole
+    public partial class PopedomRole : BaseModel
     {
+        [System.ComponentModel.DataAnnotations.Key]
         public int PRID { get; set; }
         public Nullable<int> RoleID { get; set; }
         public Nullable<int> PopID { get; set; }

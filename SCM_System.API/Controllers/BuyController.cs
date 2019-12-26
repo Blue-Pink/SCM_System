@@ -17,8 +17,8 @@ namespace SCM_System.API.Controllers
 
         [Inject]
         public DAL.DAL_BuyModuel<BaseModel> buyModuel { get; set; }
-        [Inject] 
-        public UniversalPager<V_DS_P_PT,int> Pager_V_DS_P_PT { get; set; }
+        [Inject]
+        public UniversalPager<V_DS_P_PT, int> Pager_V_DS_P_PT { get; set; }
         #region 表名标注
         //P     -> 商品表(Products)
         //S     -> 采购单(Stocks)

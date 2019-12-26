@@ -12,8 +12,9 @@ namespace SCM_System.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class QuotePriceDetail
+    public partial class QuotePriceDetail : BaseModel
     {
+        [System.ComponentModel.DataAnnotations.Key]
         public int QPDID { get; set; }
         public string QPID { get; set; }
         public string ProID { get; set; }
