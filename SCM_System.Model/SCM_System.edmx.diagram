@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="fa20c3d2497d4790be29aae77c10af8f" Name="Diagram1" ZoomLevel="63">
+      <Diagram DiagramId="fa20c3d2497d4790be29aae77c10af8f" Name="Diagram1">
         <EntityTypeShape EntityType="SCMModel.CheckDepot" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SCMModel.CheckDepotDetail" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SCMModel.Compose" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
