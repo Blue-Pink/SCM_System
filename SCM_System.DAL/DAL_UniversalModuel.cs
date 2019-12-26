@@ -39,6 +39,11 @@ namespace SCM_System.DAL
         /// </summary>
         /// <param name="key"> T 内主键</param>
         /// <returns>操作结果</returns>
+        /// <summary>
+        /// 删除方法
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
         public async Task<int> Delete_Key(dynamic key)
         {
             try
@@ -157,11 +162,6 @@ namespace SCM_System.DAL
             }
         }
 
-        /// <summary>
-        /// 针对 T 内属性获取对应所有数据
-        /// </summary>
-        /// <param name="properties">T 内属性,键值格式为: {"属性名","条件值"}</param>
-        /// <returns>结果集</returns>
         public async Task<List<T>> Select_Properties(Dictionary<string, dynamic> properties)
         {
             try

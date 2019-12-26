@@ -10,45 +10,89 @@ using Ninject;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Data.Entity;
 
 namespace SCM_System.DAL
 {
     public class DAL_PdskcModuel<T> : DAL_UniversalModuel<T>, IDAL.IDAL_UniversalModuel<T> where T : class
     {
-        private static readonly string strCon = ConfigurationManager.ConnectionStrings["SCMEntities"].ConnectionString;
-
+        
         //entities ==db
+        /// <summary>
+        /// 库存盘点
+        /// </summary>
+        /// <returns></returns>
+        public async Task<Dictionary<string, dynamic>> GetVwCDUs() {
 
-        public async Task<List<Vw_CDU>> GetVwCDUs() {
-            
-            List<Vw_CDU> list = new List<Vw_CDU>();
-            await Task.Run(() => {
-                using (SqlConnection con = new SqlConnection(strCon))
+            var temp = await entities.CheckDepot.Join(entities.Depots,
+                S => S.DepotID,
+                PL => PL.DepotID,
+                (S, PL) => new
                 {
-                    con.Open();
-                    SqlCommand cmd = new SqlCommand("select * from Vw_CDU", con);
-                    SqlDataReader sd = cmd.ExecuteReader();
-                    while (sd.Read())
-                    {
-                        list.Add(new Vw_CDU()
-                        {
-                            CDDate = Convert.ToDateTime(sd["CDDate"]),
-                            CDID = sd["CDID"].ToString(),
-                            CDState = Convert.ToInt32(sd["CDState"]),
-                            DepotName = sd["DepotName"].ToString(),
-                            UsersName = sd["UsersName"].ToString(),
-                            CDDesc = sd["CDDesc"].ToString(),
-
-                        });
-                    }
-
+                    盘点编号 = S.CDID,
+                    盘点仓库 = PL.DepotName,
+                    盘点日期 = S.CDDate,
+                    盈亏总额 = 100,
+                    备注     = S.CDDesc,
+                    状态     = (S.CDState == 1 ? "盘点中" : S.CDState == 2 ? "盘点核算" : "盘点结束"),
+                    US=S.UserID
                 }
-            });
-            return list;
+                ).Join(entities.Users,
+                S => S.US,
+                U => U.UsersID,
+                (S, U) => new
+                {
+                    
+                    S.盘点编号,
+                    S.盘点仓库,
+                    S.盘点日期,
+                    经手人 = U.UsersName,
+                    S.盈亏总额,
+                    S.备注,
+                    S.状态,
+                }
+                ).ToListAsync();
+            return new Dictionary<string, dynamic>() { { "data", temp } };
         }
 
-        #region Blue-Pink 代码区域
 
-        #endregion
+        /// <summary>
+        /// 根据仓库编号CK0001查出商品清单
+        /// </summary>
+        /// <returns></returns>
+        //public async Task<Dictionary<string, dynamic>> GetVwptcs()
+        //{
+
+        //    var temp = await entities.Products.Join(entities.ProductTypes,
+        //        S => S.PTID,
+        //        PL => PL.PTID,
+        //        (S, PL) => new
+        //        {
+        //            编号 = S.ProID,
+        //            名称 = S.ProName,
+        //            类别 = S.CDDate,
+        //            颜色 = 100,
+        //            价格 = S.CDDesc,
+        //            数量 = (S.CDState == 1 ? "盘点中" : S.CDState == 2 ? "盘点核算" : "盘点结束"),
+        //            盘点数 = S.UserID,
+        //            盈亏 = S.
+        //        }
+        //        ).Join(entities.Users,
+        //        S => S.US,
+        //        U => U.UsersID,
+        //        (S, U) => new
+        //        {
+
+        //            S.盘点编号,
+        //            S.盘点仓库,
+        //            S.盘点日期,
+        //            经手人 = U.UsersName,
+        //            S.盈亏总额,
+        //            S.备注,
+        //            S.状态,
+        //        }
+        //        ).ToListAsync();
+        //    return new Dictionary<string, dynamic>() { { "data", temp } };
+        ////}
     }
 }

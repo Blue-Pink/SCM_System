@@ -23,6 +23,8 @@
                 el: "#app",
                 data: {
                     CheckDepot: {},
+                    Products: [],
+                    DepotID: null,
                 },
                 created: function () {
                     this.load();
@@ -31,14 +33,24 @@
                 },
                 methods: {
                     load: function () {
-                        this.$http.get("http://localhost:50086/api/pdskc/GetCheckDepotAllID/" + ind + "").then(d => {
+                        this.$http.get("http://localhost:8625/api/pdskc/GetCheckDepot/" + ind + "").then(d => {
+                        
                             this.CheckDepot = d.data;
-                            console.log(this.CheckDepot)
+
+                            if (this.CheckDepot.DepotID != null) {
+                                this.$http.get("http://localhost:8625/api/pdskc/GetVProducts/" + this.CheckDepot.DepotID + "").then(d => {
+                                   
+                                    this.Products = d.data;
+                                    console.log(d);
+                            console.log(this.Products);
                         })
+                            }
+                        })
+                            
                     }, 
                     del: function (t, index) {
 
-                        this.$http.get("http://localhost:50086/api/pdskc/delCheckDepot/" + t.CDID + "")
+                        this.$http.get("http://localhost:8625/api/pdskc/delCheckDepot/" + t.CDID + "")
                             .then(d => {
                                 this.CheckDepot.splice(index, 1);
                                
@@ -104,7 +116,7 @@
                         </td>
                         <td width="39%">
                             <div align="left">
-                                {{CheckDepot.CDID}}
+                                {{CheckDepot.DepotID}}
                             </div>
                         </td>
                     </tr>
@@ -194,52 +206,57 @@
                     </thead>
                     <tbody>
 
-                        <tr>
-                            <td scope="col">
+                        <tr v-for="(t,index) in Products">
+                            <td scope="col" v-for="(y,c) in t">
                                 <div align="center">
-                                    001
+                                    {{y}}
                                 </div>
                             </td>
-                            <td scope="col">
-                                <div align="center">
-                                    安踏外套
-                                </div>
-                            </td>
-                            <td scope="col">
-                                <div align="center">
-                                    上衣
-                                </div>
-                            </td>
-                            <td scope="col">
-                                <div align="center">
-                                    红色
-                                </div>
-                            </td>
-                            <td scope="col">
-                                <div align="center">
-                                    50.00
-                                </div>
-                            </td>
-                            <td scope="col">
-                                <div align="center">
-                                    5
-                                </div>
-                            </td>
-                            <td scope="col">
-                                <div align="center">
-                                    5
-                                </div>
-                            </td>
-                            <td scope="col">
-                                <div align="center">
-                                    0.00
-                                </div>
-                            </td>
-                            <td scope="col">
-                                <a href="javascript:;">删行</a>
-                            </td>
+                            @*<td scope="col">
+            <div align="center">
+                001
+            </div>
+        </td>
+        <td scope="col">
+            <div align="center">
+                安踏外套
+            </div>
+        </td>
+        <td scope="col">
+            <div align="center">
+                上衣
+            </div>
+        </td>
+        <td scope="col">
+            <div align="center">
+                红色
+            </div>
+        </td>
+        <td scope="col">
+            <div align="center">
+                50.00
+            </div>
+        </td>
+        <td scope="col">
+            <div align="center">
+                5
+            </div>
+        </td>
+        <td scope="col">
+            <div align="center">
+                5
+            </div>
+        </td>
+        <td scope="col">
+            <div align="center">
+                0.00
+            </div>
+        </td>
+        <td scope="col">
+            <a href="javascript:;">删行</a>
+        </td>*@
                         </tr>
-                        <tr>
+                        @*<tr>
                             <td scope="col">
                                 <div align="center">
                                     002
@@ -373,7 +390,7 @@
                             <td scope="col">
                                 <a href="javascript:;">删行</a>
                             </td>
-                        </tr>
+                        </tr>*@
 
 
 

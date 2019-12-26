@@ -5,22 +5,27 @@
             var app = new Vue({
                 el: "#app",
                 data: {
-                    CheckDepot: [],
+                    CheckDepot: {},
                 },
                 created: function () {
-                    this.$http.get("http://localhost:50086/api/pdskc/GetCheckDepotAll").then(d => {
+                    this.$http.get("http://localhost:8625/api/pdskc/GetCDUs").then(d => {
                         this.CheckDepot = d.data;
+                        //console.log(this.CheckDepot.data)
+                        //console.log(this.CheckDepot.data[0])
                     })
                 },
                 methods: {
                     sele: function (t) {
-                        location.href = "/pdskc/CheckDepotDetail?id=" + t.CDID + ""
+                        location.href = "/pdskc/CheckDepotDetail?id=" + t["盘点编号"] + ""
                     },
                     del: function (t, index) {
-
-                        this.$http.get("http://localhost:50086/api/pdskc/DelCheckDepotAllID/" + t.CDID + "")
+                        //console.log(t)
+                        //alert(t["盘点编号"]);
+                        //alert(index);
+                        this.$http.get("http://localhost:8625/api/pdskc/DelVwCDUid/" + t["盘点编号"] + "")
                             .then(d => {
-                                this.CheckDepot.splice(index, 1);
+                                //alert(index);
+                                this.CheckDepot.data.splice(index, 1);
                             })
                     },
                     dateFormat: function (time) {
@@ -115,32 +120,14 @@
                     </tr>
                 </thead>
                 <tbody>
+                    
+                    <tr v-for="(t,index) in CheckDepot.data">
 
-                    <tr v-for="(t,index) in CheckDepot">
-                        <td>
-                            {{t.CDID}}
+                        <td v-for="(y,indexs) in t">
+                            {{y}}
                         </td>
-                        <td>
-                            {{t.DepotName}}
-                        </td>
-                        <td>
-                            {{dateFormat(t.CDDate)}}
-                        </td>
-                        <td>
-                            {{t.UsersName}}
-                        </td>
-                        <td>
-                            500.00
-                        </td>
-                        <td>
-                            {{t.CDDesc}}
-                        </td>
-                        <td>
-                            {{t.CDState==1?"盘点中":t.CDState==2?"盘点核算":"盘点结束"}}
-                            @*1=盘点中，2=盘点核算，3=盘点结束*@
-                        </td>
+
                         <td><a href="#" @@click="sele(t)">查看</a> | <a href="javascript:;">审核</a> | <a href="#" @@click="del(t,index)">删除</a> | <a href="/pdskc/CheckDepotEdit" onclick='    $("#div1").load("/pdskc/CheckDepotEdit.html")'>修改</a></td>
-                        @*a href="/pdskc/CheckDepotDetail?id={{t.CDID}}"*@
                     </tr>
                     @*<tr>
                             <td>

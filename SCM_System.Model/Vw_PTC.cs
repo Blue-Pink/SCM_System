@@ -11,6 +11,9 @@ namespace SCM_System.Model
     public class Vw_PTC
     {
         [Key]
+        [StringLength(6)]
+        public string DepotID { get; set; }
+
         public int PTID { get; set; }
 
         public int? PTParentID { get; set; }
@@ -56,9 +59,7 @@ namespace SCM_System.Model
 
         [StringLength(2000)]
         public string ProDesc { get; set; }
-
-        [StringLength(6)]
-        public string DepotID { get; set; }
+        
         //[Key]
         //public int PCID { get; set; }
 
