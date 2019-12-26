@@ -35,9 +35,9 @@ namespace SCM_System.API.Controllers
 
         [HttpGet]
         [Route("GetDS_P_Ds")]
-        public async Task<dynamic> GetDS_P_Ds()
+        public async Task<dynamic> GetDS_P_Ds(int ps,int pi)
         {
-            var temp = await buyModuel.GetDS_P_D().ConfigureAwait(false);
+            var temp = await buyModuel.GetDS_P_D(ps,pi).ConfigureAwait(false);
             return temp;
         }
 
