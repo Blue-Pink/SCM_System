@@ -12,8 +12,9 @@ namespace SCM_System.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class ProductUnit
+    public partial class ProductUnit : BaseModel
     {
+        [System.ComponentModel.DataAnnotations.Key]
         public int PUID { get; set; }
         public string PUName { get; set; }
     }

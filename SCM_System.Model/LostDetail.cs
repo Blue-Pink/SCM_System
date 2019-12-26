@@ -12,8 +12,9 @@ namespace SCM_System.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class LostDetail
+    public partial class LostDetail : BaseModel
     {
+        [System.ComponentModel.DataAnnotations.Key]
         public int LDID { get; set; }
         public string LostID { get; set; }
         public string ProID { get; set; }

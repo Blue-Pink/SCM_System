@@ -12,8 +12,9 @@ namespace SCM_System.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class ProductLend
+    public partial class ProductLend : BaseModel
     {
+        [System.ComponentModel.DataAnnotations.Key]
         public string PPID { get; set; }
         public string PPName { get; set; }
         public string PPCompany { get; set; }
