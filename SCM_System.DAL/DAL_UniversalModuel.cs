@@ -34,6 +34,11 @@ namespace SCM_System.DAL
             }
         }
 
+        /// <summary>
+        /// 删除方法
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
         public async Task<int> Delete_Key(dynamic key)
         {
             try
@@ -124,6 +129,20 @@ namespace SCM_System.DAL
             try
             {
                 var temp = entities.Set<T>().FindAsync(key);
+                return temp;
+            }
+            catch (Exception e)
+            {
+
+                throw new Exception(e.Message);
+            }
+        }
+
+        public async Task<List<V_Products>> Select_KeyProduct(string key)
+        {
+            try
+            {
+                var temp = await entities.V_Products.Where(a=>a.DepotID == key).ToListAsync();
                 return temp;
             }
             catch (Exception e)
