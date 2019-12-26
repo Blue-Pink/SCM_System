@@ -12,8 +12,9 @@ namespace SCM_System.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class Users
+    public partial class Users : BaseModel
     {
+        [System.ComponentModel.DataAnnotations.Key]
         public int UsersID { get; set; }
         public string UsersName { get; set; }
         public string UserLoginName { get; set; }

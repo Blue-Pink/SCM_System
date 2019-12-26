@@ -12,8 +12,9 @@ namespace SCM_System.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class Depots
+    public partial class Depots : BaseModel
     {
+        [System.ComponentModel.DataAnnotations.Key]
         public string DepotID { get; set; }
         public string DepotName { get; set; }
         public string DepotMan { get; set; }
