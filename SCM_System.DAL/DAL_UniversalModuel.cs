@@ -131,16 +131,16 @@ namespace SCM_System.DAL
         /// <returns>结果集</returns>
         public async Task<List<T>> Select_All()
         {
-            try
-            {
+            //try
+            //{
                 var set = await entities.Set(t).Cast<T>().ToListAsync();
                 return set;
-            }
-            catch (Exception e)
-            {
+            //}
+            //catch (Exception e)
+            //{
 
-                throw new Exception(e.Message);
-            }
+            //    throw new Exception(e.Message);
+            //}
         }
 
         /// <summary>

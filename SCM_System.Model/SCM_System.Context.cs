@@ -82,6 +82,7 @@ namespace SCM_System.Model
         public virtual DbSet<V_InOutDepotDetail> V_InOutDepotDetail { get; set; }
         public virtual DbSet<V_OutDepot> V_OutDepot { get; set; }
         public virtual DbSet<V_Products> V_Products { get; set; }
+        public virtual DbSet<Vw_CL> Vw_CL { get; set; }
         public virtual DbSet<V_DS_P_PT> V_DS_P_PT { get; set; }
     
         public virtual int proc_CFNO(ObjectParameter no)

@@ -1,4 +1,5 @@
-﻿<div id="app">
+﻿
+<div id="app">
     <div class="sub-heard-part">
         <ol class="breadcrumb m-b-0">
             <li><a href="#" onclick='$("#div1").load("/basic/Index.html")'>基础数据</a></li>
@@ -31,18 +32,18 @@
             <table class="table table-striped table-bordered table-hover table-condensed">
                 <thead>
                     <tr>
-                        <th>#</th>
+                        <th>编号</th>
                         <th>大类别名称</th>
                         <th>操作</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>软件类</td>
+                    <tr v-for="(t,index) in ProductTypes">
+                        <th scope="row">{{t.PTID}}</th>
+                        <td>{{t.PTName}}</td>
                         <td><a href="javascript:;">删除</a> | <a href="javascript:;" v-on:click="ShowPage(1)">修改</a></td>
                     </tr>
-                    <tr>
+                    @*<tr>
                         <th scope="row">2</th>
                         <td>文学类</td>
                         <td><a href="javascript:;">删除</a> | <a href="javascript:;">修改</a></td>
@@ -51,7 +52,7 @@
                         <th scope="row">3</th>
                         <td>电影类</td>
                         <td><a href="javascript:;">删除</a> | <a href="javascript:;">修改</a></td>
-                    </tr>
+                    </tr>*@
                 </tbody>
             </table>
             <div align="center">
@@ -80,33 +81,21 @@
     </div>
 </div>
 
-<script>
-    var myVue = new Vue({
-        el: "#app",
-        methods: {
-            //跳转到添加/修改页面
-            ShowPage: function (id) {
-                var url = "";
-                var mes = "";
-                if (!id) {
-                    url = "/basic/typeadd.html";
-                    mes = "添加成功!";
-                } else {
-                    url = "/basic/typeedit.html?id=" + id;
-                    mes = "修改成功!";
+@section CustomJs{
+    <script>
+        window.addEventListener('load', function () {
+            var app = new Vue({
+                el: "#app",
+                data: {
+                    ProductTypes:[],
+                },
+                created: function () {
+                    this.$http.get("http://localhost:8625/api/Basic/GetProductTypes")
+                        .then(d => {
+                            this.ProductTypes = d.data;
+                        })
                 }
-                layer.open({
-                    type: 2,
-                    shade: false,
-                    area: ['500px', '550px'],
-                    maxmin: true,
-                    content: url,
-                    zIndex: layer.zIndex,
-                    end: function () { //子页面关闭时调用
-                        layer.alert(mes);
-                    }
-                });
-            }
-        }
-    });
-</script>
+            })
+        })
+    </script>
+}
