@@ -12,8 +12,9 @@ namespace SCM_System.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class Roles
+    public partial class Roles : BaseModel
     {
+        [System.ComponentModel.DataAnnotations.Key]
         public int RoleID { get; set; }
         public string RoleName { get; set; }
         public string RoleDesc { get; set; }

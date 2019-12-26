@@ -12,15 +12,16 @@ namespace SCM_System.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class Stocks : BaseModel
+    public partial class V_DS_P_PT1
     {
-        [System.ComponentModel.DataAnnotations.Key]
-        public string StockID { get; set; }
-        public string PPID { get; set; }
-        public Nullable<System.DateTime> StockDate { get; set; }
-        public Nullable<System.DateTime> StockInDate { get; set; }
-        public Nullable<int> StockUser { get; set; }
-        public Nullable<int> StockState { get; set; }
-        public string StockDesc { get; set; }
+        public int DSID { get; set; }
+        public string ProName { get; set; }
+        public string ProWorkShop { get; set; }
+        public Nullable<decimal> ProPrice { get; set; }
+        public Nullable<int> DSAmount { get; set; }
+        public Nullable<decimal> ProInPrice { get; set; }
+        public Nullable<int> ProMax { get; set; }
+        public Nullable<int> ProMin { get; set; }
+        public string PTName { get; set; }
     }
 }
