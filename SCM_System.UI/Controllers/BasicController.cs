@@ -59,5 +59,34 @@ namespace SCM_System.UI.Controllers
             return View();
         }
 
+        public ActionResult supplier()
+        {
+            return View();
+        }
+
+        public ActionResult supplieradd()
+        {
+            return View();
+        }
+
+        public ActionResult supplierEdit()
+        {
+            return View();
+        }
+
+        public ActionResult type()
+        {
+            return View();
+        }
+
+        public ActionResult typeadd()
+        {
+            return View();
+        }
+
+        public ActionResult typeedit()
+        {
+            return View();
+        }
     }
 }
