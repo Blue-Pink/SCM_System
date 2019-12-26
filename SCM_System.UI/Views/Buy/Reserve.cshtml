@@ -86,19 +86,11 @@
                         <td>{{s.ProID}}</td>
                         <td>{{s.DSPrice}}</td>
                         <td>
-                            {{m.ProWorkShop}}
+                            {{s.DSAmount}}
                         </td>
                         <td>
-                            {{m.PTName}}
-                        </td>   
-                        <td>
-                            {{m.ProPrice}}
                         </td>
                         <td>
-                            {{m.DSAmount}}
-                        </td>
-                        <td>
-                            {{m.ProInPrice}}
                         </td>
 
                         <td></td>
@@ -142,7 +134,6 @@
             created: function () {
                 this.$http.get("http://localhost:8625/api/buy/GetDS_P_Ds",
                     { "params": { "ps": 3, "pi": 1 } }).then(result => {
-                        console.log(result)
                         this.data = result.data.data
                         total = result.data.total
                         console.log(this.data)
