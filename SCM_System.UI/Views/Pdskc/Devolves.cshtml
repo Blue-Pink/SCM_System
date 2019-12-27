@@ -71,8 +71,13 @@
                     </tr>
                 </thead>
                 <tbody>
-
-                    <tr>
+                    <tr v-for="m in data">
+                        <td v-for="p in m">
+                            {{p}}
+                        </td>
+                        <td><a href="#" onclick='$("#div1").load("/pdskc/DevolvesDetail.html")'>查看</a></td>
+                    </tr>
+                    @*<tr>
                         <td>
                             DB0001
                         </td>
@@ -143,7 +148,7 @@
                             完成
                         </td>
                         <td><a href="#" onclick='$("#div1").load("/pdskc/DevolvesDetail.html")'>查看</a></td>
-                    </tr>
+                    </tr>*@
                 </tbody>
             </table>
             <div align="center">
@@ -170,3 +175,22 @@
         </div>
     </div>
 </div>
+
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            data: [],
+            total: 0,
+            ps: 3,
+            pi: 1,
+        },
+        created: function () {
+            this.$http.get("http://localhost:8625/api/pdskc/GetVDlD",
+                { "params": { "ps": this.ps, "pi": this.pi } }).then(result => {
+                    this.data = result.data.data
+                    this.total = result.data.total
+                })
+        }
+    })
+</script>

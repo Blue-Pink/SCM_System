@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
@@ -47,7 +48,7 @@ namespace SCM_System.DAL
         [Ninject.Inject]
         public SCMEntities entities { get; set; }
 
-        public List<T> Paging()
+        public async Task<List<T>> Paging()
         {
             //注意顺序
             Count = entities.Set<T>().Where(WhereLambda).Count();
@@ -62,8 +63,7 @@ namespace SCM_System.DAL
                 list = list.OrderByDescending(OrderByLambda);
             }
 
-            return list.Skip((PageIndex - 1) * PageSize).Take(PageSize).ToList();
+            return await list.Skip((PageIndex - 1) * PageSize).Take(PageSize).ToListAsync();
         }
-
     }
 }
