@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SCMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="SCMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="CheckDepot">
           <Key>
             <PropertyRef Name="CDID" />
@@ -939,8 +939,7 @@
     FROM [dbo].[V_Products] AS [V_Products]</DefiningQuery>
           </EntitySet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SCMModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1658,7 +1657,7 @@
           <EntitySet Name="V_OutDepot" EntityType="Self.V_OutDepot" />
           <EntitySet Name="V_Products" EntityType="Self.V_Products" />
           <FunctionImport Name="proc_CFNO">
-            <Parameter Name="no" Mode="InOut" Type="String" />
+          <Parameter Name="no" Mode="InOut" Type="String" />
           </FunctionImport>
           <FunctionImport Name="proc_common_create_flowNo">
             <Parameter Name="tableName" Mode="In" Type="String" />
@@ -1667,43 +1666,43 @@
             <Parameter Name="no" Mode="InOut" Type="String" />
           </FunctionImport>
           <FunctionImport Name="proc_CPNO">
-            <Parameter Name="no" Mode="InOut" Type="String" />
+          <Parameter Name="no" Mode="InOut" Type="String" />
           </FunctionImport>
           <FunctionImport Name="proc_CusOrder">
-            <Parameter Name="no" Mode="InOut" Type="String" />
+          <Parameter Name="no" Mode="InOut" Type="String" />
           </FunctionImport>
           <FunctionImport Name="proc_Cust_no">
-            <Parameter Name="no" Mode="InOut" Type="String" />
+          <Parameter Name="no" Mode="InOut" Type="String" />
           </FunctionImport>
           <FunctionImport Name="proc_Losts">
-            <Parameter Name="no" Mode="InOut" Type="String" />
+          <Parameter Name="no" Mode="InOut" Type="String" />
           </FunctionImport>
           <FunctionImport Name="proc_PayOffs">
-            <Parameter Name="no" Mode="InOut" Type="String" />
+          <Parameter Name="no" Mode="InOut" Type="String" />
           </FunctionImport>
           <FunctionImport Name="proc_ProID">
-            <Parameter Name="no" Mode="InOut" Type="String" />
+          <Parameter Name="no" Mode="InOut" Type="String" />
           </FunctionImport>
           <FunctionImport Name="proc_SaleReturn">
-            <Parameter Name="no" Mode="InOut" Type="String" />
+          <Parameter Name="no" Mode="InOut" Type="String" />
           </FunctionImport>
           <FunctionImport Name="proc_SCNO">
-            <Parameter Name="no" Mode="InOut" Type="String" />
+          <Parameter Name="no" Mode="InOut" Type="String" />
           </FunctionImport>
           <FunctionImport Name="proc_SDNO">
-            <Parameter Name="no" Mode="InOut" Type="String" />
+          <Parameter Name="no" Mode="InOut" Type="String" />
           </FunctionImport>
           <FunctionImport Name="proc_SLNO">
-            <Parameter Name="no" Mode="InOut" Type="String" />
+          <Parameter Name="no" Mode="InOut" Type="String" />
           </FunctionImport>
           <FunctionImport Name="proc_StID">
-            <Parameter Name="no" Mode="InOut" Type="String" />
+          <Parameter Name="no" Mode="InOut" Type="String" />
           </FunctionImport>
           <FunctionImport Name="proc_StockInDepot">
-            <Parameter Name="no" Mode="InOut" Type="String" />
+          <Parameter Name="no" Mode="InOut" Type="String" />
           </FunctionImport>
           <FunctionImport Name="proc_StockOutDepot">
-            <Parameter Name="no" Mode="InOut" Type="String" />
+          <Parameter Name="no" Mode="InOut" Type="String" />
           </FunctionImport>
           <FunctionImport Name="PS_proc_CommonPager">
             <Parameter Name="tblName" Mode="In" Type="String" />
@@ -1714,24 +1713,10 @@
             <Parameter Name="OrderType" Mode="In" Type="Boolean" />
             <Parameter Name="strWhere" Mode="In" Type="String" />
           </FunctionImport>
-          <EntitySet Name="V_DS_P_PT" EntityType="SCMModel.V_DS_P_PT" />
           <EntitySet Name="V_CD_CDD_P" EntityType="SCMModel.V_CD_CDD_P" />
           <EntitySet Name="V_Dl_D" EntityType="SCMModel.V_Dl_D" />
+          <EntitySet Name="V_DS_P_PT" EntityType="SCMModel.V_DS_P_PT" />
         </EntityContainer>
-        <EntityType Name="V_DS_P_PT">
-          <Key>
-            <PropertyRef Name="DSID" />
-          </Key>
-          <Property Name="DSID" Type="Int32" Nullable="false" />
-          <Property Name="ProName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="ProWorkShop" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="ProPrice" Type="Decimal" Precision="10" Scale="2" />
-          <Property Name="DSAmount" Type="Int32" />
-          <Property Name="ProInPrice" Type="Decimal" Precision="10" Scale="2" />
-          <Property Name="ProMax" Type="Int32" />
-          <Property Name="ProMin" Type="Int32" />
-          <Property Name="PTName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="V_CD_CDD_P">
           <Key>
             <PropertyRef Name="CDID" />
@@ -1757,6 +1742,20 @@
           <Property Name="DevState" Type="Int32" />
           <Property Name="OutDepot" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="InDepot" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="V_DS_P_PT">
+          <Key>
+            <PropertyRef Name="DSID" />
+          </Key>
+          <Property Name="DSID" Type="Int32" Nullable="false" />
+          <Property Name="ProName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ProWorkShop" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ProPrice" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="DSAmount" Type="Int32" />
+          <Property Name="ProInPrice" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="ProMax" Type="Int32" />
+          <Property Name="ProMin" Type="Int32" />
+          <Property Name="PTName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -2490,21 +2489,6 @@
           <FunctionImportMapping FunctionImportName="proc_StockInDepot" FunctionName="SCMModel.Store.proc_StockInDepot" />
           <FunctionImportMapping FunctionImportName="proc_StockOutDepot" FunctionName="SCMModel.Store.proc_StockOutDepot" />
           <FunctionImportMapping FunctionImportName="PS_proc_CommonPager" FunctionName="SCMModel.Store.PS_proc_CommonPager" />
-          <EntitySetMapping Name="V_DS_P_PT">
-            <EntityTypeMapping TypeName="SCMModel.V_DS_P_PT">
-              <MappingFragment StoreEntitySet="V_DS_P_PT">
-                <ScalarProperty Name="PTName" ColumnName="PTName" />
-                <ScalarProperty Name="ProMin" ColumnName="ProMin" />
-                <ScalarProperty Name="ProMax" ColumnName="ProMax" />
-                <ScalarProperty Name="ProInPrice" ColumnName="ProInPrice" />
-                <ScalarProperty Name="DSAmount" ColumnName="DSAmount" />
-                <ScalarProperty Name="ProPrice" ColumnName="ProPrice" />
-                <ScalarProperty Name="ProWorkShop" ColumnName="ProWorkShop" />
-                <ScalarProperty Name="ProName" ColumnName="ProName" />
-                <ScalarProperty Name="DSID" ColumnName="DSID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="V_CD_CDD_P">
             <EntityTypeMapping TypeName="SCMModel.V_CD_CDD_P">
               <MappingFragment StoreEntitySet="V_CD_CDD_P">
@@ -2530,6 +2514,21 @@
                 <ScalarProperty Name="DepotMan" ColumnName="DepotMan" />
                 <ScalarProperty Name="DevInID" ColumnName="DevInID" />
                 <ScalarProperty Name="DevID" ColumnName="DevID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="V_DS_P_PT">
+            <EntityTypeMapping TypeName="SCMModel.V_DS_P_PT">
+              <MappingFragment StoreEntitySet="V_DS_P_PT">
+                <ScalarProperty Name="PTName" ColumnName="PTName" />
+                <ScalarProperty Name="ProMin" ColumnName="ProMin" />
+                <ScalarProperty Name="ProMax" ColumnName="ProMax" />
+                <ScalarProperty Name="ProInPrice" ColumnName="ProInPrice" />
+                <ScalarProperty Name="DSAmount" ColumnName="DSAmount" />
+                <ScalarProperty Name="ProPrice" ColumnName="ProPrice" />
+                <ScalarProperty Name="ProWorkShop" ColumnName="ProWorkShop" />
+                <ScalarProperty Name="ProName" ColumnName="ProName" />
+                <ScalarProperty Name="DSID" ColumnName="DSID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

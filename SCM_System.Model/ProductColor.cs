@@ -12,9 +12,8 @@ namespace SCM_System.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class ProductColor : BaseModel
+    public partial class ProductColor
     {
-        [System.ComponentModel.DataAnnotations.Key]
         public int PCID { get; set; }
         public string PCName { get; set; }
     }

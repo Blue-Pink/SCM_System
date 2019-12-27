@@ -12,9 +12,8 @@ namespace SCM_System.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class Stocks : BaseModel
+    public partial class Stocks
     {
-        [System.ComponentModel.DataAnnotations.Key]
         public string StockID { get; set; }
         public string PPID { get; set; }
         public Nullable<System.DateTime> StockDate { get; set; }

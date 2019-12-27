@@ -12,9 +12,8 @@ namespace SCM_System.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class ProduceInDepot : BaseModel
+    public partial class ProduceInDepot
     {
-        [System.ComponentModel.DataAnnotations.Key]
         public string PIDID { get; set; }
         public string DepotID { get; set; }
         public Nullable<System.DateTime> PIDDate { get; set; }

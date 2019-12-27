@@ -12,9 +12,8 @@ namespace SCM_System.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class PayOffDetail : BaseModel
+    public partial class PayOffDetail
     {
-        [System.ComponentModel.DataAnnotations.Key]
         public int PODID { get; set; }
         public string POID { get; set; }
         public string ProID { get; set; }

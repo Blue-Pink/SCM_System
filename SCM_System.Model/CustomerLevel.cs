@@ -12,10 +12,9 @@ namespace SCM_System.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class CustomerLevel : BaseModel
+    public partial class CustomerLevel
     {
-        [System.ComponentModel.DataAnnotations.Key]
-        public int CLID { get; set; }   
+        public int CLID { get; set; }
         public string CLName { get; set; }
         public Nullable<int> CLAgio { get; set; }
     }

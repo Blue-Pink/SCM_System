@@ -12,9 +12,8 @@ namespace SCM_System.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class CustomerOrder : BaseModel
+    public partial class CustomerOrder
     {
-        [System.ComponentModel.DataAnnotations.Key]
         public string COID { get; set; }
         public string CusID { get; set; }
         public Nullable<System.DateTime> CODate { get; set; }

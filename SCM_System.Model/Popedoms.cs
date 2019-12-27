@@ -12,9 +12,8 @@ namespace SCM_System.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class Popedoms : BaseModel
+    public partial class Popedoms
     {
-        [System.ComponentModel.DataAnnotations.Key]
         public int PopID { get; set; }
         public string PopName { get; set; }
         public Nullable<int> PopParentID { get; set; }
