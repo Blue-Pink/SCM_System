@@ -221,9 +221,10 @@
     <Compile Include="UsersRole.cs">
       <DependentUpon>SCM_System.tt</DependentUpon>
     </Compile>
-    <Compile Include="Vw_CUD.cs" />
-    <Compile Include="Vw_PTC.cs" />
-    <Compile Include="V_CD_CDD.cs">
+    <Compile Include="V_CD_CDD_P.cs">
+      <DependentUpon>SCM_System.tt</DependentUpon>
+    </Compile>
+    <Compile Include="V_Dl_D.cs">
       <DependentUpon>SCM_System.tt</DependentUpon>
     </Compile>
     <Compile Include="V_DS_P_PT.cs">
@@ -250,7 +251,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
-    <None Include="Model层内自建视图标注文档.docx" />
     <None Include="packages.config" />
     <None Include="SCM_System.edmx.diagram">
       <DependentUpon>SCM_System.edmx</DependentUpon>

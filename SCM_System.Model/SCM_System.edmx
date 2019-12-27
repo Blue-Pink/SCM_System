@@ -581,8 +581,8 @@
           <Property Name="RoleID" Type="int" />
         </EntityType>
         <!--生成过程中发现错误:
-警告 6002: 表/视图“SCM.dbo.V_CD_CDD”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
-        <EntityType Name="V_CD_CDD">
+警告 6002: 表/视图“SCM.dbo.V_CD_CDD_P”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="V_CD_CDD_P">
           <Key>
             <PropertyRef Name="CDID" />
           </Key>
@@ -594,6 +594,21 @@
           <Property Name="ProID" Type="varchar" MaxLength="50" />
           <Property Name="CDDesc" Type="nvarchar" MaxLength="1000" />
           <Property Name="CDState" Type="int" />
+          <Property Name="pl" Type="numeric" Precision="21" Scale="2" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“SCM.dbo.V_Dl_D”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="V_Dl_D">
+          <Key>
+            <PropertyRef Name="DevID" />
+          </Key>
+          <Property Name="DevID" Type="char" MaxLength="14" Nullable="false" />
+          <Property Name="DevInID" Type="char" MaxLength="6" />
+          <Property Name="DepotMan" Type="nvarchar" MaxLength="100" />
+          <Property Name="DevDesc" Type="nvarchar" MaxLength="1000" />
+          <Property Name="DevState" Type="int" />
+          <Property Name="OutDepot" Type="nvarchar" MaxLength="100" />
+          <Property Name="InDepot" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <!--生成过程中发现错误:
 警告 6002: 表/视图“SCM.dbo.V_DS_P_PT”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
@@ -810,17 +825,29 @@
           <EntitySet Name="Stocks" EntityType="Self.Stocks" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UsersRole" EntityType="Self.UsersRole" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="V_CD_CDD" EntityType="Self.V_CD_CDD" store:Type="Views" store:Schema="dbo">
+          <EntitySet Name="V_CD_CDD_P" EntityType="Self.V_CD_CDD_P" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
-    [V_CD_CDD].[CDID] AS [CDID], 
-    [V_CD_CDD].[DepotID] AS [DepotID], 
-    [V_CD_CDD].[CDDate] AS [CDDate], 
-    [V_CD_CDD].[UserID] AS [UserID], 
-    [V_CD_CDD].[diff] AS [diff], 
-    [V_CD_CDD].[ProID] AS [ProID], 
-    [V_CD_CDD].[CDDesc] AS [CDDesc], 
-    [V_CD_CDD].[CDState] AS [CDState]
-    FROM [dbo].[V_CD_CDD] AS [V_CD_CDD]</DefiningQuery>
+    [V_CD_CDD_P].[CDID] AS [CDID], 
+    [V_CD_CDD_P].[DepotID] AS [DepotID], 
+    [V_CD_CDD_P].[CDDate] AS [CDDate], 
+    [V_CD_CDD_P].[UserID] AS [UserID], 
+    [V_CD_CDD_P].[diff] AS [diff], 
+    [V_CD_CDD_P].[ProID] AS [ProID], 
+    [V_CD_CDD_P].[CDDesc] AS [CDDesc], 
+    [V_CD_CDD_P].[CDState] AS [CDState], 
+    [V_CD_CDD_P].[pl] AS [pl]
+    FROM [dbo].[V_CD_CDD_P] AS [V_CD_CDD_P]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="V_Dl_D" EntityType="Self.V_Dl_D" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [V_Dl_D].[DevID] AS [DevID], 
+    [V_Dl_D].[DevInID] AS [DevInID], 
+    [V_Dl_D].[DepotMan] AS [DepotMan], 
+    [V_Dl_D].[DevDesc] AS [DevDesc], 
+    [V_Dl_D].[DevState] AS [DevState], 
+    [V_Dl_D].[OutDepot] AS [OutDepot], 
+    [V_Dl_D].[InDepot] AS [InDepot]
+    FROM [dbo].[V_Dl_D] AS [V_Dl_D]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="V_DS_P_PT" EntityType="Self.V_DS_P_PT" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -1686,22 +1713,10 @@
             <Parameter Name="OrderType" Mode="In" Type="Boolean" />
             <Parameter Name="strWhere" Mode="In" Type="String" />
           </FunctionImport>
-          <EntitySet Name="V_CD_CDD" EntityType="SCMModel.V_CD_CDD" />
           <EntitySet Name="V_DS_P_PT" EntityType="SCMModel.V_DS_P_PT" />
+          <EntitySet Name="V_CD_CDD_P" EntityType="SCMModel.V_CD_CDD_P" />
+          <EntitySet Name="V_Dl_D" EntityType="SCMModel.V_Dl_D" />
         </EntityContainer>
-        <EntityType Name="V_CD_CDD">
-          <Key>
-            <PropertyRef Name="CDID" />
-          </Key>
-          <Property Name="CDID" Type="String" Nullable="false" MaxLength="14" FixedLength="true" Unicode="false" />
-          <Property Name="DepotID" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
-          <Property Name="CDDate" Type="DateTime" Precision="3" />
-          <Property Name="UserID" Type="Int32" />
-          <Property Name="diff" Type="Int32" />
-          <Property Name="ProID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="CDDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <Property Name="CDState" Type="Int32" />
-        </EntityType>
         <EntityType Name="V_DS_P_PT">
           <Key>
             <PropertyRef Name="DSID" />
@@ -1715,6 +1730,32 @@
           <Property Name="ProMax" Type="Int32" />
           <Property Name="ProMin" Type="Int32" />
           <Property Name="PTName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="V_CD_CDD_P">
+          <Key>
+            <PropertyRef Name="CDID" />
+          </Key>
+          <Property Name="CDID" Type="String" Nullable="false" MaxLength="14" FixedLength="true" Unicode="false" />
+          <Property Name="DepotID" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="CDDate" Type="DateTime" Precision="3" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="diff" Type="Int32" />
+          <Property Name="ProID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CDDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="CDState" Type="Int32" />
+          <Property Name="pl" Type="Decimal" Precision="21" Scale="2" />
+        </EntityType>
+        <EntityType Name="V_Dl_D">
+          <Key>
+            <PropertyRef Name="DevID" />
+          </Key>
+          <Property Name="DevID" Type="String" Nullable="false" MaxLength="14" FixedLength="true" Unicode="false" />
+          <Property Name="DevInID" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="DepotMan" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DevDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="DevState" Type="Int32" />
+          <Property Name="OutDepot" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="InDepot" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -2448,20 +2489,6 @@
           <FunctionImportMapping FunctionImportName="proc_StockInDepot" FunctionName="SCMModel.Store.proc_StockInDepot" />
           <FunctionImportMapping FunctionImportName="proc_StockOutDepot" FunctionName="SCMModel.Store.proc_StockOutDepot" />
           <FunctionImportMapping FunctionImportName="PS_proc_CommonPager" FunctionName="SCMModel.Store.PS_proc_CommonPager" />
-          <EntitySetMapping Name="V_CD_CDD">
-            <EntityTypeMapping TypeName="SCMModel.V_CD_CDD">
-              <MappingFragment StoreEntitySet="V_CD_CDD">
-                <ScalarProperty Name="CDState" ColumnName="CDState" />
-                <ScalarProperty Name="CDDesc" ColumnName="CDDesc" />
-                <ScalarProperty Name="ProID" ColumnName="ProID" />
-                <ScalarProperty Name="diff" ColumnName="diff" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="CDDate" ColumnName="CDDate" />
-                <ScalarProperty Name="DepotID" ColumnName="DepotID" />
-                <ScalarProperty Name="CDID" ColumnName="CDID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="V_DS_P_PT">
             <EntityTypeMapping TypeName="SCMModel.V_DS_P_PT">
               <MappingFragment StoreEntitySet="V_DS_P_PT">
@@ -2474,6 +2501,34 @@
                 <ScalarProperty Name="ProWorkShop" ColumnName="ProWorkShop" />
                 <ScalarProperty Name="ProName" ColumnName="ProName" />
                 <ScalarProperty Name="DSID" ColumnName="DSID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="V_CD_CDD_P">
+            <EntityTypeMapping TypeName="SCMModel.V_CD_CDD_P">
+              <MappingFragment StoreEntitySet="V_CD_CDD_P">
+                <ScalarProperty Name="pl" ColumnName="pl" />
+                <ScalarProperty Name="CDState" ColumnName="CDState" />
+                <ScalarProperty Name="CDDesc" ColumnName="CDDesc" />
+                <ScalarProperty Name="ProID" ColumnName="ProID" />
+                <ScalarProperty Name="diff" ColumnName="diff" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="CDDate" ColumnName="CDDate" />
+                <ScalarProperty Name="DepotID" ColumnName="DepotID" />
+                <ScalarProperty Name="CDID" ColumnName="CDID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="V_Dl_D">
+            <EntityTypeMapping TypeName="SCMModel.V_Dl_D">
+              <MappingFragment StoreEntitySet="V_Dl_D">
+                <ScalarProperty Name="InDepot" ColumnName="InDepot" />
+                <ScalarProperty Name="OutDepot" ColumnName="OutDepot" />
+                <ScalarProperty Name="DevState" ColumnName="DevState" />
+                <ScalarProperty Name="DevDesc" ColumnName="DevDesc" />
+                <ScalarProperty Name="DepotMan" ColumnName="DepotMan" />
+                <ScalarProperty Name="DevInID" ColumnName="DevInID" />
+                <ScalarProperty Name="DevID" ColumnName="DevID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
