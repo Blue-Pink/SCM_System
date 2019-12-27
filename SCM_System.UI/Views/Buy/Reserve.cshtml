@@ -77,9 +77,14 @@
                 </thead>
                 <tbody>
                     <tr v-for="(m,index) in data">
-                        <td v-for="(p,pindex) in m">
-                            {{p}}
-                        </td>
+                        <td>{{m.DSID}}</td>
+                        <td>{{m.ProName}}</td>
+                        <td>{{m.ProWorkShop}}</td>
+                        <td>{{m.PTName}}</td>
+                        <td>{{m.ProPrice}}</td>
+                        <td>{{m.DSAmount}}</td>
+                        <td>{{m.ProInPrice}}</td>
+                        <td>{{status(m)}}</td>
                         <td><a href="#" onclick='$("#div1").load("/buy/ReserveDetail.html")'>查看</a></td>
                     </tr>
 
@@ -123,7 +128,10 @@
                         this.data = result.data.data
                         total = result.data.total
                     })
-            },
+             },
+             methods: {
+                 status: function (m) { return m.DSAmount>m.ProMax?"爆库":m.DSAmount<m.ProMin?"缺货":"正常" }
+             }
         })
     })
 </script>

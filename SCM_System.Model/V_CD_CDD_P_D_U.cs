@@ -12,16 +12,18 @@ namespace SCM_System.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class V_CD_CDD_P
+    public partial class V_CD_CDD_P_D_U
     {
         public string CDID { get; set; }
         public string DepotID { get; set; }
         public Nullable<System.DateTime> CDDate { get; set; }
         public Nullable<int> UserID { get; set; }
-        public Nullable<int> diff { get; set; }
-        public string ProID { get; set; }
         public string CDDesc { get; set; }
         public Nullable<int> CDState { get; set; }
+        public Nullable<int> diff { get; set; }
+        public string ProID { get; set; }
         public Nullable<decimal> pl { get; set; }
+        public string DepotName { get; set; }
+        public string UsersName { get; set; }
     }
 }

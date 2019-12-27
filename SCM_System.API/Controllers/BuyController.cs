@@ -34,6 +34,12 @@ namespace SCM_System.API.Controllers
             return await buyModuel.GetS_PL_Us().ConfigureAwait(false);
         }
 
+        /// <summary>
+        /// 获取库存详细信息
+        /// </summary>
+        /// <param name="ps">单次显示单例条数</param>
+        /// <param name="pi">折叠页码</param>
+        /// <returns></returns>
         [HttpGet]
         [Route("GetDS_P_Ds")]
         public async Task<dynamic> GetDS_P_Ds(int ps, int pi)

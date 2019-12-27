@@ -23,5 +23,15 @@ namespace SCM_System.Model
         public Nullable<int> ProMax { get; set; }
         public Nullable<int> ProMin { get; set; }
         public string PTName { get; set; }
+        public Nullable<decimal> DSPrice { get; set; }
+        public string ProID { get; set; }
+        public Nullable<int> PTID { get; set; }
+        public Nullable<int> PUID { get; set; }
+        public Nullable<int> PCID { get; set; }
+        public Nullable<int> PSID { get; set; }
+        public string ProJP { get; set; }
+        public string ProTM { get; set; }
+        public string ProDesc { get; set; }
+        public string DepotID { get; set; }
     }
 }

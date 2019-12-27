@@ -12,14 +12,14 @@ namespace SCM_System.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class V_Dl_D
+    public partial class V_Dl_D_D
     {
         public string DevID { get; set; }
-        public string DevInID { get; set; }
-        public string DepotMan { get; set; }
-        public string DevDesc { get; set; }
-        public Nullable<int> DevState { get; set; }
         public string OutDepot { get; set; }
         public string InDepot { get; set; }
+        public Nullable<System.DateTime> DevDate { get; set; }
+        public string UsersName { get; set; }
+        public string DevDesc { get; set; }
+        public Nullable<int> DevState { get; set; }
     }
 }

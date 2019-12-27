@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="fa20c3d2497d4790be29aae77c10af8f" Name="Diagram1">
+      <Diagram DiagramId="fa20c3d2497d4790be29aae77c10af8f" Name="Diagram1" ZoomLevel="86">
         <EntityTypeShape EntityType="SCMModel.CheckDepot" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SCMModel.CheckDepotDetail" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SCMModel.Compose" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
@@ -60,9 +60,10 @@
         <EntityTypeShape EntityType="SCMModel.V_InOutDepotDetail" Width="1.5" PointX="14.75" PointY="18.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SCMModel.V_OutDepot" Width="1.5" PointX="18.75" PointY="15.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SCMModel.V_Products" Width="1.5" PointX="6.75" PointY="19.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SCMModel.V_CD_CDD_P" Width="1.5" PointX="17.375" PointY="20.75" />
-        <EntityTypeShape EntityType="SCMModel.V_Dl_D" Width="1.5" PointX="19.375" PointY="20.75" />
         <EntityTypeShape EntityType="SCMModel.V_DS_P_PT" Width="1.5" PointX="9.375" PointY="19.75" />
+        <EntityTypeShape EntityType="SCMModel.V_Dl_D_D" Width="1.5" PointX="19.375" PointY="20.75" />
+        <EntityTypeShape EntityType="SCMModel.V_Sl_SD" Width="1.5" PointX="21.375" PointY="0.75" />
+        <EntityTypeShape EntityType="SCMModel.V_CD_CDD_P_D_U" Width="1.5" PointX="11.375" PointY="20.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
