@@ -7,7 +7,7 @@ using System.Net.Http;
 using System.Web.Http;
 using SCM_System.Model;
 using System.Threading.Tasks;
-
+using SCM_System.DAL;
 namespace SCM_System.API.Controllers
 {
     [RoutePrefix("api/buy")]
