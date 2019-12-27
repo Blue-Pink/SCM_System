@@ -36,16 +36,16 @@ namespace SCM_System.API.Controllers
 
         [HttpGet]
         [Route("GetDS_P_Ds")]
-        public async Task<dynamic> GetDS_P_Ds(int ps, int pi)
+        public dynamic GetDS_P_Ds(int ps, int pi)
         { 
             Pager_V_DS_P_PT.PageSize = ps;
             Pager_V_DS_P_PT.PageIndex = pi; 
             Pager_V_DS_P_PT.IsAsc = true;
             Pager_V_DS_P_PT.WhereLambda = a => true;
             Pager_V_DS_P_PT.OrderByLambda = a => a.DSID;
-            var set = await Pager_V_DS_P_PT.Paging().ConfigureAwait(false);
+            var temp = Pager_V_DS_P_PT.Paging();
             //var temp = await buyModuel.GetDS_P_D(ps, pi).ConfigureAwait(false);
-            return new Dictionary<string, dynamic>() { { "data",set},{ "total",Pager_V_DS_P_PT.PageCount} };
+            return new Dictionary<string, dynamic>() { { "data",temp},{ "total",Pager_V_DS_P_PT.PageCount} };
         }
 
         public void Options() { }  //这是预请求

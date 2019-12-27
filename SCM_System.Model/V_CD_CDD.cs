@@ -12,7 +12,7 @@ namespace SCM_System.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class V_CD_CDD_P
+    public partial class V_CD_CDD
     {
         public string CDID { get; set; }
         public string DepotID { get; set; }
@@ -22,6 +22,5 @@ namespace SCM_System.Model
         public string ProID { get; set; }
         public string CDDesc { get; set; }
         public Nullable<int> CDState { get; set; }
-        public Nullable<decimal> pl { get; set; }
     }
 }
