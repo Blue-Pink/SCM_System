@@ -48,7 +48,6 @@ namespace SCM_System.DAL
                 ).ToListAsync();
             return new Dictionary<string, dynamic>() { { "data", temp } };
         } 
-        #endregion
 
         public async Task<Dictionary<string,dynamic>> GetDS_P_D()
         {

@@ -12,9 +12,8 @@ namespace SCM_System.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class ProduceInDepotDeteil : BaseModel
+    public partial class ProduceInDepotDeteil
     {
-        [System.ComponentModel.DataAnnotations.Key]
         public int PIDDID { get; set; }
         public string ProID { get; set; }
         public string PIDID { get; set; }

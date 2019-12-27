@@ -61,6 +61,7 @@
         <EntityTypeShape EntityType="SCMModel.V_OutDepot" Width="1.5" PointX="18.75" PointY="15.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SCMModel.V_Products" Width="1.5" PointX="6.75" PointY="19.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SCMModel.V_DS_P_PT" Width="1.5" PointX="11.375" PointY="20.75" />
+        <EntityTypeShape EntityType="SCMModel.V_CD_CDD" Width="1.5" PointX="9.375" PointY="19.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

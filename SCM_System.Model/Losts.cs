@@ -12,9 +12,8 @@ namespace SCM_System.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class Losts : BaseModel
+    public partial class Losts
     {
-        [System.ComponentModel.DataAnnotations.Key]
         public string LostID { get; set; }
         public string DepotID { get; set; }
         public Nullable<System.DateTime> LostDate { get; set; }
