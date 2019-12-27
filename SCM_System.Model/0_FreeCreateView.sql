@@ -45,7 +45,7 @@ go
 
 
 if(exists(select * from sysobjects where name='V_Dl_D_D'))
-drop view V_Dl_D
+drop view V_Dl_D_D
 go
 create view V_Dl_D_D
 as 
