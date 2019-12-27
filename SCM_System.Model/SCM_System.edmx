@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="SCMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="SCMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="CheckDepot">
           <Key>
             <PropertyRef Name="CDID" />
@@ -939,7 +939,8 @@
     FROM [dbo].[V_Products] AS [V_Products]</DefiningQuery>
           </EntitySet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SCMModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1657,7 +1658,7 @@
           <EntitySet Name="V_OutDepot" EntityType="Self.V_OutDepot" />
           <EntitySet Name="V_Products" EntityType="Self.V_Products" />
           <FunctionImport Name="proc_CFNO">
-          <Parameter Name="no" Mode="InOut" Type="String" />
+            <Parameter Name="no" Mode="InOut" Type="String" />
           </FunctionImport>
           <FunctionImport Name="proc_common_create_flowNo">
             <Parameter Name="tableName" Mode="In" Type="String" />
@@ -1666,43 +1667,43 @@
             <Parameter Name="no" Mode="InOut" Type="String" />
           </FunctionImport>
           <FunctionImport Name="proc_CPNO">
-          <Parameter Name="no" Mode="InOut" Type="String" />
+            <Parameter Name="no" Mode="InOut" Type="String" />
           </FunctionImport>
           <FunctionImport Name="proc_CusOrder">
-          <Parameter Name="no" Mode="InOut" Type="String" />
+            <Parameter Name="no" Mode="InOut" Type="String" />
           </FunctionImport>
           <FunctionImport Name="proc_Cust_no">
-          <Parameter Name="no" Mode="InOut" Type="String" />
+            <Parameter Name="no" Mode="InOut" Type="String" />
           </FunctionImport>
           <FunctionImport Name="proc_Losts">
-          <Parameter Name="no" Mode="InOut" Type="String" />
+            <Parameter Name="no" Mode="InOut" Type="String" />
           </FunctionImport>
           <FunctionImport Name="proc_PayOffs">
-          <Parameter Name="no" Mode="InOut" Type="String" />
+            <Parameter Name="no" Mode="InOut" Type="String" />
           </FunctionImport>
           <FunctionImport Name="proc_ProID">
-          <Parameter Name="no" Mode="InOut" Type="String" />
+            <Parameter Name="no" Mode="InOut" Type="String" />
           </FunctionImport>
           <FunctionImport Name="proc_SaleReturn">
-          <Parameter Name="no" Mode="InOut" Type="String" />
+            <Parameter Name="no" Mode="InOut" Type="String" />
           </FunctionImport>
           <FunctionImport Name="proc_SCNO">
-          <Parameter Name="no" Mode="InOut" Type="String" />
+            <Parameter Name="no" Mode="InOut" Type="String" />
           </FunctionImport>
           <FunctionImport Name="proc_SDNO">
-          <Parameter Name="no" Mode="InOut" Type="String" />
+            <Parameter Name="no" Mode="InOut" Type="String" />
           </FunctionImport>
           <FunctionImport Name="proc_SLNO">
-          <Parameter Name="no" Mode="InOut" Type="String" />
+            <Parameter Name="no" Mode="InOut" Type="String" />
           </FunctionImport>
           <FunctionImport Name="proc_StID">
-          <Parameter Name="no" Mode="InOut" Type="String" />
+            <Parameter Name="no" Mode="InOut" Type="String" />
           </FunctionImport>
           <FunctionImport Name="proc_StockInDepot">
-          <Parameter Name="no" Mode="InOut" Type="String" />
+            <Parameter Name="no" Mode="InOut" Type="String" />
           </FunctionImport>
           <FunctionImport Name="proc_StockOutDepot">
-          <Parameter Name="no" Mode="InOut" Type="String" />
+            <Parameter Name="no" Mode="InOut" Type="String" />
           </FunctionImport>
           <FunctionImport Name="PS_proc_CommonPager">
             <Parameter Name="tblName" Mode="In" Type="String" />

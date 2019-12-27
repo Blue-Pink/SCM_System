@@ -12,8 +12,9 @@ namespace SCM_System.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class DepotStock
+    public partial class DepotStock : BaseModel
     {
+        [System.ComponentModel.DataAnnotations.Key]
         public int DSID { get; set; }
         public string DepotID { get; set; }
         public string ProID { get; set; }

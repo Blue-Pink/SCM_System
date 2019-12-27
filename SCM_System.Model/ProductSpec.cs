@@ -12,8 +12,9 @@ namespace SCM_System.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class ProductSpec
+    public partial class ProductSpec : BaseModel
     {
+        [System.ComponentModel.DataAnnotations.Key]
         public int PSID { get; set; }
         public string PSName { get; set; }
     }
