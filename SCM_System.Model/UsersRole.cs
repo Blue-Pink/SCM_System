@@ -12,8 +12,9 @@ namespace SCM_System.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class UsersRole
+    public partial class UsersRole : BaseModel
     {
+        [System.ComponentModel.DataAnnotations.Key]
         public int URID { get; set; }
         public Nullable<int> UsersID { get; set; }
         public Nullable<int> RoleID { get; set; }
