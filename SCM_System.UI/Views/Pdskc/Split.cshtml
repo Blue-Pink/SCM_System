@@ -70,81 +70,90 @@
                         </th>
                     </tr>
                 </thead>
+                @*<tbody>
+                        <tr>
+                            <td>
+                                CR0002
+                            </td>
+                            <td>
+                                娃哈哈矿泉水
+                            </td>
+                            <td>
+                                郴州
+                            </td>
+                            <td>
+                                2012-12-20
+                            </td>
+                            <td>
+                                胡杨成
+                            </td>
+                            <td>
+                                500.00
+                            </td>
+                            <td>
+                                新建
+                            </td>
+                            <td><a href="#" onclick='$("#div1").load("/pdskc/SplitDetail.html")'>查看</a> | <a href="javascript:;">审核</a> | <a href="javascript:;">删除</a> | <a href="#" onclick='    $("#div1").load("/pdskc/SplitEdit.html")'>修改</a></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                CR0002
+                            </td>
+                            <td>
+                                娃哈哈矿泉水
+                            </td>
+                            <td>
+                                郴州
+                            </td>
+                            <td>
+                                2012-12-20
+                            </td>
+                            <td>
+                                胡杨成
+                            </td>
+                            <td>
+                                500.00
+                            </td>
+                            <td>
+                                审核
+                            </td>
+                            <td><a href="#" onclick='$("#div1").load("/pdskc/SplitDetail.html")'>查看</a> | <a href="javascript:;">审核</a></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                CR0002
+                            </td>
+                            <td>
+                                娃哈哈矿泉水
+                            </td>
+                            <td>
+                                郴州
+                            </td>
+                            <td>
+                                2012-12-20
+                            </td>
+                            <td>
+                                胡杨成
+                            </td>
+                            <td>
+                                500.00
+                            </td>
+                            <td>
+                                完成
+                            </td>
+                            <td><a href="#" onclick='$("#div1").load("/pdskc/SplitDetail.html")'>查看</a></td>
+                        </tr>
+                    </tbody>*@
                 <tbody>
-
-                    <!-- -->
-                    <tr>
-                        <td>
-                            CR0002
-                        </td>
-                        <td>
-                            娃哈哈矿泉水
-                        </td>
-                        <td>
-                            郴州
-                        </td>
-                        <td>
-                            2012-12-20
-                        </td>
-                        <td>
-                            胡杨成
-                        </td>
-                        <td>
-                            500.00
-                        </td>
-                        <td>
-                            新建
-                        </td>
-                        <td><a href="#" onclick='$("#div1").load("/pdskc/SplitDetail.html")'>查看</a> | <a href="javascript:;">审核</a> | <a href="javascript:;">删除</a> | <a href="#" onclick='    $("#div1").load("/pdskc/SplitEdit.html")'>修改</a></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            CR0002
-                        </td>
-                        <td>
-                            娃哈哈矿泉水
-                        </td>
-                        <td>
-                            郴州
-                        </td>
-                        <td>
-                            2012-12-20
-                        </td>
-                        <td>
-                            胡杨成
-                        </td>
-                        <td>
-                            500.00
-                        </td>
-                        <td>
-                            审核
-                        </td>
-                        <td><a href="#" onclick='$("#div1").load("/pdskc/SplitDetail.html")'>查看</a> | <a href="javascript:;">审核</a></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            CR0002
-                        </td>
-                        <td>
-                            娃哈哈矿泉水
-                        </td>
-                        <td>
-                            郴州
-                        </td>
-                        <td>
-                            2012-12-20
-                        </td>
-                        <td>
-                            胡杨成
-                        </td>
-                        <td>
-                            500.00
-                        </td>
-                        <td>
-                            完成
-                        </td>
-                        <td><a href="#" onclick='$("#div1").load("/pdskc/SplitDetail.html")'>查看</a></td>
-                    </tr>
+                    <tr v-for="m in data">
+                        <td>{{m.SplitID}}</td>
+                        <td>{{m.ProName}}</td>
+                        <td>{{m.DepotName}}</td>
+                        <td>{{m.SplitDate}}</td>
+                        <td>{{m.UsersName}}</td>
+                        <td>{{m.SplitAmount*m.SplitPrice}}</td>
+                        <td>{{m.SplitState}}</td>
+                        <td><a href="#" onclick='$("#div1").load("/pdskc/SplitDetail.html")'>查看</a></td> </tr>
                 </tbody>
             </table>
             <div align="center">
@@ -171,3 +180,25 @@
         </div>
     </div>
 </div>
+<script>
+    $(function () {
+        new Vue({
+            el: "#app",
+            data: {
+                data: [],
+                ps: 3,
+                pi: 1,
+                total: 0,
+            },
+            created: function () {
+                this.$http.get("http://localhost:8625/api/pdskc/GetVSSDPU",
+                    { "params": { "ps": this.ps, "pi": this.pi } }).then(result => {
+                        this.data = result.data.data
+                        this.total = result.data.total
+                    })
+            }
+        })
+    })
+
+
+</script>

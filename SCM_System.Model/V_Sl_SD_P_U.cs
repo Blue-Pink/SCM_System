@@ -12,7 +12,7 @@ namespace SCM_System.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class V_Sl_SD
+    public partial class V_Sl_SD_P_U
     {
         public string SplitID { get; set; }
         public string DepotID { get; set; }

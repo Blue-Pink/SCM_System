@@ -30,6 +30,8 @@ namespace SCM_System.API.Controllers
         public UniversalPager<V_CD_CDD_P_D_U, dynamic> pager_V_CD_CDD_P_D_U { get; set; }
         [Inject]
         public UniversalPager<V_Dl_D_D, dynamic> pager_V_Dl_D_D { get; set; }
+        [Inject]
+        public UniversalPager<V_Sl_SD_P_U, dynamic> pager_V_Sl_SD_P_U { get; set; }
 
 
         /// <summary>
@@ -88,6 +90,18 @@ namespace SCM_System.API.Controllers
             return new Dictionary<string, dynamic>() { { "data", set }, { "total", pager_V_Dl_D_D.PageCount } };
         }
 
+        [HttpGet]
+        [Route("GetVSSDPU")]
+        public async Task<dynamic> GetVSSDPU(int ps,int pi)
+        {
+            pager_V_Sl_SD_P_U.IsAsc = true;
+            pager_V_Sl_SD_P_U.PageSize = ps;
+            pager_V_Sl_SD_P_U.PageIndex = pi;   
+            pager_V_Sl_SD_P_U.OrderByLambda = a => a.SplitID;
+            pager_V_Sl_SD_P_U.WhereLambda = a => true;
+            var set = await pager_V_Sl_SD_P_U.Paging().ConfigureAwait(false);
+            return new Dictionary<string, dynamic>() { { "data", set }, { "total", pager_V_Dl_D_D.PageCount } };
+        }
         //[HttpGet]
         //[Route("GetVProducts/{DepotID}")]
         //public async Task<List<V_Products>> GetVProducts(String DepotID)
