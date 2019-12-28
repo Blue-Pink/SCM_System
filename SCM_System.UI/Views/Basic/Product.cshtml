@@ -125,32 +125,33 @@
 <script>
     var myVue = new Vue({
         el: "#app",
-        methods: {
-            //跳转到添加/修改页面
-            ShowPage: function (id) {
-                var url = "";
-                var mes = "";
-                if (!id) {
+        data:
+        //methods: {
+        //    //跳转到添加/修改页面
+        //    ShowPage: function (id) {
+        //        var url = "";
+        //        var mes = "";
+        //        if (!id) {
 
-                    url = "/basic/productadd.html";
-                    mes = "添加成功!";
-                } else {
-                    url = "/basic/productEdit.html?id=" + id;
-                    mes = "修改成功!";
-                }
-                layer.open({
-                    type: 2,
-                    shade: false,
-                    area: ['500px', '550px'],
-                    maxmin: true,
-                    content: url,
-                    zIndex: layer.zIndex,
-                    end: function () { //子页面关闭时调用
-                        layer.alert(mes);
-                    }
-                });
-            }
-        }
+        //            url = "/basic/productadd.html";
+        //            mes = "添加成功!";
+        //        } else {
+        //            url = "/basic/productEdit.html?id=" + id;
+        //            mes = "修改成功!";
+        //        }
+        //        layer.open({
+        //            type: 2,
+        //            shade: false,
+        //            area: ['500px', '550px'],
+        //            maxmin: true,
+        //            content: url,
+        //            zIndex: layer.zIndex,
+        //            end: function () { //子页面关闭时调用
+        //                layer.alert(mes);
+        //            }
+        //        });
+        //    }
+        //}
     });
 </script>
 

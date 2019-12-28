@@ -80,3 +80,11 @@ Depots d on sl_sd.DepotID=d.DepotID) sl_sd_p left join
 Products p on sl_sd_p.ProID=p.ProID) sl_sd_p_u left join
 Users u on sl_sd_p_u.UserID=u.UsersID
 go
+
+if(exists(select * from sysobjects where name='Vw_CL'))
+drop view Vw_CL
+go
+create view Vw_CL
+as
+select a.*,b.CLAgio,b.CLName from Customers a join CustomerLevel b on a.CLID = b.CLID
+go
