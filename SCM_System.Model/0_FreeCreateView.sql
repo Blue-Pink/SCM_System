@@ -100,4 +100,3 @@ join ProductUnit c on a.PUID = c.PUID
 join ProductSpec d on a.PSID = d.PSID
 go
 
-select * from Vw_DPP

@@ -1,10 +1,11 @@
-﻿<div id="app">
+﻿
+<div id="app">
     <div class="sub-heard-part">
         <ol class="breadcrumb m-b-0">
             <li><a href="#" onclick='$("#div1").load("/basic/Index.html")'>基础数据</a></li>
-            <li><a href="#">仓库设置</a></li>
+            <li><a href="#">供应商</a></li>
 
-            <input style="float: right" class="btn btn-default btn-xs" type="submit" value="添加仓库" v-on:click="ShowPage()">
+            <input style="float: right" class="btn btn-default btn-xs" type="submit" value="添加供应商" v-on:click="ShowPage()">
 
         </ol>
     </div>
@@ -15,8 +16,8 @@
             <form class="form-inline">
                 <div class="form-group">
                     <div class="input-group">
-                        <div class="input-group-addon">仓库名称:</div>
-                        <input type="text" class="form-control" id="exampleInputAmount" placeholder="仓库名称">
+                        <div class="input-group-addon">供应商名称:</div>
+                        <input type="text" class="form-control" id="exampleInputAmount" placeholder="供应商名称">
                     </div>
                 </div>
                 <div class="form-group">
@@ -31,30 +32,46 @@
             <table class="table table-striped table-bordered table-hover table-condensed">
                 <thead>
                     <tr>
-                        <th>仓库编号</th>
-                        <th>仓库名称</th>
+                        <th>编号</th>
+                        <th>供应商名称</th>
+                        <th>公司名称</th>
                         <th>联系人</th>
-                        <th>电话号码</th>
-                        <th>地址</th>
-                        <th>备注</th>
-                        <th>默认</th>
+                        <th>供应商分类</th>
+                        <th>电话</th>
+
                         <th>操作</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    <tr v-for="(t,index) in ProductLend">
+                        <td scope="row">
+                            {{t.PPID}}
+                        </td>
+                        <td>{{t.PPName}}</td>
+                        <td>
+                            {{t.PPName}}
+
+                        </td>
+                        <td>{{t.PPMan}}</td>
+                        <td>{{t.PPName}}</td>
+                        <td>{{t.PPTel}}</td>
+
+                        <td><a href="javascript:;">删除</a> | <a href="javascript:;" v-on:click="ShowPage(1)">修改</a></td>
+
+                    </tr>
+                    @*<tr>
                         <td scope="row">
                             1
                         </td>
-                        <td>株洲仓库</td>
+                        <td>嗡嗡嗡</td>
                         <td>
-                            刘先生
+                            娃哈哈公司
 
                         </td>
-                        <td>151515151515</td>
-                        <td>株洲市</td>
-                        <td>aa</td>
-                        <td>aa</td>
+                        <td>刘先生</td>
+                        <td>矿泉水</td>
+                        <td>15151515151</td>
+
                         <td><a href="javascript:;">删除</a> | <a href="javascript:;" v-on:click="ShowPage(1)">修改</a></td>
 
                     </tr>
@@ -62,34 +79,18 @@
                         <td scope="row">
                             1
                         </td>
-                        <td>株洲仓库</td>
+                        <td>嗡嗡嗡</td>
                         <td>
-                            刘先生
+                            娃哈哈公司
 
                         </td>
-                        <td>151515151515</td>
-                        <td>株洲市</td>
-                        <td>aa</td>
-                        <td>aa</td>
+                        <td>刘先生</td>
+                        <td>矿泉水</td>
+                        <td>15151515151</td>
+
                         <td><a href="javascript:;">删除</a> | <a href="javascript:;" v-on:click="ShowPage(1)">修改</a></td>
 
-                    </tr>
-                    <tr>
-                        <td scope="row">
-                            1
-                        </td>
-                        <td>株洲仓库</td>
-                        <td>
-                            刘先生
-
-                        </td>
-                        <td>151515151515</td>
-                        <td>株洲市</td>
-                        <td>aa</td>
-                        <td>aa</td>
-                        <td><a href="javascript:;">删除</a> | <a href="javascript:;" v-on:click="ShowPage(1)">修改</a></td>
-
-                    </tr>
+                    </tr>*@
                 </tbody>
             </table>
             <div align="center">
@@ -117,33 +118,44 @@
     </div>
 </div>
 
+
 <script>
     var myVue = new Vue({
         el: "#app",
-        methods: {
-            //跳转到添加/修改页面
-            ShowPage: function (id) {
-                var url = "";
-                var mes = "";
-                if (!id) {
-                    url = "/basic/storeadd.html";
-                    mes = "添加成功!";
-                } else {
-                    url = "/basic/storeEdit.html?id=" + id;
-                    mes = "修改成功!";
-                }
-                layer.open({
-                    type: 2,
-                    shade: false,
-                    area: ['500px', '550px'],
-                    maxmin: true,
-                    content: url,
-                    zIndex: layer.zIndex,
-                    end: function () { //子页面关闭时调用
-                        layer.alert(mes);
-                    }
-                });
-            }
+        data: {
+            ProductLend: [],
+        },
+        created: function () {
+            this.$http.get("http://localhost:8625/api/Basic/GetProductLend")
+                .then(d => {
+                    this.ProductLend = d.data;
+                    console.log(d.data);
+                })
         }
+        //methods: {
+        //    //跳转到添加/修改页面
+        //    ShowPage: function (id) {
+        //        var url = "";
+        //        var mes = "";
+        //        if (!id) {
+        //            url = "/basic/storeadd.html";
+        //            mes = "添加成功!";
+        //        } else {
+        //            url = "/basic/storeEdit.html?id=" + id;
+        //            mes = "修改成功!";
+        //        }
+        //        layer.open({
+        //            type: 2,
+        //            shade: false,
+        //            area: ['500px', '550px'],
+        //            maxmin: true,
+        //            content: url,
+        //            zIndex: layer.zIndex,
+        //            end: function () { //子页面关闭时调用
+        //                layer.alert(mes);
+        //            }
+        //        });
+        //    }
+        //}
     });
 </script>
