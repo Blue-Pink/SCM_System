@@ -41,7 +41,7 @@ namespace SCM_System.API.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [Route("GetCDUs")]
+        [Route("GetCDUs")] 
         public async Task<Dictionary<string, dynamic>> GetCDUs()
         {
             return await basicModuel.GetVwCDUs().ConfigureAwait(false);
