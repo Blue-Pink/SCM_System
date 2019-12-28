@@ -1223,11 +1223,11 @@
           <EntitySet Name="V_InOutDepotDetail" EntityType="SCMModel.V_InOutDepotDetail" />
           <EntitySet Name="V_OutDepot" EntityType="SCMModel.V_OutDepot" />
           <EntitySet Name="V_Products" EntityType="SCMModel.V_Products" />
-          <EntitySet Name="V_Sl_SD" EntityType="SCMModel.V_Sl_SD" />
+          <EntitySet Name="V_Sl_SD_P_U" EntityType="SCMModel.V_Sl_SD_P_U" />
           <EntitySet Name="Vw_CDU" EntityType="SCMModel.Vw_CDU" />
           <EntitySet Name="Vw_CL" EntityType="SCMModel.Vw_CL" />
           <EntitySet Name="Vw_ptc" EntityType="SCMModel.Vw_ptc" />
-        </EntityContainer>
+          </EntityContainer>
         <EntityType Name="CheckDepot">
           <Key>
             <PropertyRef Name="CDID" />
@@ -1937,7 +1937,7 @@
           <Property Name="PSName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="DepotName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="V_Sl_SD">
+        <EntityType Name="V_Sl_SD_P_U">
           <Key>
             <PropertyRef Name="SplitID" />
           </Key>
@@ -2005,7 +2005,7 @@
           <Property Name="PTName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="PCName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -2210,24 +2210,12 @@
                 <ScalarProperty Name="ProID" ColumnName="ProID" />
                 <ScalarProperty Name="LostID" ColumnName="LostID" />
                 <ScalarProperty Name="LDID" ColumnName="LDID" />
-                <ScalarProperty Name="LDDesc" ColumnName="LDDesc" />
-                <ScalarProperty Name="LDPrice" ColumnName="LDPrice" />
-                <ScalarProperty Name="LDAmount" ColumnName="LDAmount" />
-                <ScalarProperty Name="ProID" ColumnName="ProID" />
-                <ScalarProperty Name="LostID" ColumnName="LostID" />
-                <ScalarProperty Name="LDID" ColumnName="LDID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Losts">
             <EntityTypeMapping TypeName="SCMModel.Losts">
               <MappingFragment StoreEntitySet="Losts">
-                <ScalarProperty Name="LostState" ColumnName="LostState" />
-                <ScalarProperty Name="LostDesc" ColumnName="LostDesc" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="LostDate" ColumnName="LostDate" />
-                <ScalarProperty Name="DepotID" ColumnName="DepotID" />
-                <ScalarProperty Name="LostID" ColumnName="LostID" />
                 <ScalarProperty Name="LostState" ColumnName="LostState" />
                 <ScalarProperty Name="LostDesc" ColumnName="LostDesc" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
@@ -2246,24 +2234,12 @@
                 <ScalarProperty Name="OIDDate" ColumnName="OIDDate" />
                 <ScalarProperty Name="DepotID" ColumnName="DepotID" />
                 <ScalarProperty Name="OIDID" ColumnName="OIDID" />
-                <ScalarProperty Name="OIDDesc" ColumnName="OIDDesc" />
-                <ScalarProperty Name="OIDState" ColumnName="OIDState" />
-                <ScalarProperty Name="OIDUser" ColumnName="OIDUser" />
-                <ScalarProperty Name="OIDDate" ColumnName="OIDDate" />
-                <ScalarProperty Name="DepotID" ColumnName="DepotID" />
-                <ScalarProperty Name="OIDID" ColumnName="OIDID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="OtherInDepotDetail">
             <EntityTypeMapping TypeName="SCMModel.OtherInDepotDetail">
               <MappingFragment StoreEntitySet="OtherInDepotDetail">
-                <ScalarProperty Name="OIDDDesc" ColumnName="OIDDDesc" />
-                <ScalarProperty Name="OIDDPrice" ColumnName="OIDDPrice" />
-                <ScalarProperty Name="OIDDAmount" ColumnName="OIDDAmount" />
-                <ScalarProperty Name="OIDID" ColumnName="OIDID" />
-                <ScalarProperty Name="ProID" ColumnName="ProID" />
-                <ScalarProperty Name="OIDDID" ColumnName="OIDDID" />
                 <ScalarProperty Name="OIDDDesc" ColumnName="OIDDDesc" />
                 <ScalarProperty Name="OIDDPrice" ColumnName="OIDDPrice" />
                 <ScalarProperty Name="OIDDAmount" ColumnName="OIDDAmount" />

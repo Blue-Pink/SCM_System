@@ -88,3 +88,5 @@ create view Vw_CL
 as
 select a.*,b.CLAgio,b.CLName from Customers a join CustomerLevel b on a.CLID = b.CLID
 go
+
+select * from V_Sl_SD_P_U

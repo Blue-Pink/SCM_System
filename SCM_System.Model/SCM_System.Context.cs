@@ -85,7 +85,7 @@ namespace SCM_System.Model
         public virtual DbSet<V_InOutDepotDetail> V_InOutDepotDetail { get; set; }
         public virtual DbSet<V_OutDepot> V_OutDepot { get; set; }
         public virtual DbSet<V_Products> V_Products { get; set; }
-        public virtual DbSet<V_Sl_SD> V_Sl_SD { get; set; }
+        public virtual DbSet<V_Sl_SD_P_U> V_Sl_SD_P_U { get; set; }
         public virtual DbSet<Vw_CDU> Vw_CDU { get; set; }
         public virtual DbSet<Vw_CL> Vw_CL { get; set; }
         public virtual DbSet<Vw_ptc> Vw_ptc { get; set; }
