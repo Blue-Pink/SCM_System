@@ -555,7 +555,7 @@
             <PropertyRef Name="StockID" />
           </Key>
           <Property Name="StockID" Type="char" MaxLength="14" Nullable="false" />
-          <Property Name="PPID" Type="char" MaxLength="12" />
+          <Property Name="PPID" Type="char" MaxLength="14" />
           <Property Name="StockDate" Type="datetime" />
           <Property Name="StockInDate" Type="datetime" />
           <Property Name="StockUser" Type="int" />
@@ -729,8 +729,8 @@
           <Property Name="DepotName" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <!--生成过程中发现错误:
-警告 6002: 表/视图“SCM.dbo.V_Sl_SD”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
-        <EntityType Name="V_Sl_SD">
+警告 6002: 表/视图“SCM.dbo.V_Sl_SD_P_U”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="V_Sl_SD_P_U">
           <Key>
             <PropertyRef Name="SplitID" />
           </Key>
@@ -984,743 +984,31 @@
     [V_Products].[DepotName] AS [DepotName]
     FROM [dbo].[V_Products] AS [V_Products]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="V_Sl_SD" EntityType="Self.V_Sl_SD" store:Type="Views" store:Schema="dbo">
+          <EntitySet Name="V_Sl_SD_P_U" EntityType="Self.V_Sl_SD_P_U" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
-    [V_Sl_SD].[SplitID] AS [SplitID], 
-    [V_Sl_SD].[DepotID] AS [DepotID], 
-    [V_Sl_SD].[ProID] AS [ProID], 
-    [V_Sl_SD].[UserID] AS [UserID], 
-    [V_Sl_SD].[SplitDate] AS [SplitDate], 
-    [V_Sl_SD].[SplitDesc] AS [SplitDesc], 
-    [V_Sl_SD].[SplitState] AS [SplitState], 
-    [V_Sl_SD].[SplitAmount] AS [SplitAmount], 
-    [V_Sl_SD].[SplitPrice] AS [SplitPrice], 
-    [V_Sl_SD].[SDAmount] AS [SDAmount], 
-    [V_Sl_SD].[SDPrice] AS [SDPrice], 
-    [V_Sl_SD].[SDDesc] AS [SDDesc], 
-    [V_Sl_SD].[DepotName] AS [DepotName], 
-    [V_Sl_SD].[ProName] AS [ProName], 
-    [V_Sl_SD].[UsersName] AS [UsersName]
-    FROM [dbo].[V_Sl_SD] AS [V_Sl_SD]</DefiningQuery>
+    [V_Sl_SD_P_U].[SplitID] AS [SplitID], 
+    [V_Sl_SD_P_U].[DepotID] AS [DepotID], 
+    [V_Sl_SD_P_U].[ProID] AS [ProID], 
+    [V_Sl_SD_P_U].[UserID] AS [UserID], 
+    [V_Sl_SD_P_U].[SplitDate] AS [SplitDate], 
+    [V_Sl_SD_P_U].[SplitDesc] AS [SplitDesc], 
+    [V_Sl_SD_P_U].[SplitState] AS [SplitState], 
+    [V_Sl_SD_P_U].[SplitAmount] AS [SplitAmount], 
+    [V_Sl_SD_P_U].[SplitPrice] AS [SplitPrice], 
+    [V_Sl_SD_P_U].[SDAmount] AS [SDAmount], 
+    [V_Sl_SD_P_U].[SDPrice] AS [SDPrice], 
+    [V_Sl_SD_P_U].[SDDesc] AS [SDDesc], 
+    [V_Sl_SD_P_U].[DepotName] AS [DepotName], 
+    [V_Sl_SD_P_U].[ProName] AS [ProName], 
+    [V_Sl_SD_P_U].[UsersName] AS [UsersName]
+    FROM [dbo].[V_Sl_SD_P_U] AS [V_Sl_SD_P_U]</DefiningQuery>
           </EntitySet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SCMModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="CheckDepot">
-          <Key>
-            <PropertyRef Name="CDID" />
-          </Key>
-          <Property Name="CDID" Type="String" MaxLength="14" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="DepotID" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
-          <Property Name="CDDate" Type="DateTime" Precision="3" />
-          <Property Name="UserID" Type="Int32" />
-          <Property Name="CDDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <Property Name="CDState" Type="Int32" />
-        </EntityType>
-        <EntityType Name="CheckDepotDetail">
-          <Key>
-            <PropertyRef Name="CDDID" />
-          </Key>
-          <Property Name="CDDID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CDID" Type="String" MaxLength="14" FixedLength="true" Unicode="false" />
-          <Property Name="ProID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="CDDAmount1" Type="Int32" />
-          <Property Name="DevAmount2" Type="Int32" />
-          <Property Name="CDDDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="Compose">
-          <Key>
-            <PropertyRef Name="ComposeID" />
-          </Key>
-          <Property Name="ComposeID" Type="String" MaxLength="14" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="DepotID" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
-          <Property Name="ProID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="UserID" Type="Int32" />
-          <Property Name="ComposeDate" Type="DateTime" Precision="3" />
-          <Property Name="ComposeDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <Property Name="ComposeState" Type="Int32" />
-          <Property Name="ComposeAmount" Type="Int32" />
-          <Property Name="ComposePrice" Type="Decimal" Precision="10" Scale="2" />
-        </EntityType>
-        <EntityType Name="ComposeDetail">
-          <Key>
-            <PropertyRef Name="CDID" />
-          </Key>
-          <Property Name="CDID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ComposeID" Type="String" MaxLength="14" FixedLength="true" Unicode="false" />
-          <Property Name="ProID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="CDAmount" Type="Int32" />
-          <Property Name="CDPrice" Type="Decimal" Precision="10" Scale="2" />
-          <Property Name="CDDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="CustomerLevel">
-          <Key>
-            <PropertyRef Name="CLID" />
-          </Key>
-          <Property Name="CLID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CLName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="CLAgio" Type="Int32" />
-        </EntityType>
-        <EntityType Name="CustomerOrder">
-          <Key>
-            <PropertyRef Name="COID" />
-          </Key>
-          <Property Name="COID" Type="String" MaxLength="14" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="CusID" Type="String" MaxLength="14" FixedLength="true" Unicode="false" />
-          <Property Name="CODate" Type="DateTime" Precision="3" />
-          <Property Name="CORefDate" Type="DateTime" Precision="3" />
-          <Property Name="UserID" Type="Int32" />
-          <Property Name="COState" Type="Int32" />
-          <Property Name="CODesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="CustomerOrderDetail">
-          <Key>
-            <PropertyRef Name="CODID" />
-          </Key>
-          <Property Name="CODID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="COID" Type="String" MaxLength="14" FixedLength="true" Unicode="false" />
-          <Property Name="ProID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="CODAmount" Type="Int32" />
-          <Property Name="CODPrice" Type="Decimal" Precision="10" Scale="2" />
-          <Property Name="CODDiscont" Type="Int32" />
-          <Property Name="CODDisPrice" Type="Decimal" Precision="10" Scale="2" />
-          <Property Name="CODSale" Type="Int32" />
-          <Property Name="CODDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="Customers">
-          <Key>
-            <PropertyRef Name="CusID" />
-          </Key>
-          <Property Name="CusID" Type="String" MaxLength="14" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="CLID" Type="Int32" />
-          <Property Name="CusName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="CusCompany" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="CusMan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CusDesc" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="Depots">
-          <Key>
-            <PropertyRef Name="DepotID" />
-          </Key>
-          <Property Name="DepotID" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="DepotName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="DepotMan" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="DepotTel" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="DepotAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="DepotDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="DepotStock">
-          <Key>
-            <PropertyRef Name="DSID" />
-          </Key>
-          <Property Name="DSID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="DepotID" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
-          <Property Name="ProID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="DSAmount" Type="Int32" />
-          <Property Name="DSPrice" Type="Decimal" Precision="10" Scale="2" />
-        </EntityType>
-        <EntityType Name="DevolveDetail">
-          <Key>
-            <PropertyRef Name="DevDID" />
-          </Key>
-          <Property Name="DevDID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="DevID" Type="String" MaxLength="14" FixedLength="true" Unicode="false" />
-          <Property Name="ProID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="DevDAmount" Type="Int32" />
-          <Property Name="DevDDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="Devolves">
-          <Key>
-            <PropertyRef Name="DevID" />
-          </Key>
-          <Property Name="DevID" Type="String" MaxLength="14" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="DevOutID" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
-          <Property Name="DevInID" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
-          <Property Name="UserID" Type="Int32" />
-          <Property Name="DevDate" Type="DateTime" Precision="3" />
-          <Property Name="DevDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <Property Name="DevState" Type="Int32" />
-        </EntityType>
-        <EntityType Name="InOutDepot">
-          <Key>
-            <PropertyRef Name="IODID" />
-          </Key>
-          <Property Name="IODID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="DepotID" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
-          <Property Name="IODType" Type="Int32" />
-          <Property Name="IODNum" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="IODDate" Type="DateTime" Precision="3" />
-          <Property Name="IODUser" Type="Int32" />
-          <Property Name="IODDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <Property Name="IODLend" Type="String" MaxLength="14" FixedLength="true" Unicode="false" />
-          <Property Name="IODCus" Type="String" MaxLength="14" FixedLength="true" Unicode="false" />
-        </EntityType>
-        <EntityType Name="InOutDepotDetail">
-          <Key>
-            <PropertyRef Name="IODDID" />
-          </Key>
-          <Property Name="IODDID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IODID" Type="Int32" />
-          <Property Name="ProID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="IODDAmount" Type="Int32" />
-          <Property Name="IODDPrice" Type="Decimal" Precision="10" Scale="2" />
-          <Property Name="IODDOutPrice" Type="Decimal" Precision="10" Scale="2" />
-        </EntityType>
-        <EntityType Name="LostDetail">
-          <Key>
-            <PropertyRef Name="LDID" />
-          </Key>
-          <Property Name="LDID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="LostID" Type="String" MaxLength="14" FixedLength="true" Unicode="false" />
-          <Property Name="ProID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="LDAmount" Type="Int32" />
-          <Property Name="LDPrice" Type="Decimal" Precision="10" Scale="2" />
-          <Property Name="LDDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="Losts">
-          <Key>
-            <PropertyRef Name="LostID" />
-          </Key>
-          <Property Name="LostID" Type="String" MaxLength="14" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="DepotID" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
-          <Property Name="LostDate" Type="DateTime" Precision="3" />
-          <Property Name="UserID" Type="Int32" />
-          <Property Name="LostDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <Property Name="LostState" Type="Int32" />
-        </EntityType>
-        <EntityType Name="OtherInDepot">
-          <Key>
-            <PropertyRef Name="OIDID" />
-          </Key>
-          <Property Name="OIDID" Type="String" MaxLength="14" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="DepotID" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
-          <Property Name="OIDDate" Type="DateTime" Precision="3" />
-          <Property Name="OIDUser" Type="Int32" />
-          <Property Name="OIDState" Type="Int32" />
-          <Property Name="OIDDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="OtherInDepotDetail">
-          <Key>
-            <PropertyRef Name="OIDDID" />
-          </Key>
-          <Property Name="OIDDID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ProID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="OIDID" Type="String" MaxLength="14" FixedLength="true" Unicode="false" />
-          <Property Name="OIDDAmount" Type="Int32" />
-          <Property Name="OIDDPrice" Type="Decimal" Precision="10" Scale="2" />
-          <Property Name="OIDDDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="OtherOutDepot">
-          <Key>
-            <PropertyRef Name="OODID" />
-          </Key>
-          <Property Name="OODID" Type="String" MaxLength="14" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="DepotID" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
-          <Property Name="OODDate" Type="DateTime" Precision="3" />
-          <Property Name="UserID" Type="Int32" />
-          <Property Name="OODState" Type="Int32" />
-          <Property Name="OODDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="OtherOutDepotDetail">
-          <Key>
-            <PropertyRef Name="OODDID" />
-          </Key>
-          <Property Name="OODDID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="OODID" Type="String" MaxLength="14" FixedLength="true" Unicode="false" />
-          <Property Name="ProID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="OODDAmount" Type="Int32" />
-          <Property Name="OODDPrice" Type="Decimal" Precision="10" Scale="2" />
-          <Property Name="OODDDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="PayOffDetail">
-          <Key>
-            <PropertyRef Name="PODID" />
-          </Key>
-          <Property Name="PODID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="POID" Type="String" MaxLength="14" FixedLength="true" Unicode="false" />
-          <Property Name="ProID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="PODAmount" Type="Int32" />
-          <Property Name="PODPrice" Type="Decimal" Precision="10" Scale="2" />
-          <Property Name="PODDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="PayOffs">
-          <Key>
-            <PropertyRef Name="POID" />
-          </Key>
-          <Property Name="POID" Type="String" MaxLength="14" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="DepotID" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
-          <Property Name="PODate" Type="DateTime" Precision="3" />
-          <Property Name="UserID" Type="Int32" />
-          <Property Name="PODesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <Property Name="POState" Type="Int32" />
-        </EntityType>
-        <EntityType Name="PopedomRole">
-          <Key>
-            <PropertyRef Name="PRID" />
-          </Key>
-          <Property Name="PRID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="RoleID" Type="Int32" />
-          <Property Name="PopID" Type="Int32" />
-        </EntityType>
-        <EntityType Name="Popedoms">
-          <Key>
-            <PropertyRef Name="PopID" />
-          </Key>
-          <Property Name="PopID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PopName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="PopParentID" Type="Int32" />
-          <Property Name="PopIsMenu" Type="Boolean" />
-          <Property Name="PopValue" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="PopDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="ProduceInDepot">
-          <Key>
-            <PropertyRef Name="PIDID" />
-          </Key>
-          <Property Name="PIDID" Type="String" MaxLength="14" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="DepotID" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
-          <Property Name="PIDDate" Type="DateTime" Precision="3" />
-          <Property Name="PIDUser" Type="Int32" />
-          <Property Name="PIDState" Type="Int32" />
-          <Property Name="PDIDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="ProduceInDepotDeteil">
-          <Key>
-            <PropertyRef Name="PIDDID" />
-          </Key>
-          <Property Name="PIDDID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ProID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="PIDID" Type="String" MaxLength="14" FixedLength="true" Unicode="false" />
-          <Property Name="PIDDAmount" Type="Int32" />
-          <Property Name="PIDDPrice" Type="Decimal" Precision="14" Scale="0" />
-          <Property Name="PIDDDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="ProduceOutDepot">
-          <Key>
-            <PropertyRef Name="PODID" />
-          </Key>
-          <Property Name="PODID" Type="String" MaxLength="14" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="DepotID" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
-          <Property Name="PODDate" Type="DateTime" Precision="3" />
-          <Property Name="UserID" Type="Int32" />
-          <Property Name="PODState" Type="Int32" />
-          <Property Name="PODDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="ProduceOutDepotDetail">
-          <Key>
-            <PropertyRef Name="PODDID" />
-          </Key>
-          <Property Name="PODDID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PODID" Type="String" MaxLength="14" FixedLength="true" Unicode="false" />
-          <Property Name="ProID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="PODDAmount" Type="Int32" />
-          <Property Name="PODDPrice" Type="Decimal" Precision="10" Scale="2" />
-          <Property Name="PODDDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="ProductColor">
-          <Key>
-            <PropertyRef Name="PCID" />
-          </Key>
-          <Property Name="PCID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PCName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="ProductLend">
-          <Key>
-            <PropertyRef Name="PPID" />
-          </Key>
-          <Property Name="PPID" Type="String" MaxLength="14" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="PPName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="PPCompany" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="PPMan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="PPTel" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="PPAddress" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
-          <Property Name="PPFax" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="PPEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="PPUrl" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="PPBank" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="PPGoods" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="PPDesc" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="Products">
-          <Key>
-            <PropertyRef Name="ProID" />
-          </Key>
-          <Property Name="ProID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="PTID" Type="Int32" />
-          <Property Name="PUID" Type="Int32" />
-          <Property Name="PCID" Type="Int32" />
-          <Property Name="PSID" Type="Int32" />
-          <Property Name="ProName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="ProJP" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="ProTM" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="ProWorkShop" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="ProMax" Type="Int32" />
-          <Property Name="ProMin" Type="Int32" />
-          <Property Name="ProInPrice" Type="Decimal" Precision="10" Scale="2" />
-          <Property Name="ProPrice" Type="Decimal" Precision="10" Scale="2" />
-          <Property Name="ProDesc" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
-          <Property Name="DepotID" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
-        </EntityType>
-        <EntityType Name="ProductSpec">
-          <Key>
-            <PropertyRef Name="PSID" />
-          </Key>
-          <Property Name="PSID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PSName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="ProductTypes">
-          <Key>
-            <PropertyRef Name="PTID" />
-          </Key>
-          <Property Name="PTID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PTParentID" Type="Int32" />
-          <Property Name="PTName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="PTDes" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="ProductUnit">
-          <Key>
-            <PropertyRef Name="PUID" />
-          </Key>
-          <Property Name="PUID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PUName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="QuotePrice">
-          <Key>
-            <PropertyRef Name="QPID" />
-          </Key>
-          <Property Name="QPID" Type="String" MaxLength="14" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="CusID" Type="String" MaxLength="14" FixedLength="true" Unicode="false" />
-          <Property Name="UserID" Type="Int32" />
-          <Property Name="QPDate" Type="DateTime" Precision="3" />
-          <Property Name="QPState" Type="Int32" />
-          <Property Name="QPDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="QuotePriceDetail">
-          <Key>
-            <PropertyRef Name="QPDID" />
-          </Key>
-          <Property Name="QPDID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="QPID" Type="String" MaxLength="14" FixedLength="true" Unicode="false" />
-          <Property Name="ProID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="QPDAmount" Type="Int32" />
-          <Property Name="QPDPrice" Type="Decimal" Precision="10" Scale="2" />
-          <Property Name="QPDDiscont" Type="Int32" />
-          <Property Name="QPDDisPrice" Type="Decimal" Precision="10" Scale="2" />
-          <Property Name="QPDDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="Roles">
-          <Key>
-            <PropertyRef Name="RoleID" />
-          </Key>
-          <Property Name="RoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="RoleName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="RoleDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="SaleDepot">
-          <Key>
-            <PropertyRef Name="SDID" />
-          </Key>
-          <Property Name="SDID" Type="String" MaxLength="14" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="CusID" Type="String" MaxLength="14" FixedLength="true" Unicode="false" />
-          <Property Name="DepotID" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
-          <Property Name="SDDate" Type="DateTime" Precision="3" />
-          <Property Name="UserID" Type="Int32" />
-          <Property Name="SDState" Type="Int32" />
-          <Property Name="SDDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="SaleDepotDetail">
-          <Key>
-            <PropertyRef Name="SDDID" />
-          </Key>
-          <Property Name="SDDID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SDID" Type="String" MaxLength="14" FixedLength="true" Unicode="false" />
-          <Property Name="ProID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="SDDPrice" Type="Decimal" Precision="10" Scale="2" />
-          <Property Name="SDDDiscount" Type="Int32" />
-          <Property Name="SDDDisPrice" Type="Decimal" Precision="10" Scale="2" />
-          <Property Name="SDDDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <Property Name="SDDAmount" Type="Int32" />
-        </EntityType>
-        <EntityType Name="SaleReturn">
-          <Key>
-            <PropertyRef Name="SRID" />
-          </Key>
-          <Property Name="SRID" Type="String" MaxLength="14" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="CusID" Type="String" MaxLength="14" FixedLength="true" Unicode="false" />
-          <Property Name="DepotID" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
-          <Property Name="SRDate" Type="DateTime" Precision="3" />
-          <Property Name="UserID" Type="Int32" />
-          <Property Name="SRState" Type="Int32" />
-          <Property Name="SRDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="SaleReturnDetail">
-          <Key>
-            <PropertyRef Name="SRDID" />
-          </Key>
-          <Property Name="SRDID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SRID" Type="String" MaxLength="14" FixedLength="true" Unicode="false" />
-          <Property Name="ProID" Type="Int32" />
-          <Property Name="SRDAmount" Type="Int32" />
-          <Property Name="SRDPrice" Type="Decimal" Precision="10" Scale="2" />
-          <Property Name="SRDDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="SplitDetail">
-          <Key>
-            <PropertyRef Name="SDID" />
-          </Key>
-          <Property Name="SDID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SplitID" Type="String" MaxLength="14" FixedLength="true" Unicode="false" />
-          <Property Name="ProID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="SDAmount" Type="Int32" />
-          <Property Name="SDPrice" Type="Decimal" Precision="10" Scale="2" />
-          <Property Name="SDDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="Splits">
-          <Key>
-            <PropertyRef Name="SplitID" />
-          </Key>
-          <Property Name="SplitID" Type="String" MaxLength="14" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="DepotID" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
-          <Property Name="ProID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="UserID" Type="Int32" />
-          <Property Name="SplitDate" Type="DateTime" Precision="3" />
-          <Property Name="SplitDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <Property Name="SplitState" Type="Int32" />
-          <Property Name="SplitAmount" Type="Int32" />
-          <Property Name="SplitPrice" Type="Decimal" Precision="10" Scale="2" />
-        </EntityType>
-        <EntityType Name="StockDetail">
-          <Key>
-            <PropertyRef Name="SDetailID" />
-          </Key>
-          <Property Name="SDetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ProID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="StockID" Type="String" MaxLength="14" FixedLength="true" Unicode="false" />
-          <Property Name="SDetailAmount" Type="Int32" />
-          <Property Name="SDetailPrice" Type="Decimal" Precision="10" Scale="2" />
-          <Property Name="SDetailDepAmount" Type="Int32" />
-          <Property Name="SDetailDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="StockInDepot">
-          <Key>
-            <PropertyRef Name="SIDID" />
-          </Key>
-          <Property Name="SIDID" Type="String" MaxLength="14" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="PPID" Type="String" MaxLength="12" FixedLength="true" Unicode="false" />
-          <Property Name="DepotID" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
-          <Property Name="StockID" Type="String" MaxLength="14" FixedLength="true" Unicode="false" />
-          <Property Name="SIDDate" Type="DateTime" Precision="3" />
-          <Property Name="SIDDeliver" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="SIDFreight" Type="Decimal" Precision="10" Scale="2" />
-          <Property Name="SIDUser" Type="Int32" />
-          <Property Name="SIDData" Type="Int32" />
-          <Property Name="SIDDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="StockInDepotDetail">
-          <Key>
-            <PropertyRef Name="SIDDID" />
-          </Key>
-          <Property Name="SIDDID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ProID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="SIDID" Type="String" MaxLength="14" FixedLength="true" Unicode="false" />
-          <Property Name="SIDDAmount" Type="Int32" />
-          <Property Name="SIDDPrice" Type="Decimal" Precision="10" Scale="2" />
-          <Property Name="SIDDDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="StockOutDepot">
-          <Key>
-            <PropertyRef Name="SRDID" />
-          </Key>
-          <Property Name="SRDID" Type="String" MaxLength="14" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="PPID" Type="String" MaxLength="12" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="StockID" Type="String" MaxLength="14" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="DepotID" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="SRDDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="SIDUser" Type="Int32" Nullable="false" />
-          <Property Name="SIDData" Type="Int32" Nullable="false" />
-          <Property Name="SIDDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
-        </EntityType>
-        <EntityType Name="StockOutDepotDetail">
-          <Key>
-            <PropertyRef Name="SRDDID" />
-          </Key>
-          <Property Name="SRDDID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ProID" Type="Int32" Nullable="false" />
-          <Property Name="SRDID" Type="String" MaxLength="14" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="SIDDAmount" Type="Int32" Nullable="false" />
-          <Property Name="SIDDPrice" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
-          <Property Name="SIDDDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Stocks">
-          <Key>
-            <PropertyRef Name="StockID" />
-          </Key>
-          <Property Name="StockID" Type="String" MaxLength="14" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="PPID" Type="String" MaxLength="12" FixedLength="true" Unicode="false" />
-          <Property Name="StockDate" Type="DateTime" Precision="3" />
-          <Property Name="StockInDate" Type="DateTime" Precision="3" />
-          <Property Name="StockUser" Type="Int32" />
-          <Property Name="StockState" Type="Int32" />
-          <Property Name="StockDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="Users">
-          <Key>
-            <PropertyRef Name="UsersID" />
-          </Key>
-          <Property Name="UsersID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UsersName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="UserLoginName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="UserLoginPwd" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
-          <Property Name="UUID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="UsersRole">
-          <Key>
-            <PropertyRef Name="URID" />
-          </Key>
-          <Property Name="URID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UsersID" Type="Int32" />
-          <Property Name="RoleID" Type="Int32" />
-        </EntityType>
-        <EntityType Name="V_InDepot">
-          <Key>
-            <PropertyRef Name="IODID" />
-            <PropertyRef Name="SumMoney" />
-          </Key>
-          <Property Name="IODID" Type="Int32" Nullable="false" />
-          <Property Name="DepotID" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
-          <Property Name="IODType" Type="Int32" />
-          <Property Name="IODNum" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="IODDate" Type="DateTime" Precision="3" />
-          <Property Name="IODUser" Type="Int32" />
-          <Property Name="IODDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <Property Name="IODLend" Type="String" MaxLength="14" FixedLength="true" Unicode="false" />
-          <Property Name="IODCus" Type="String" MaxLength="14" FixedLength="true" Unicode="false" />
-          <Property Name="DepotName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="UsersName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="PPName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="SumMoney" Type="Decimal" Precision="38" Scale="2" Nullable="false" />
-        </EntityType>
-        <EntityType Name="V_InOutDepotDetail">
-          <Key>
-            <PropertyRef Name="IODDID" />
-          </Key>
-          <Property Name="IODDID" Type="Int32" Nullable="false" />
-          <Property Name="IODID" Type="Int32" />
-          <Property Name="ProID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="IODDAmount" Type="Int32" />
-          <Property Name="IODDPrice" Type="Decimal" Precision="10" Scale="2" />
-          <Property Name="IODDOutPrice" Type="Decimal" Precision="10" Scale="2" />
-          <Property Name="ProName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="PTName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="PUName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="PCName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="PSName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="DepotID" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
-          <Property Name="DepotName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="IODDMoney" Type="Decimal" Precision="21" Scale="2" />
-        </EntityType>
-        <EntityType Name="V_OutDepot">
-          <Key>
-            <PropertyRef Name="IODID" />
-            <PropertyRef Name="SumMoney" />
-          </Key>
-          <Property Name="IODID" Type="Int32" Nullable="false" />
-          <Property Name="DepotID" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
-          <Property Name="IODType" Type="Int32" />
-          <Property Name="IODNum" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="IODDate" Type="DateTime" Precision="3" />
-          <Property Name="IODUser" Type="Int32" />
-          <Property Name="IODDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <Property Name="IODLend" Type="String" MaxLength="14" FixedLength="true" Unicode="false" />
-          <Property Name="IODCus" Type="String" MaxLength="14" FixedLength="true" Unicode="false" />
-          <Property Name="DepotName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="UsersName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CusName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="SumMoney" Type="Decimal" Precision="38" Scale="2" Nullable="false" />
-        </EntityType>
-        <EntityType Name="V_Products">
-          <Key>
-            <PropertyRef Name="ProID" />
-          </Key>
-          <Property Name="ProID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="PTID" Type="Int32" />
-          <Property Name="PUID" Type="Int32" />
-          <Property Name="PCID" Type="Int32" />
-          <Property Name="PSID" Type="Int32" />
-          <Property Name="ProName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="ProJP" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="ProTM" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="ProWorkShop" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="ProMax" Type="Int32" />
-          <Property Name="ProMin" Type="Int32" />
-          <Property Name="ProInPrice" Type="Decimal" Precision="10" Scale="2" />
-          <Property Name="ProPrice" Type="Decimal" Precision="10" Scale="2" />
-          <Property Name="ProDesc" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
-          <Property Name="DepotID" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
-          <Property Name="PTName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="PUName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="PCName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="PSName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="DepotName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityContainer Name="SCMEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="CheckDepot" EntityType="Self.CheckDepot" />
-          <EntitySet Name="CheckDepotDetail" EntityType="Self.CheckDepotDetail" />
-          <EntitySet Name="Compose" EntityType="Self.Compose" />
-          <EntitySet Name="ComposeDetail" EntityType="Self.ComposeDetail" />
-          <EntitySet Name="CustomerLevel" EntityType="Self.CustomerLevel" />
-          <EntitySet Name="CustomerOrder" EntityType="Self.CustomerOrder" />
-          <EntitySet Name="CustomerOrderDetail" EntityType="Self.CustomerOrderDetail" />
-          <EntitySet Name="Customers" EntityType="Self.Customers" />
-          <EntitySet Name="Depots" EntityType="Self.Depots" />
-          <EntitySet Name="DepotStock" EntityType="Self.DepotStock" />
-          <EntitySet Name="DevolveDetail" EntityType="Self.DevolveDetail" />
-          <EntitySet Name="Devolves" EntityType="Self.Devolves" />
-          <EntitySet Name="InOutDepot" EntityType="Self.InOutDepot" />
-          <EntitySet Name="InOutDepotDetail" EntityType="Self.InOutDepotDetail" />
-          <EntitySet Name="LostDetail" EntityType="Self.LostDetail" />
-          <EntitySet Name="Losts" EntityType="Self.Losts" />
-          <EntitySet Name="OtherInDepot" EntityType="Self.OtherInDepot" />
-          <EntitySet Name="OtherInDepotDetail" EntityType="Self.OtherInDepotDetail" />
-          <EntitySet Name="OtherOutDepot" EntityType="Self.OtherOutDepot" />
-          <EntitySet Name="OtherOutDepotDetail" EntityType="Self.OtherOutDepotDetail" />
-          <EntitySet Name="PayOffDetail" EntityType="Self.PayOffDetail" />
-          <EntitySet Name="PayOffs" EntityType="Self.PayOffs" />
-          <EntitySet Name="PopedomRole" EntityType="Self.PopedomRole" />
-          <EntitySet Name="Popedoms" EntityType="Self.Popedoms" />
-          <EntitySet Name="ProduceInDepot" EntityType="Self.ProduceInDepot" />
-          <EntitySet Name="ProduceInDepotDeteil" EntityType="Self.ProduceInDepotDeteil" />
-          <EntitySet Name="ProduceOutDepot" EntityType="Self.ProduceOutDepot" />
-          <EntitySet Name="ProduceOutDepotDetail" EntityType="Self.ProduceOutDepotDetail" />
-          <EntitySet Name="ProductColor" EntityType="Self.ProductColor" />
-          <EntitySet Name="ProductLend" EntityType="Self.ProductLend" />
-          <EntitySet Name="Products" EntityType="Self.Products" />
-          <EntitySet Name="ProductSpec" EntityType="Self.ProductSpec" />
-          <EntitySet Name="ProductTypes" EntityType="Self.ProductTypes" />
-          <EntitySet Name="ProductUnit" EntityType="Self.ProductUnit" />
-          <EntitySet Name="QuotePrice" EntityType="Self.QuotePrice" />
-          <EntitySet Name="QuotePriceDetail" EntityType="Self.QuotePriceDetail" />
-          <EntitySet Name="Roles" EntityType="Self.Roles" />
-          <EntitySet Name="SaleDepot" EntityType="Self.SaleDepot" />
-          <EntitySet Name="SaleDepotDetail" EntityType="Self.SaleDepotDetail" />
-          <EntitySet Name="SaleReturn" EntityType="Self.SaleReturn" />
-          <EntitySet Name="SaleReturnDetail" EntityType="Self.SaleReturnDetail" />
-          <EntitySet Name="SplitDetail" EntityType="Self.SplitDetail" />
-          <EntitySet Name="Splits" EntityType="Self.Splits" />
-          <EntitySet Name="StockDetail" EntityType="Self.StockDetail" />
-          <EntitySet Name="StockInDepot" EntityType="Self.StockInDepot" />
-          <EntitySet Name="StockInDepotDetail" EntityType="Self.StockInDepotDetail" />
-          <EntitySet Name="StockOutDepot" EntityType="Self.StockOutDepot" />
-          <EntitySet Name="StockOutDepotDetail" EntityType="Self.StockOutDepotDetail" />
-          <EntitySet Name="Stocks" EntityType="Self.Stocks" />
-          <EntitySet Name="Users" EntityType="Self.Users" />
-          <EntitySet Name="UsersRole" EntityType="Self.UsersRole" />
-          <EntitySet Name="V_InDepot" EntityType="Self.V_InDepot" />
-          <EntitySet Name="V_InOutDepotDetail" EntityType="Self.V_InOutDepotDetail" />
-          <EntitySet Name="V_OutDepot" EntityType="Self.V_OutDepot" />
-          <EntitySet Name="V_Products" EntityType="Self.V_Products" />
           <FunctionImport Name="proc_CFNO">
           <Parameter Name="no" Mode="InOut" Type="String" />
           </FunctionImport>
@@ -1778,11 +1066,641 @@
             <Parameter Name="OrderType" Mode="In" Type="Boolean" />
             <Parameter Name="strWhere" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="CheckDepot" EntityType="SCMModel.CheckDepot" />
+          <EntitySet Name="CheckDepotDetail" EntityType="SCMModel.CheckDepotDetail" />
+          <EntitySet Name="Compose" EntityType="SCMModel.Compose" />
+          <EntitySet Name="ComposeDetail" EntityType="SCMModel.ComposeDetail" />
+          <EntitySet Name="CustomerLevel" EntityType="SCMModel.CustomerLevel" />
+          <EntitySet Name="CustomerOrder" EntityType="SCMModel.CustomerOrder" />
+          <EntitySet Name="CustomerOrderDetail" EntityType="SCMModel.CustomerOrderDetail" />
+          <EntitySet Name="Customers" EntityType="SCMModel.Customers" />
+          <EntitySet Name="Depots" EntityType="SCMModel.Depots" />
+          <EntitySet Name="DepotStock" EntityType="SCMModel.DepotStock" />
+          <EntitySet Name="DevolveDetail" EntityType="SCMModel.DevolveDetail" />
+          <EntitySet Name="Devolves" EntityType="SCMModel.Devolves" />
+          <EntitySet Name="InOutDepot" EntityType="SCMModel.InOutDepot" />
+          <EntitySet Name="InOutDepotDetail" EntityType="SCMModel.InOutDepotDetail" />
+          <EntitySet Name="LostDetail" EntityType="SCMModel.LostDetail" />
+          <EntitySet Name="Losts" EntityType="SCMModel.Losts" />
+          <EntitySet Name="OtherInDepot" EntityType="SCMModel.OtherInDepot" />
+          <EntitySet Name="OtherInDepotDetail" EntityType="SCMModel.OtherInDepotDetail" />
+          <EntitySet Name="OtherOutDepot" EntityType="SCMModel.OtherOutDepot" />
+          <EntitySet Name="OtherOutDepotDetail" EntityType="SCMModel.OtherOutDepotDetail" />
+          <EntitySet Name="PayOffDetail" EntityType="SCMModel.PayOffDetail" />
+          <EntitySet Name="PayOffs" EntityType="SCMModel.PayOffs" />
+          <EntitySet Name="PopedomRole" EntityType="SCMModel.PopedomRole" />
+          <EntitySet Name="Popedoms" EntityType="SCMModel.Popedoms" />
+          <EntitySet Name="ProduceInDepot" EntityType="SCMModel.ProduceInDepot" />
+          <EntitySet Name="ProduceInDepotDeteil" EntityType="SCMModel.ProduceInDepotDeteil" />
+          <EntitySet Name="ProduceOutDepot" EntityType="SCMModel.ProduceOutDepot" />
+          <EntitySet Name="ProduceOutDepotDetail" EntityType="SCMModel.ProduceOutDepotDetail" />
+          <EntitySet Name="ProductColor" EntityType="SCMModel.ProductColor" />
+          <EntitySet Name="ProductLend" EntityType="SCMModel.ProductLend" />
+          <EntitySet Name="Products" EntityType="SCMModel.Products" />
+          <EntitySet Name="ProductSpec" EntityType="SCMModel.ProductSpec" />
+          <EntitySet Name="ProductTypes" EntityType="SCMModel.ProductTypes" />
+          <EntitySet Name="ProductUnit" EntityType="SCMModel.ProductUnit" />
+          <EntitySet Name="QuotePrice" EntityType="SCMModel.QuotePrice" />
+          <EntitySet Name="QuotePriceDetail" EntityType="SCMModel.QuotePriceDetail" />
+          <EntitySet Name="Roles" EntityType="SCMModel.Roles" />
+          <EntitySet Name="SaleDepot" EntityType="SCMModel.SaleDepot" />
+          <EntitySet Name="SaleDepotDetail" EntityType="SCMModel.SaleDepotDetail" />
+          <EntitySet Name="SaleReturn" EntityType="SCMModel.SaleReturn" />
+          <EntitySet Name="SaleReturnDetail" EntityType="SCMModel.SaleReturnDetail" />
+          <EntitySet Name="SplitDetail" EntityType="SCMModel.SplitDetail" />
+          <EntitySet Name="Splits" EntityType="SCMModel.Splits" />
+          <EntitySet Name="StockDetail" EntityType="SCMModel.StockDetail" />
+          <EntitySet Name="StockInDepot" EntityType="SCMModel.StockInDepot" />
+          <EntitySet Name="StockInDepotDetail" EntityType="SCMModel.StockInDepotDetail" />
+          <EntitySet Name="StockOutDepot" EntityType="SCMModel.StockOutDepot" />
+          <EntitySet Name="StockOutDepotDetail" EntityType="SCMModel.StockOutDepotDetail" />
+          <EntitySet Name="Stocks" EntityType="SCMModel.Stocks" />
+          <EntitySet Name="Users" EntityType="SCMModel.Users" />
+          <EntitySet Name="UsersRole" EntityType="SCMModel.UsersRole" />
           <EntitySet Name="V_DS_P_PT" EntityType="SCMModel.V_DS_P_PT" />
-          <EntitySet Name="V_Dl_D_D" EntityType="SCMModel.V_Dl_D_D" />
-          <EntitySet Name="V_Sl_SD" EntityType="SCMModel.V_Sl_SD" />
+          <EntitySet Name="V_InDepot" EntityType="SCMModel.V_InDepot" />
+          <EntitySet Name="V_InOutDepotDetail" EntityType="SCMModel.V_InOutDepotDetail" />
+          <EntitySet Name="V_OutDepot" EntityType="SCMModel.V_OutDepot" />
+          <EntitySet Name="V_Products" EntityType="SCMModel.V_Products" />
+          <EntitySet Name="V_Sl_SD_P_U" EntityType="SCMModel.V_Sl_SD_P_U" />
           <EntitySet Name="V_CD_CDD_P_D_U" EntityType="SCMModel.V_CD_CDD_P_D_U" />
+          <EntitySet Name="V_Dl_D_D" EntityType="SCMModel.V_Dl_D_D" />
         </EntityContainer>
+        <EntityType Name="CheckDepot">
+          <Key>
+            <PropertyRef Name="CDID" />
+          </Key>
+          <Property Name="CDID" Type="String" Nullable="false" MaxLength="14" FixedLength="true" Unicode="false" />
+          <Property Name="DepotID" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="CDDate" Type="DateTime" Precision="3" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="CDDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="CDState" Type="Int32" />
+        </EntityType>
+        <EntityType Name="CheckDepotDetail">
+          <Key>
+            <PropertyRef Name="CDDID" />
+          </Key>
+          <Property Name="CDDID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CDID" Type="String" MaxLength="14" FixedLength="true" Unicode="false" />
+          <Property Name="ProID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CDDAmount1" Type="Int32" />
+          <Property Name="DevAmount2" Type="Int32" />
+          <Property Name="CDDDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Compose">
+          <Key>
+            <PropertyRef Name="ComposeID" />
+          </Key>
+          <Property Name="ComposeID" Type="String" Nullable="false" MaxLength="14" FixedLength="true" Unicode="false" />
+          <Property Name="DepotID" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="ProID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="ComposeDate" Type="DateTime" Precision="3" />
+          <Property Name="ComposeDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="ComposeState" Type="Int32" />
+          <Property Name="ComposeAmount" Type="Int32" />
+          <Property Name="ComposePrice" Type="Decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="ComposeDetail">
+          <Key>
+            <PropertyRef Name="CDID" />
+          </Key>
+          <Property Name="CDID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ComposeID" Type="String" MaxLength="14" FixedLength="true" Unicode="false" />
+          <Property Name="ProID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CDAmount" Type="Int32" />
+          <Property Name="CDPrice" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="CDDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CustomerLevel">
+          <Key>
+            <PropertyRef Name="CLID" />
+          </Key>
+          <Property Name="CLID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CLName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CLAgio" Type="Int32" />
+        </EntityType>
+        <EntityType Name="CustomerOrder">
+          <Key>
+            <PropertyRef Name="COID" />
+          </Key>
+          <Property Name="COID" Type="String" Nullable="false" MaxLength="14" FixedLength="true" Unicode="false" />
+          <Property Name="CusID" Type="String" MaxLength="14" FixedLength="true" Unicode="false" />
+          <Property Name="CODate" Type="DateTime" Precision="3" />
+          <Property Name="CORefDate" Type="DateTime" Precision="3" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="COState" Type="Int32" />
+          <Property Name="CODesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CustomerOrderDetail">
+          <Key>
+            <PropertyRef Name="CODID" />
+          </Key>
+          <Property Name="CODID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="COID" Type="String" MaxLength="14" FixedLength="true" Unicode="false" />
+          <Property Name="ProID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CODAmount" Type="Int32" />
+          <Property Name="CODPrice" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="CODDiscont" Type="Int32" />
+          <Property Name="CODDisPrice" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="CODSale" Type="Int32" />
+          <Property Name="CODDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Customers">
+          <Key>
+            <PropertyRef Name="CusID" />
+          </Key>
+          <Property Name="CusID" Type="String" Nullable="false" MaxLength="14" FixedLength="true" Unicode="false" />
+          <Property Name="CLID" Type="Int32" />
+          <Property Name="CusName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CusCompany" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CusMan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CusDesc" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Depots">
+          <Key>
+            <PropertyRef Name="DepotID" />
+          </Key>
+          <Property Name="DepotID" Type="String" Nullable="false" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="DepotName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DepotMan" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DepotTel" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DepotAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="DepotDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="DepotStock">
+          <Key>
+            <PropertyRef Name="DSID" />
+          </Key>
+          <Property Name="DSID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DepotID" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="ProID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DSAmount" Type="Int32" />
+          <Property Name="DSPrice" Type="Decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="DevolveDetail">
+          <Key>
+            <PropertyRef Name="DevDID" />
+          </Key>
+          <Property Name="DevDID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DevID" Type="String" MaxLength="14" FixedLength="true" Unicode="false" />
+          <Property Name="ProID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DevDAmount" Type="Int32" />
+          <Property Name="DevDDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Devolves">
+          <Key>
+            <PropertyRef Name="DevID" />
+          </Key>
+          <Property Name="DevID" Type="String" Nullable="false" MaxLength="14" FixedLength="true" Unicode="false" />
+          <Property Name="DevOutID" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="DevInID" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="DevDate" Type="DateTime" Precision="3" />
+          <Property Name="DevDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="DevState" Type="Int32" />
+        </EntityType>
+        <EntityType Name="InOutDepot">
+          <Key>
+            <PropertyRef Name="IODID" />
+          </Key>
+          <Property Name="IODID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DepotID" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="IODType" Type="Int32" />
+          <Property Name="IODNum" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IODDate" Type="DateTime" Precision="3" />
+          <Property Name="IODUser" Type="Int32" />
+          <Property Name="IODDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="IODLend" Type="String" MaxLength="14" FixedLength="true" Unicode="false" />
+          <Property Name="IODCus" Type="String" MaxLength="14" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="InOutDepotDetail">
+          <Key>
+            <PropertyRef Name="IODDID" />
+          </Key>
+          <Property Name="IODDID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IODID" Type="Int32" />
+          <Property Name="ProID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IODDAmount" Type="Int32" />
+          <Property Name="IODDPrice" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="IODDOutPrice" Type="Decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="LostDetail">
+          <Key>
+            <PropertyRef Name="LDID" />
+          </Key>
+          <Property Name="LDID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LostID" Type="String" MaxLength="14" FixedLength="true" Unicode="false" />
+          <Property Name="ProID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LDAmount" Type="Int32" />
+          <Property Name="LDPrice" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="LDDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Losts">
+          <Key>
+            <PropertyRef Name="LostID" />
+          </Key>
+          <Property Name="LostID" Type="String" Nullable="false" MaxLength="14" FixedLength="true" Unicode="false" />
+          <Property Name="DepotID" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="LostDate" Type="DateTime" Precision="3" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="LostDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="LostState" Type="Int32" />
+        </EntityType>
+        <EntityType Name="OtherInDepot">
+          <Key>
+            <PropertyRef Name="OIDID" />
+          </Key>
+          <Property Name="OIDID" Type="String" Nullable="false" MaxLength="14" FixedLength="true" Unicode="false" />
+          <Property Name="DepotID" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="OIDDate" Type="DateTime" Precision="3" />
+          <Property Name="OIDUser" Type="Int32" />
+          <Property Name="OIDState" Type="Int32" />
+          <Property Name="OIDDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="OtherInDepotDetail">
+          <Key>
+            <PropertyRef Name="OIDDID" />
+          </Key>
+          <Property Name="OIDDID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OIDID" Type="String" MaxLength="14" FixedLength="true" Unicode="false" />
+          <Property Name="OIDDAmount" Type="Int32" />
+          <Property Name="OIDDPrice" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="OIDDDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="OtherOutDepot">
+          <Key>
+            <PropertyRef Name="OODID" />
+          </Key>
+          <Property Name="OODID" Type="String" Nullable="false" MaxLength="14" FixedLength="true" Unicode="false" />
+          <Property Name="DepotID" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="OODDate" Type="DateTime" Precision="3" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="OODState" Type="Int32" />
+          <Property Name="OODDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="OtherOutDepotDetail">
+          <Key>
+            <PropertyRef Name="OODDID" />
+          </Key>
+          <Property Name="OODDID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OODID" Type="String" MaxLength="14" FixedLength="true" Unicode="false" />
+          <Property Name="ProID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OODDAmount" Type="Int32" />
+          <Property Name="OODDPrice" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="OODDDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="PayOffDetail">
+          <Key>
+            <PropertyRef Name="PODID" />
+          </Key>
+          <Property Name="PODID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="POID" Type="String" MaxLength="14" FixedLength="true" Unicode="false" />
+          <Property Name="ProID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PODAmount" Type="Int32" />
+          <Property Name="PODPrice" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="PODDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="PayOffs">
+          <Key>
+            <PropertyRef Name="POID" />
+          </Key>
+          <Property Name="POID" Type="String" Nullable="false" MaxLength="14" FixedLength="true" Unicode="false" />
+          <Property Name="DepotID" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="PODate" Type="DateTime" Precision="3" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="PODesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="POState" Type="Int32" />
+        </EntityType>
+        <EntityType Name="PopedomRole">
+          <Key>
+            <PropertyRef Name="PRID" />
+          </Key>
+          <Property Name="PRID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleID" Type="Int32" />
+          <Property Name="PopID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Popedoms">
+          <Key>
+            <PropertyRef Name="PopID" />
+          </Key>
+          <Property Name="PopID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PopName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PopParentID" Type="Int32" />
+          <Property Name="PopIsMenu" Type="Boolean" />
+          <Property Name="PopValue" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="PopDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ProduceInDepot">
+          <Key>
+            <PropertyRef Name="PIDID" />
+          </Key>
+          <Property Name="PIDID" Type="String" Nullable="false" MaxLength="14" FixedLength="true" Unicode="false" />
+          <Property Name="DepotID" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="PIDDate" Type="DateTime" Precision="3" />
+          <Property Name="PIDUser" Type="Int32" />
+          <Property Name="PIDState" Type="Int32" />
+          <Property Name="PDIDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ProduceInDepotDeteil">
+          <Key>
+            <PropertyRef Name="PIDDID" />
+          </Key>
+          <Property Name="PIDDID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PIDID" Type="String" MaxLength="14" FixedLength="true" Unicode="false" />
+          <Property Name="PIDDAmount" Type="Int32" />
+          <Property Name="PIDDPrice" Type="Decimal" Precision="14" Scale="0" />
+          <Property Name="PIDDDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ProduceOutDepot">
+          <Key>
+            <PropertyRef Name="PODID" />
+          </Key>
+          <Property Name="PODID" Type="String" Nullable="false" MaxLength="14" FixedLength="true" Unicode="false" />
+          <Property Name="DepotID" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="PODDate" Type="DateTime" Precision="3" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="PODState" Type="Int32" />
+          <Property Name="PODDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ProduceOutDepotDetail">
+          <Key>
+            <PropertyRef Name="PODDID" />
+          </Key>
+          <Property Name="PODDID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PODID" Type="String" MaxLength="14" FixedLength="true" Unicode="false" />
+          <Property Name="ProID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PODDAmount" Type="Int32" />
+          <Property Name="PODDPrice" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="PODDDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ProductColor">
+          <Key>
+            <PropertyRef Name="PCID" />
+          </Key>
+          <Property Name="PCID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PCName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ProductLend">
+          <Key>
+            <PropertyRef Name="PPID" />
+          </Key>
+          <Property Name="PPID" Type="String" Nullable="false" MaxLength="14" FixedLength="true" Unicode="false" />
+          <Property Name="PPName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PPCompany" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="PPMan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PPTel" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PPAddress" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="PPFax" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PPEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PPUrl" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PPBank" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="PPGoods" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PPDesc" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="ProID" />
+          </Key>
+          <Property Name="ProID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PTID" Type="Int32" />
+          <Property Name="PUID" Type="Int32" />
+          <Property Name="PCID" Type="Int32" />
+          <Property Name="PSID" Type="Int32" />
+          <Property Name="ProName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ProJP" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ProTM" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ProWorkShop" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ProMax" Type="Int32" />
+          <Property Name="ProMin" Type="Int32" />
+          <Property Name="ProInPrice" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="ProPrice" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="ProDesc" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="DepotID" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ProductSpec">
+          <Key>
+            <PropertyRef Name="PSID" />
+          </Key>
+          <Property Name="PSID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PSName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ProductTypes">
+          <Key>
+            <PropertyRef Name="PTID" />
+          </Key>
+          <Property Name="PTID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PTParentID" Type="Int32" />
+          <Property Name="PTName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PTDes" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ProductUnit">
+          <Key>
+            <PropertyRef Name="PUID" />
+          </Key>
+          <Property Name="PUID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PUName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="QuotePrice">
+          <Key>
+            <PropertyRef Name="QPID" />
+          </Key>
+          <Property Name="QPID" Type="String" Nullable="false" MaxLength="14" FixedLength="true" Unicode="false" />
+          <Property Name="CusID" Type="String" MaxLength="14" FixedLength="true" Unicode="false" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="QPDate" Type="DateTime" Precision="3" />
+          <Property Name="QPState" Type="Int32" />
+          <Property Name="QPDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="QuotePriceDetail">
+          <Key>
+            <PropertyRef Name="QPDID" />
+          </Key>
+          <Property Name="QPDID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="QPID" Type="String" MaxLength="14" FixedLength="true" Unicode="false" />
+          <Property Name="ProID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="QPDAmount" Type="Int32" />
+          <Property Name="QPDPrice" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="QPDDiscont" Type="Int32" />
+          <Property Name="QPDDisPrice" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="QPDDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="RoleDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SaleDepot">
+          <Key>
+            <PropertyRef Name="SDID" />
+          </Key>
+          <Property Name="SDID" Type="String" Nullable="false" MaxLength="14" FixedLength="true" Unicode="false" />
+          <Property Name="CusID" Type="String" MaxLength="14" FixedLength="true" Unicode="false" />
+          <Property Name="DepotID" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="SDDate" Type="DateTime" Precision="3" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="SDState" Type="Int32" />
+          <Property Name="SDDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SaleDepotDetail">
+          <Key>
+            <PropertyRef Name="SDDID" />
+          </Key>
+          <Property Name="SDDID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SDID" Type="String" MaxLength="14" FixedLength="true" Unicode="false" />
+          <Property Name="ProID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SDDPrice" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="SDDDiscount" Type="Int32" />
+          <Property Name="SDDDisPrice" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="SDDDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="SDDAmount" Type="Int32" />
+        </EntityType>
+        <EntityType Name="SaleReturn">
+          <Key>
+            <PropertyRef Name="SRID" />
+          </Key>
+          <Property Name="SRID" Type="String" Nullable="false" MaxLength="14" FixedLength="true" Unicode="false" />
+          <Property Name="CusID" Type="String" MaxLength="14" FixedLength="true" Unicode="false" />
+          <Property Name="DepotID" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="SRDate" Type="DateTime" Precision="3" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="SRState" Type="Int32" />
+          <Property Name="SRDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SaleReturnDetail">
+          <Key>
+            <PropertyRef Name="SRDID" />
+          </Key>
+          <Property Name="SRDID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SRID" Type="String" MaxLength="14" FixedLength="true" Unicode="false" />
+          <Property Name="ProID" Type="Int32" />
+          <Property Name="SRDAmount" Type="Int32" />
+          <Property Name="SRDPrice" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="SRDDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SplitDetail">
+          <Key>
+            <PropertyRef Name="SDID" />
+          </Key>
+          <Property Name="SDID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SplitID" Type="String" MaxLength="14" FixedLength="true" Unicode="false" />
+          <Property Name="ProID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SDAmount" Type="Int32" />
+          <Property Name="SDPrice" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="SDDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Splits">
+          <Key>
+            <PropertyRef Name="SplitID" />
+          </Key>
+          <Property Name="SplitID" Type="String" Nullable="false" MaxLength="14" FixedLength="true" Unicode="false" />
+          <Property Name="DepotID" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="ProID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="SplitDate" Type="DateTime" Precision="3" />
+          <Property Name="SplitDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="SplitState" Type="Int32" />
+          <Property Name="SplitAmount" Type="Int32" />
+          <Property Name="SplitPrice" Type="Decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="StockDetail">
+          <Key>
+            <PropertyRef Name="SDetailID" />
+          </Key>
+          <Property Name="SDetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="StockID" Type="String" MaxLength="14" FixedLength="true" Unicode="false" />
+          <Property Name="SDetailAmount" Type="Int32" />
+          <Property Name="SDetailPrice" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="SDetailDepAmount" Type="Int32" />
+          <Property Name="SDetailDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="StockInDepot">
+          <Key>
+            <PropertyRef Name="SIDID" />
+          </Key>
+          <Property Name="SIDID" Type="String" Nullable="false" MaxLength="14" FixedLength="true" Unicode="false" />
+          <Property Name="PPID" Type="String" MaxLength="12" FixedLength="true" Unicode="false" />
+          <Property Name="DepotID" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="StockID" Type="String" MaxLength="14" FixedLength="true" Unicode="false" />
+          <Property Name="SIDDate" Type="DateTime" Precision="3" />
+          <Property Name="SIDDeliver" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SIDFreight" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="SIDUser" Type="Int32" />
+          <Property Name="SIDData" Type="Int32" />
+          <Property Name="SIDDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="StockInDepotDetail">
+          <Key>
+            <PropertyRef Name="SIDDID" />
+          </Key>
+          <Property Name="SIDDID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SIDID" Type="String" MaxLength="14" FixedLength="true" Unicode="false" />
+          <Property Name="SIDDAmount" Type="Int32" />
+          <Property Name="SIDDPrice" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="SIDDDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="StockOutDepot">
+          <Key>
+            <PropertyRef Name="SRDID" />
+          </Key>
+          <Property Name="SRDID" Type="String" Nullable="false" MaxLength="14" FixedLength="true" Unicode="false" />
+          <Property Name="PPID" Type="String" Nullable="false" MaxLength="12" FixedLength="true" Unicode="false" />
+          <Property Name="StockID" Type="String" Nullable="false" MaxLength="14" FixedLength="true" Unicode="false" />
+          <Property Name="DepotID" Type="String" Nullable="false" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="SRDDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SIDUser" Type="Int32" Nullable="false" />
+          <Property Name="SIDData" Type="Int32" Nullable="false" />
+          <Property Name="SIDDesc" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="StockOutDepotDetail">
+          <Key>
+            <PropertyRef Name="SRDDID" />
+          </Key>
+          <Property Name="SRDDID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProID" Type="Int32" Nullable="false" />
+          <Property Name="SRDID" Type="String" Nullable="false" MaxLength="14" FixedLength="true" Unicode="false" />
+          <Property Name="SIDDAmount" Type="Int32" Nullable="false" />
+          <Property Name="SIDDPrice" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="SIDDDesc" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Stocks">
+          <Key>
+            <PropertyRef Name="StockID" />
+          </Key>
+          <Property Name="StockID" Type="String" Nullable="false" MaxLength="14" FixedLength="true" Unicode="false" />
+          <Property Name="PPID" Type="String" MaxLength="14" FixedLength="true" Unicode="false" />
+          <Property Name="StockDate" Type="DateTime" Precision="3" />
+          <Property Name="StockInDate" Type="DateTime" Precision="3" />
+          <Property Name="StockUser" Type="Int32" />
+          <Property Name="StockState" Type="Int32" />
+          <Property Name="StockDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UsersID" />
+          </Key>
+          <Property Name="UsersID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UsersName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserLoginName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="UserLoginPwd" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="UUID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="UsersRole">
+          <Key>
+            <PropertyRef Name="URID" />
+          </Key>
+          <Property Name="URID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UsersID" Type="Int32" />
+          <Property Name="RoleID" Type="Int32" />
+        </EntityType>
         <EntityType Name="V_DS_P_PT">
           <Key>
             <PropertyRef Name="DSID" />
@@ -1807,19 +1725,89 @@
           <Property Name="ProDesc" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
           <Property Name="DepotID" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
         </EntityType>
-        <EntityType Name="V_Dl_D_D">
+        <EntityType Name="V_InDepot">
           <Key>
-            <PropertyRef Name="DevID" />
+            <PropertyRef Name="IODID" />
+            <PropertyRef Name="SumMoney" />
           </Key>
-          <Property Name="DevID" Type="String" Nullable="false" MaxLength="14" FixedLength="true" Unicode="false" />
-          <Property Name="OutDepot" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="InDepot" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="DevDate" Type="DateTime" Precision="3" />
+          <Property Name="IODID" Type="Int32" Nullable="false" />
+          <Property Name="DepotID" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="IODType" Type="Int32" />
+          <Property Name="IODNum" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IODDate" Type="DateTime" Precision="3" />
+          <Property Name="IODUser" Type="Int32" />
+          <Property Name="IODDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="IODLend" Type="String" MaxLength="14" FixedLength="true" Unicode="false" />
+          <Property Name="IODCus" Type="String" MaxLength="14" FixedLength="true" Unicode="false" />
+          <Property Name="DepotName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="UsersName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="DevDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <Property Name="DevState" Type="Int32" />
+          <Property Name="PPName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SumMoney" Type="Decimal" Nullable="false" Precision="38" Scale="2" />
         </EntityType>
-        <EntityType Name="V_Sl_SD">
+        <EntityType Name="V_InOutDepotDetail">
+          <Key>
+            <PropertyRef Name="IODDID" />
+          </Key>
+          <Property Name="IODDID" Type="Int32" Nullable="false" />
+          <Property Name="IODID" Type="Int32" />
+          <Property Name="ProID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IODDAmount" Type="Int32" />
+          <Property Name="IODDPrice" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="IODDOutPrice" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="ProName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PTName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PUName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PCName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PSName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DepotID" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="DepotName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IODDMoney" Type="Decimal" Precision="21" Scale="2" />
+        </EntityType>
+        <EntityType Name="V_OutDepot">
+          <Key>
+            <PropertyRef Name="IODID" />
+            <PropertyRef Name="SumMoney" />
+          </Key>
+          <Property Name="IODID" Type="Int32" Nullable="false" />
+          <Property Name="DepotID" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="IODType" Type="Int32" />
+          <Property Name="IODNum" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IODDate" Type="DateTime" Precision="3" />
+          <Property Name="IODUser" Type="Int32" />
+          <Property Name="IODDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="IODLend" Type="String" MaxLength="14" FixedLength="true" Unicode="false" />
+          <Property Name="IODCus" Type="String" MaxLength="14" FixedLength="true" Unicode="false" />
+          <Property Name="DepotName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UsersName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CusName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SumMoney" Type="Decimal" Nullable="false" Precision="38" Scale="2" />
+        </EntityType>
+        <EntityType Name="V_Products">
+          <Key>
+            <PropertyRef Name="ProID" />
+          </Key>
+          <Property Name="ProID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PTID" Type="Int32" />
+          <Property Name="PUID" Type="Int32" />
+          <Property Name="PCID" Type="Int32" />
+          <Property Name="PSID" Type="Int32" />
+          <Property Name="ProName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ProJP" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ProTM" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ProWorkShop" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ProMax" Type="Int32" />
+          <Property Name="ProMin" Type="Int32" />
+          <Property Name="ProInPrice" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="ProPrice" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="ProDesc" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="DepotID" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="PTName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PUName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PCName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PSName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DepotName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="V_Sl_SD_P_U">
           <Key>
             <PropertyRef Name="SplitID" />
           </Key>
@@ -1855,722 +1843,24 @@
           <Property Name="DepotName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="UsersName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="V_Dl_D_D">
+          <Key>
+            <PropertyRef Name="DevID" />
+          </Key>
+          <Property Name="DevID" Type="String" Nullable="false" MaxLength="14" FixedLength="true" Unicode="false" />
+          <Property Name="OutDepot" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="InDepot" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DevDate" Type="DateTime" Precision="3" />
+          <Property Name="UsersName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DevDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="DevState" Type="Int32" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="SCMModelStoreContainer" CdmEntityContainer="SCMEntities">
-          <EntitySetMapping Name="CheckDepot">
-            <EntityTypeMapping TypeName="SCMModel.CheckDepot">
-              <MappingFragment StoreEntitySet="CheckDepot">
-                <ScalarProperty Name="CDID" ColumnName="CDID" />
-                <ScalarProperty Name="DepotID" ColumnName="DepotID" />
-                <ScalarProperty Name="CDDate" ColumnName="CDDate" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="CDDesc" ColumnName="CDDesc" />
-                <ScalarProperty Name="CDState" ColumnName="CDState" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CheckDepotDetail">
-            <EntityTypeMapping TypeName="SCMModel.CheckDepotDetail">
-              <MappingFragment StoreEntitySet="CheckDepotDetail">
-                <ScalarProperty Name="CDDID" ColumnName="CDDID" />
-                <ScalarProperty Name="CDID" ColumnName="CDID" />
-                <ScalarProperty Name="ProID" ColumnName="ProID" />
-                <ScalarProperty Name="CDDAmount1" ColumnName="CDDAmount1" />
-                <ScalarProperty Name="DevAmount2" ColumnName="DevAmount2" />
-                <ScalarProperty Name="CDDDesc" ColumnName="CDDDesc" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Compose">
-            <EntityTypeMapping TypeName="SCMModel.Compose">
-              <MappingFragment StoreEntitySet="Compose">
-                <ScalarProperty Name="ComposeID" ColumnName="ComposeID" />
-                <ScalarProperty Name="DepotID" ColumnName="DepotID" />
-                <ScalarProperty Name="ProID" ColumnName="ProID" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="ComposeDate" ColumnName="ComposeDate" />
-                <ScalarProperty Name="ComposeDesc" ColumnName="ComposeDesc" />
-                <ScalarProperty Name="ComposeState" ColumnName="ComposeState" />
-                <ScalarProperty Name="ComposeAmount" ColumnName="ComposeAmount" />
-                <ScalarProperty Name="ComposePrice" ColumnName="ComposePrice" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ComposeDetail">
-            <EntityTypeMapping TypeName="SCMModel.ComposeDetail">
-              <MappingFragment StoreEntitySet="ComposeDetail">
-                <ScalarProperty Name="CDID" ColumnName="CDID" />
-                <ScalarProperty Name="ComposeID" ColumnName="ComposeID" />
-                <ScalarProperty Name="ProID" ColumnName="ProID" />
-                <ScalarProperty Name="CDAmount" ColumnName="CDAmount" />
-                <ScalarProperty Name="CDPrice" ColumnName="CDPrice" />
-                <ScalarProperty Name="CDDesc" ColumnName="CDDesc" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CustomerLevel">
-            <EntityTypeMapping TypeName="SCMModel.CustomerLevel">
-              <MappingFragment StoreEntitySet="CustomerLevel">
-                <ScalarProperty Name="CLID" ColumnName="CLID" />
-                <ScalarProperty Name="CLName" ColumnName="CLName" />
-                <ScalarProperty Name="CLAgio" ColumnName="CLAgio" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CustomerOrder">
-            <EntityTypeMapping TypeName="SCMModel.CustomerOrder">
-              <MappingFragment StoreEntitySet="CustomerOrder">
-                <ScalarProperty Name="COID" ColumnName="COID" />
-                <ScalarProperty Name="CusID" ColumnName="CusID" />
-                <ScalarProperty Name="CODate" ColumnName="CODate" />
-                <ScalarProperty Name="CORefDate" ColumnName="CORefDate" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="COState" ColumnName="COState" />
-                <ScalarProperty Name="CODesc" ColumnName="CODesc" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CustomerOrderDetail">
-            <EntityTypeMapping TypeName="SCMModel.CustomerOrderDetail">
-              <MappingFragment StoreEntitySet="CustomerOrderDetail">
-                <ScalarProperty Name="CODID" ColumnName="CODID" />
-                <ScalarProperty Name="COID" ColumnName="COID" />
-                <ScalarProperty Name="ProID" ColumnName="ProID" />
-                <ScalarProperty Name="CODAmount" ColumnName="CODAmount" />
-                <ScalarProperty Name="CODPrice" ColumnName="CODPrice" />
-                <ScalarProperty Name="CODDiscont" ColumnName="CODDiscont" />
-                <ScalarProperty Name="CODDisPrice" ColumnName="CODDisPrice" />
-                <ScalarProperty Name="CODSale" ColumnName="CODSale" />
-                <ScalarProperty Name="CODDesc" ColumnName="CODDesc" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Customers">
-            <EntityTypeMapping TypeName="SCMModel.Customers">
-              <MappingFragment StoreEntitySet="Customers">
-                <ScalarProperty Name="CusID" ColumnName="CusID" />
-                <ScalarProperty Name="CLID" ColumnName="CLID" />
-                <ScalarProperty Name="CusName" ColumnName="CusName" />
-                <ScalarProperty Name="CusCompany" ColumnName="CusCompany" />
-                <ScalarProperty Name="CusMan" ColumnName="CusMan" />
-                <ScalarProperty Name="CusDesc" ColumnName="CusDesc" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Depots">
-            <EntityTypeMapping TypeName="SCMModel.Depots">
-              <MappingFragment StoreEntitySet="Depots">
-                <ScalarProperty Name="DepotID" ColumnName="DepotID" />
-                <ScalarProperty Name="DepotName" ColumnName="DepotName" />
-                <ScalarProperty Name="DepotMan" ColumnName="DepotMan" />
-                <ScalarProperty Name="DepotTel" ColumnName="DepotTel" />
-                <ScalarProperty Name="DepotAddress" ColumnName="DepotAddress" />
-                <ScalarProperty Name="DepotDesc" ColumnName="DepotDesc" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DepotStock">
-            <EntityTypeMapping TypeName="SCMModel.DepotStock">
-              <MappingFragment StoreEntitySet="DepotStock">
-                <ScalarProperty Name="DSID" ColumnName="DSID" />
-                <ScalarProperty Name="DepotID" ColumnName="DepotID" />
-                <ScalarProperty Name="ProID" ColumnName="ProID" />
-                <ScalarProperty Name="DSAmount" ColumnName="DSAmount" />
-                <ScalarProperty Name="DSPrice" ColumnName="DSPrice" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DevolveDetail">
-            <EntityTypeMapping TypeName="SCMModel.DevolveDetail">
-              <MappingFragment StoreEntitySet="DevolveDetail">
-                <ScalarProperty Name="DevDID" ColumnName="DevDID" />
-                <ScalarProperty Name="DevID" ColumnName="DevID" />
-                <ScalarProperty Name="ProID" ColumnName="ProID" />
-                <ScalarProperty Name="DevDAmount" ColumnName="DevDAmount" />
-                <ScalarProperty Name="DevDDesc" ColumnName="DevDDesc" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Devolves">
-            <EntityTypeMapping TypeName="SCMModel.Devolves">
-              <MappingFragment StoreEntitySet="Devolves">
-                <ScalarProperty Name="DevID" ColumnName="DevID" />
-                <ScalarProperty Name="DevOutID" ColumnName="DevOutID" />
-                <ScalarProperty Name="DevInID" ColumnName="DevInID" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="DevDate" ColumnName="DevDate" />
-                <ScalarProperty Name="DevDesc" ColumnName="DevDesc" />
-                <ScalarProperty Name="DevState" ColumnName="DevState" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="InOutDepot">
-            <EntityTypeMapping TypeName="SCMModel.InOutDepot">
-              <MappingFragment StoreEntitySet="InOutDepot">
-                <ScalarProperty Name="IODID" ColumnName="IODID" />
-                <ScalarProperty Name="DepotID" ColumnName="DepotID" />
-                <ScalarProperty Name="IODType" ColumnName="IODType" />
-                <ScalarProperty Name="IODNum" ColumnName="IODNum" />
-                <ScalarProperty Name="IODDate" ColumnName="IODDate" />
-                <ScalarProperty Name="IODUser" ColumnName="IODUser" />
-                <ScalarProperty Name="IODDesc" ColumnName="IODDesc" />
-                <ScalarProperty Name="IODLend" ColumnName="IODLend" />
-                <ScalarProperty Name="IODCus" ColumnName="IODCus" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="InOutDepotDetail">
-            <EntityTypeMapping TypeName="SCMModel.InOutDepotDetail">
-              <MappingFragment StoreEntitySet="InOutDepotDetail">
-                <ScalarProperty Name="IODDID" ColumnName="IODDID" />
-                <ScalarProperty Name="IODID" ColumnName="IODID" />
-                <ScalarProperty Name="ProID" ColumnName="ProID" />
-                <ScalarProperty Name="IODDAmount" ColumnName="IODDAmount" />
-                <ScalarProperty Name="IODDPrice" ColumnName="IODDPrice" />
-                <ScalarProperty Name="IODDOutPrice" ColumnName="IODDOutPrice" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="LostDetail">
-            <EntityTypeMapping TypeName="SCMModel.LostDetail">
-              <MappingFragment StoreEntitySet="LostDetail">
-                <ScalarProperty Name="LDID" ColumnName="LDID" />
-                <ScalarProperty Name="LostID" ColumnName="LostID" />
-                <ScalarProperty Name="ProID" ColumnName="ProID" />
-                <ScalarProperty Name="LDAmount" ColumnName="LDAmount" />
-                <ScalarProperty Name="LDPrice" ColumnName="LDPrice" />
-                <ScalarProperty Name="LDDesc" ColumnName="LDDesc" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Losts">
-            <EntityTypeMapping TypeName="SCMModel.Losts">
-              <MappingFragment StoreEntitySet="Losts">
-                <ScalarProperty Name="LostID" ColumnName="LostID" />
-                <ScalarProperty Name="DepotID" ColumnName="DepotID" />
-                <ScalarProperty Name="LostDate" ColumnName="LostDate" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="LostDesc" ColumnName="LostDesc" />
-                <ScalarProperty Name="LostState" ColumnName="LostState" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="OtherInDepot">
-            <EntityTypeMapping TypeName="SCMModel.OtherInDepot">
-              <MappingFragment StoreEntitySet="OtherInDepot">
-                <ScalarProperty Name="OIDID" ColumnName="OIDID" />
-                <ScalarProperty Name="DepotID" ColumnName="DepotID" />
-                <ScalarProperty Name="OIDDate" ColumnName="OIDDate" />
-                <ScalarProperty Name="OIDUser" ColumnName="OIDUser" />
-                <ScalarProperty Name="OIDState" ColumnName="OIDState" />
-                <ScalarProperty Name="OIDDesc" ColumnName="OIDDesc" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="OtherInDepotDetail">
-            <EntityTypeMapping TypeName="SCMModel.OtherInDepotDetail">
-              <MappingFragment StoreEntitySet="OtherInDepotDetail">
-                <ScalarProperty Name="OIDDID" ColumnName="OIDDID" />
-                <ScalarProperty Name="ProID" ColumnName="ProID" />
-                <ScalarProperty Name="OIDID" ColumnName="OIDID" />
-                <ScalarProperty Name="OIDDAmount" ColumnName="OIDDAmount" />
-                <ScalarProperty Name="OIDDPrice" ColumnName="OIDDPrice" />
-                <ScalarProperty Name="OIDDDesc" ColumnName="OIDDDesc" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="OtherOutDepot">
-            <EntityTypeMapping TypeName="SCMModel.OtherOutDepot">
-              <MappingFragment StoreEntitySet="OtherOutDepot">
-                <ScalarProperty Name="OODID" ColumnName="OODID" />
-                <ScalarProperty Name="DepotID" ColumnName="DepotID" />
-                <ScalarProperty Name="OODDate" ColumnName="OODDate" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="OODState" ColumnName="OODState" />
-                <ScalarProperty Name="OODDesc" ColumnName="OODDesc" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="OtherOutDepotDetail">
-            <EntityTypeMapping TypeName="SCMModel.OtherOutDepotDetail">
-              <MappingFragment StoreEntitySet="OtherOutDepotDetail">
-                <ScalarProperty Name="OODDID" ColumnName="OODDID" />
-                <ScalarProperty Name="OODID" ColumnName="OODID" />
-                <ScalarProperty Name="ProID" ColumnName="ProID" />
-                <ScalarProperty Name="OODDAmount" ColumnName="OODDAmount" />
-                <ScalarProperty Name="OODDPrice" ColumnName="OODDPrice" />
-                <ScalarProperty Name="OODDDesc" ColumnName="OODDDesc" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="PayOffDetail">
-            <EntityTypeMapping TypeName="SCMModel.PayOffDetail">
-              <MappingFragment StoreEntitySet="PayOffDetail">
-                <ScalarProperty Name="PODID" ColumnName="PODID" />
-                <ScalarProperty Name="POID" ColumnName="POID" />
-                <ScalarProperty Name="ProID" ColumnName="ProID" />
-                <ScalarProperty Name="PODAmount" ColumnName="PODAmount" />
-                <ScalarProperty Name="PODPrice" ColumnName="PODPrice" />
-                <ScalarProperty Name="PODDesc" ColumnName="PODDesc" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="PayOffs">
-            <EntityTypeMapping TypeName="SCMModel.PayOffs">
-              <MappingFragment StoreEntitySet="PayOffs">
-                <ScalarProperty Name="POID" ColumnName="POID" />
-                <ScalarProperty Name="DepotID" ColumnName="DepotID" />
-                <ScalarProperty Name="PODate" ColumnName="PODate" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="PODesc" ColumnName="PODesc" />
-                <ScalarProperty Name="POState" ColumnName="POState" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="PopedomRole">
-            <EntityTypeMapping TypeName="SCMModel.PopedomRole">
-              <MappingFragment StoreEntitySet="PopedomRole">
-                <ScalarProperty Name="PRID" ColumnName="PRID" />
-                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
-                <ScalarProperty Name="PopID" ColumnName="PopID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Popedoms">
-            <EntityTypeMapping TypeName="SCMModel.Popedoms">
-              <MappingFragment StoreEntitySet="Popedoms">
-                <ScalarProperty Name="PopID" ColumnName="PopID" />
-                <ScalarProperty Name="PopName" ColumnName="PopName" />
-                <ScalarProperty Name="PopParentID" ColumnName="PopParentID" />
-                <ScalarProperty Name="PopIsMenu" ColumnName="PopIsMenu" />
-                <ScalarProperty Name="PopValue" ColumnName="PopValue" />
-                <ScalarProperty Name="PopDesc" ColumnName="PopDesc" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ProduceInDepot">
-            <EntityTypeMapping TypeName="SCMModel.ProduceInDepot">
-              <MappingFragment StoreEntitySet="ProduceInDepot">
-                <ScalarProperty Name="PIDID" ColumnName="PIDID" />
-                <ScalarProperty Name="DepotID" ColumnName="DepotID" />
-                <ScalarProperty Name="PIDDate" ColumnName="PIDDate" />
-                <ScalarProperty Name="PIDUser" ColumnName="PIDUser" />
-                <ScalarProperty Name="PIDState" ColumnName="PIDState" />
-                <ScalarProperty Name="PDIDesc" ColumnName="PDIDesc" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ProduceInDepotDeteil">
-            <EntityTypeMapping TypeName="SCMModel.ProduceInDepotDeteil">
-              <MappingFragment StoreEntitySet="ProduceInDepotDeteil">
-                <ScalarProperty Name="PIDDID" ColumnName="PIDDID" />
-                <ScalarProperty Name="ProID" ColumnName="ProID" />
-                <ScalarProperty Name="PIDID" ColumnName="PIDID" />
-                <ScalarProperty Name="PIDDAmount" ColumnName="PIDDAmount" />
-                <ScalarProperty Name="PIDDPrice" ColumnName="PIDDPrice" />
-                <ScalarProperty Name="PIDDDesc" ColumnName="PIDDDesc" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ProduceOutDepot">
-            <EntityTypeMapping TypeName="SCMModel.ProduceOutDepot">
-              <MappingFragment StoreEntitySet="ProduceOutDepot">
-                <ScalarProperty Name="PODID" ColumnName="PODID" />
-                <ScalarProperty Name="DepotID" ColumnName="DepotID" />
-                <ScalarProperty Name="PODDate" ColumnName="PODDate" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="PODState" ColumnName="PODState" />
-                <ScalarProperty Name="PODDesc" ColumnName="PODDesc" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ProduceOutDepotDetail">
-            <EntityTypeMapping TypeName="SCMModel.ProduceOutDepotDetail">
-              <MappingFragment StoreEntitySet="ProduceOutDepotDetail">
-                <ScalarProperty Name="PODDID" ColumnName="PODDID" />
-                <ScalarProperty Name="PODID" ColumnName="PODID" />
-                <ScalarProperty Name="ProID" ColumnName="ProID" />
-                <ScalarProperty Name="PODDAmount" ColumnName="PODDAmount" />
-                <ScalarProperty Name="PODDPrice" ColumnName="PODDPrice" />
-                <ScalarProperty Name="PODDDesc" ColumnName="PODDDesc" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ProductColor">
-            <EntityTypeMapping TypeName="SCMModel.ProductColor">
-              <MappingFragment StoreEntitySet="ProductColor">
-                <ScalarProperty Name="PCID" ColumnName="PCID" />
-                <ScalarProperty Name="PCName" ColumnName="PCName" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ProductLend">
-            <EntityTypeMapping TypeName="SCMModel.ProductLend">
-              <MappingFragment StoreEntitySet="ProductLend">
-                <ScalarProperty Name="PPID" ColumnName="PPID" />
-                <ScalarProperty Name="PPName" ColumnName="PPName" />
-                <ScalarProperty Name="PPCompany" ColumnName="PPCompany" />
-                <ScalarProperty Name="PPMan" ColumnName="PPMan" />
-                <ScalarProperty Name="PPTel" ColumnName="PPTel" />
-                <ScalarProperty Name="PPAddress" ColumnName="PPAddress" />
-                <ScalarProperty Name="PPFax" ColumnName="PPFax" />
-                <ScalarProperty Name="PPEmail" ColumnName="PPEmail" />
-                <ScalarProperty Name="PPUrl" ColumnName="PPUrl" />
-                <ScalarProperty Name="PPBank" ColumnName="PPBank" />
-                <ScalarProperty Name="PPGoods" ColumnName="PPGoods" />
-                <ScalarProperty Name="PPDesc" ColumnName="PPDesc" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Products">
-            <EntityTypeMapping TypeName="SCMModel.Products">
-              <MappingFragment StoreEntitySet="Products">
-                <ScalarProperty Name="ProID" ColumnName="ProID" />
-                <ScalarProperty Name="PTID" ColumnName="PTID" />
-                <ScalarProperty Name="PUID" ColumnName="PUID" />
-                <ScalarProperty Name="PCID" ColumnName="PCID" />
-                <ScalarProperty Name="PSID" ColumnName="PSID" />
-                <ScalarProperty Name="ProName" ColumnName="ProName" />
-                <ScalarProperty Name="ProJP" ColumnName="ProJP" />
-                <ScalarProperty Name="ProTM" ColumnName="ProTM" />
-                <ScalarProperty Name="ProWorkShop" ColumnName="ProWorkShop" />
-                <ScalarProperty Name="ProMax" ColumnName="ProMax" />
-                <ScalarProperty Name="ProMin" ColumnName="ProMin" />
-                <ScalarProperty Name="ProInPrice" ColumnName="ProInPrice" />
-                <ScalarProperty Name="ProPrice" ColumnName="ProPrice" />
-                <ScalarProperty Name="ProDesc" ColumnName="ProDesc" />
-                <ScalarProperty Name="DepotID" ColumnName="DepotID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ProductSpec">
-            <EntityTypeMapping TypeName="SCMModel.ProductSpec">
-              <MappingFragment StoreEntitySet="ProductSpec">
-                <ScalarProperty Name="PSID" ColumnName="PSID" />
-                <ScalarProperty Name="PSName" ColumnName="PSName" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ProductTypes">
-            <EntityTypeMapping TypeName="SCMModel.ProductTypes">
-              <MappingFragment StoreEntitySet="ProductTypes">
-                <ScalarProperty Name="PTID" ColumnName="PTID" />
-                <ScalarProperty Name="PTParentID" ColumnName="PTParentID" />
-                <ScalarProperty Name="PTName" ColumnName="PTName" />
-                <ScalarProperty Name="PTDes" ColumnName="PTDes" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ProductUnit">
-            <EntityTypeMapping TypeName="SCMModel.ProductUnit">
-              <MappingFragment StoreEntitySet="ProductUnit">
-                <ScalarProperty Name="PUID" ColumnName="PUID" />
-                <ScalarProperty Name="PUName" ColumnName="PUName" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="QuotePrice">
-            <EntityTypeMapping TypeName="SCMModel.QuotePrice">
-              <MappingFragment StoreEntitySet="QuotePrice">
-                <ScalarProperty Name="QPID" ColumnName="QPID" />
-                <ScalarProperty Name="CusID" ColumnName="CusID" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="QPDate" ColumnName="QPDate" />
-                <ScalarProperty Name="QPState" ColumnName="QPState" />
-                <ScalarProperty Name="QPDesc" ColumnName="QPDesc" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="QuotePriceDetail">
-            <EntityTypeMapping TypeName="SCMModel.QuotePriceDetail">
-              <MappingFragment StoreEntitySet="QuotePriceDetail">
-                <ScalarProperty Name="QPDID" ColumnName="QPDID" />
-                <ScalarProperty Name="QPID" ColumnName="QPID" />
-                <ScalarProperty Name="ProID" ColumnName="ProID" />
-                <ScalarProperty Name="QPDAmount" ColumnName="QPDAmount" />
-                <ScalarProperty Name="QPDPrice" ColumnName="QPDPrice" />
-                <ScalarProperty Name="QPDDiscont" ColumnName="QPDDiscont" />
-                <ScalarProperty Name="QPDDisPrice" ColumnName="QPDDisPrice" />
-                <ScalarProperty Name="QPDDesc" ColumnName="QPDDesc" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Roles">
-            <EntityTypeMapping TypeName="SCMModel.Roles">
-              <MappingFragment StoreEntitySet="Roles">
-                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
-                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
-                <ScalarProperty Name="RoleDesc" ColumnName="RoleDesc" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SaleDepot">
-            <EntityTypeMapping TypeName="SCMModel.SaleDepot">
-              <MappingFragment StoreEntitySet="SaleDepot">
-                <ScalarProperty Name="SDID" ColumnName="SDID" />
-                <ScalarProperty Name="CusID" ColumnName="CusID" />
-                <ScalarProperty Name="DepotID" ColumnName="DepotID" />
-                <ScalarProperty Name="SDDate" ColumnName="SDDate" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="SDState" ColumnName="SDState" />
-                <ScalarProperty Name="SDDesc" ColumnName="SDDesc" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SaleDepotDetail">
-            <EntityTypeMapping TypeName="SCMModel.SaleDepotDetail">
-              <MappingFragment StoreEntitySet="SaleDepotDetail">
-                <ScalarProperty Name="SDDID" ColumnName="SDDID" />
-                <ScalarProperty Name="SDID" ColumnName="SDID" />
-                <ScalarProperty Name="ProID" ColumnName="ProID" />
-                <ScalarProperty Name="SDDPrice" ColumnName="SDDPrice" />
-                <ScalarProperty Name="SDDDiscount" ColumnName="SDDDiscount" />
-                <ScalarProperty Name="SDDDisPrice" ColumnName="SDDDisPrice" />
-                <ScalarProperty Name="SDDDesc" ColumnName="SDDDesc" />
-                <ScalarProperty Name="SDDAmount" ColumnName="SDDAmount" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SaleReturn">
-            <EntityTypeMapping TypeName="SCMModel.SaleReturn">
-              <MappingFragment StoreEntitySet="SaleReturn">
-                <ScalarProperty Name="SRID" ColumnName="SRID" />
-                <ScalarProperty Name="CusID" ColumnName="CusID" />
-                <ScalarProperty Name="DepotID" ColumnName="DepotID" />
-                <ScalarProperty Name="SRDate" ColumnName="SRDate" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="SRState" ColumnName="SRState" />
-                <ScalarProperty Name="SRDesc" ColumnName="SRDesc" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SaleReturnDetail">
-            <EntityTypeMapping TypeName="SCMModel.SaleReturnDetail">
-              <MappingFragment StoreEntitySet="SaleReturnDetail">
-                <ScalarProperty Name="SRDID" ColumnName="SRDID" />
-                <ScalarProperty Name="SRID" ColumnName="SRID" />
-                <ScalarProperty Name="ProID" ColumnName="ProID" />
-                <ScalarProperty Name="SRDAmount" ColumnName="SRDAmount" />
-                <ScalarProperty Name="SRDPrice" ColumnName="SRDPrice" />
-                <ScalarProperty Name="SRDDesc" ColumnName="SRDDesc" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SplitDetail">
-            <EntityTypeMapping TypeName="SCMModel.SplitDetail">
-              <MappingFragment StoreEntitySet="SplitDetail">
-                <ScalarProperty Name="SDID" ColumnName="SDID" />
-                <ScalarProperty Name="SplitID" ColumnName="SplitID" />
-                <ScalarProperty Name="ProID" ColumnName="ProID" />
-                <ScalarProperty Name="SDAmount" ColumnName="SDAmount" />
-                <ScalarProperty Name="SDPrice" ColumnName="SDPrice" />
-                <ScalarProperty Name="SDDesc" ColumnName="SDDesc" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Splits">
-            <EntityTypeMapping TypeName="SCMModel.Splits">
-              <MappingFragment StoreEntitySet="Splits">
-                <ScalarProperty Name="SplitID" ColumnName="SplitID" />
-                <ScalarProperty Name="DepotID" ColumnName="DepotID" />
-                <ScalarProperty Name="ProID" ColumnName="ProID" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="SplitDate" ColumnName="SplitDate" />
-                <ScalarProperty Name="SplitDesc" ColumnName="SplitDesc" />
-                <ScalarProperty Name="SplitState" ColumnName="SplitState" />
-                <ScalarProperty Name="SplitAmount" ColumnName="SplitAmount" />
-                <ScalarProperty Name="SplitPrice" ColumnName="SplitPrice" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="StockDetail">
-            <EntityTypeMapping TypeName="SCMModel.StockDetail">
-              <MappingFragment StoreEntitySet="StockDetail">
-                <ScalarProperty Name="SDetailID" ColumnName="SDetailID" />
-                <ScalarProperty Name="ProID" ColumnName="ProID" />
-                <ScalarProperty Name="StockID" ColumnName="StockID" />
-                <ScalarProperty Name="SDetailAmount" ColumnName="SDetailAmount" />
-                <ScalarProperty Name="SDetailPrice" ColumnName="SDetailPrice" />
-                <ScalarProperty Name="SDetailDepAmount" ColumnName="SDetailDepAmount" />
-                <ScalarProperty Name="SDetailDesc" ColumnName="SDetailDesc" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="StockInDepot">
-            <EntityTypeMapping TypeName="SCMModel.StockInDepot">
-              <MappingFragment StoreEntitySet="StockInDepot">
-                <ScalarProperty Name="SIDID" ColumnName="SIDID" />
-                <ScalarProperty Name="PPID" ColumnName="PPID" />
-                <ScalarProperty Name="DepotID" ColumnName="DepotID" />
-                <ScalarProperty Name="StockID" ColumnName="StockID" />
-                <ScalarProperty Name="SIDDate" ColumnName="SIDDate" />
-                <ScalarProperty Name="SIDDeliver" ColumnName="SIDDeliver" />
-                <ScalarProperty Name="SIDFreight" ColumnName="SIDFreight" />
-                <ScalarProperty Name="SIDUser" ColumnName="SIDUser" />
-                <ScalarProperty Name="SIDData" ColumnName="SIDData" />
-                <ScalarProperty Name="SIDDesc" ColumnName="SIDDesc" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="StockInDepotDetail">
-            <EntityTypeMapping TypeName="SCMModel.StockInDepotDetail">
-              <MappingFragment StoreEntitySet="StockInDepotDetail">
-                <ScalarProperty Name="SIDDID" ColumnName="SIDDID" />
-                <ScalarProperty Name="ProID" ColumnName="ProID" />
-                <ScalarProperty Name="SIDID" ColumnName="SIDID" />
-                <ScalarProperty Name="SIDDAmount" ColumnName="SIDDAmount" />
-                <ScalarProperty Name="SIDDPrice" ColumnName="SIDDPrice" />
-                <ScalarProperty Name="SIDDDesc" ColumnName="SIDDDesc" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="StockOutDepot">
-            <EntityTypeMapping TypeName="SCMModel.StockOutDepot">
-              <MappingFragment StoreEntitySet="StockOutDepot">
-                <ScalarProperty Name="SRDID" ColumnName="SRDID" />
-                <ScalarProperty Name="PPID" ColumnName="PPID" />
-                <ScalarProperty Name="StockID" ColumnName="StockID" />
-                <ScalarProperty Name="DepotID" ColumnName="DepotID" />
-                <ScalarProperty Name="SRDDate" ColumnName="SRDDate" />
-                <ScalarProperty Name="SIDUser" ColumnName="SIDUser" />
-                <ScalarProperty Name="SIDData" ColumnName="SIDData" />
-                <ScalarProperty Name="SIDDesc" ColumnName="SIDDesc" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="StockOutDepotDetail">
-            <EntityTypeMapping TypeName="SCMModel.StockOutDepotDetail">
-              <MappingFragment StoreEntitySet="StockOutDepotDetail">
-                <ScalarProperty Name="SRDDID" ColumnName="SRDDID" />
-                <ScalarProperty Name="ProID" ColumnName="ProID" />
-                <ScalarProperty Name="SRDID" ColumnName="SRDID" />
-                <ScalarProperty Name="SIDDAmount" ColumnName="SIDDAmount" />
-                <ScalarProperty Name="SIDDPrice" ColumnName="SIDDPrice" />
-                <ScalarProperty Name="SIDDDesc" ColumnName="SIDDDesc" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Stocks">
-            <EntityTypeMapping TypeName="SCMModel.Stocks">
-              <MappingFragment StoreEntitySet="Stocks">
-                <ScalarProperty Name="StockID" ColumnName="StockID" />
-                <ScalarProperty Name="PPID" ColumnName="PPID" />
-                <ScalarProperty Name="StockDate" ColumnName="StockDate" />
-                <ScalarProperty Name="StockInDate" ColumnName="StockInDate" />
-                <ScalarProperty Name="StockUser" ColumnName="StockUser" />
-                <ScalarProperty Name="StockState" ColumnName="StockState" />
-                <ScalarProperty Name="StockDesc" ColumnName="StockDesc" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="SCMModel.Users">
-              <MappingFragment StoreEntitySet="Users">
-                <ScalarProperty Name="UsersID" ColumnName="UsersID" />
-                <ScalarProperty Name="UsersName" ColumnName="UsersName" />
-                <ScalarProperty Name="UserLoginName" ColumnName="UserLoginName" />
-                <ScalarProperty Name="UserLoginPwd" ColumnName="UserLoginPwd" />
-                <ScalarProperty Name="UUID" ColumnName="UUID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="UsersRole">
-            <EntityTypeMapping TypeName="SCMModel.UsersRole">
-              <MappingFragment StoreEntitySet="UsersRole">
-                <ScalarProperty Name="URID" ColumnName="URID" />
-                <ScalarProperty Name="UsersID" ColumnName="UsersID" />
-                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="V_InDepot">
-            <EntityTypeMapping TypeName="SCMModel.V_InDepot">
-              <MappingFragment StoreEntitySet="V_InDepot">
-                <ScalarProperty Name="IODID" ColumnName="IODID" />
-                <ScalarProperty Name="DepotID" ColumnName="DepotID" />
-                <ScalarProperty Name="IODType" ColumnName="IODType" />
-                <ScalarProperty Name="IODNum" ColumnName="IODNum" />
-                <ScalarProperty Name="IODDate" ColumnName="IODDate" />
-                <ScalarProperty Name="IODUser" ColumnName="IODUser" />
-                <ScalarProperty Name="IODDesc" ColumnName="IODDesc" />
-                <ScalarProperty Name="IODLend" ColumnName="IODLend" />
-                <ScalarProperty Name="IODCus" ColumnName="IODCus" />
-                <ScalarProperty Name="DepotName" ColumnName="DepotName" />
-                <ScalarProperty Name="UsersName" ColumnName="UsersName" />
-                <ScalarProperty Name="PPName" ColumnName="PPName" />
-                <ScalarProperty Name="SumMoney" ColumnName="SumMoney" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="V_InOutDepotDetail">
-            <EntityTypeMapping TypeName="SCMModel.V_InOutDepotDetail">
-              <MappingFragment StoreEntitySet="V_InOutDepotDetail">
-                <ScalarProperty Name="IODDID" ColumnName="IODDID" />
-                <ScalarProperty Name="IODID" ColumnName="IODID" />
-                <ScalarProperty Name="ProID" ColumnName="ProID" />
-                <ScalarProperty Name="IODDAmount" ColumnName="IODDAmount" />
-                <ScalarProperty Name="IODDPrice" ColumnName="IODDPrice" />
-                <ScalarProperty Name="IODDOutPrice" ColumnName="IODDOutPrice" />
-                <ScalarProperty Name="ProName" ColumnName="ProName" />
-                <ScalarProperty Name="PTName" ColumnName="PTName" />
-                <ScalarProperty Name="PUName" ColumnName="PUName" />
-                <ScalarProperty Name="PCName" ColumnName="PCName" />
-                <ScalarProperty Name="PSName" ColumnName="PSName" />
-                <ScalarProperty Name="DepotID" ColumnName="DepotID" />
-                <ScalarProperty Name="DepotName" ColumnName="DepotName" />
-                <ScalarProperty Name="IODDMoney" ColumnName="IODDMoney" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="V_OutDepot">
-            <EntityTypeMapping TypeName="SCMModel.V_OutDepot">
-              <MappingFragment StoreEntitySet="V_OutDepot">
-                <ScalarProperty Name="IODID" ColumnName="IODID" />
-                <ScalarProperty Name="DepotID" ColumnName="DepotID" />
-                <ScalarProperty Name="IODType" ColumnName="IODType" />
-                <ScalarProperty Name="IODNum" ColumnName="IODNum" />
-                <ScalarProperty Name="IODDate" ColumnName="IODDate" />
-                <ScalarProperty Name="IODUser" ColumnName="IODUser" />
-                <ScalarProperty Name="IODDesc" ColumnName="IODDesc" />
-                <ScalarProperty Name="IODLend" ColumnName="IODLend" />
-                <ScalarProperty Name="IODCus" ColumnName="IODCus" />
-                <ScalarProperty Name="DepotName" ColumnName="DepotName" />
-                <ScalarProperty Name="UsersName" ColumnName="UsersName" />
-                <ScalarProperty Name="CusName" ColumnName="CusName" />
-                <ScalarProperty Name="SumMoney" ColumnName="SumMoney" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="V_Products">
-            <EntityTypeMapping TypeName="SCMModel.V_Products">
-              <MappingFragment StoreEntitySet="V_Products">
-                <ScalarProperty Name="ProID" ColumnName="ProID" />
-                <ScalarProperty Name="PTID" ColumnName="PTID" />
-                <ScalarProperty Name="PUID" ColumnName="PUID" />
-                <ScalarProperty Name="PCID" ColumnName="PCID" />
-                <ScalarProperty Name="PSID" ColumnName="PSID" />
-                <ScalarProperty Name="ProName" ColumnName="ProName" />
-                <ScalarProperty Name="ProJP" ColumnName="ProJP" />
-                <ScalarProperty Name="ProTM" ColumnName="ProTM" />
-                <ScalarProperty Name="ProWorkShop" ColumnName="ProWorkShop" />
-                <ScalarProperty Name="ProMax" ColumnName="ProMax" />
-                <ScalarProperty Name="ProMin" ColumnName="ProMin" />
-                <ScalarProperty Name="ProInPrice" ColumnName="ProInPrice" />
-                <ScalarProperty Name="ProPrice" ColumnName="ProPrice" />
-                <ScalarProperty Name="ProDesc" ColumnName="ProDesc" />
-                <ScalarProperty Name="DepotID" ColumnName="DepotID" />
-                <ScalarProperty Name="PTName" ColumnName="PTName" />
-                <ScalarProperty Name="PUName" ColumnName="PUName" />
-                <ScalarProperty Name="PCName" ColumnName="PCName" />
-                <ScalarProperty Name="PSName" ColumnName="PSName" />
-                <ScalarProperty Name="DepotName" ColumnName="DepotName" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="proc_CFNO" FunctionName="SCMModel.Store.proc_CFNO" />
           <FunctionImportMapping FunctionImportName="proc_common_create_flowNo" FunctionName="SCMModel.Store.proc_common_create_flowNo" />
           <FunctionImportMapping FunctionImportName="proc_CPNO" FunctionName="SCMModel.Store.proc_CPNO" />
@@ -2587,6 +1877,632 @@
           <FunctionImportMapping FunctionImportName="proc_StockInDepot" FunctionName="SCMModel.Store.proc_StockInDepot" />
           <FunctionImportMapping FunctionImportName="proc_StockOutDepot" FunctionName="SCMModel.Store.proc_StockOutDepot" />
           <FunctionImportMapping FunctionImportName="PS_proc_CommonPager" FunctionName="SCMModel.Store.PS_proc_CommonPager" />
+          <EntitySetMapping Name="CheckDepot">
+            <EntityTypeMapping TypeName="SCMModel.CheckDepot">
+              <MappingFragment StoreEntitySet="CheckDepot">
+                <ScalarProperty Name="CDState" ColumnName="CDState" />
+                <ScalarProperty Name="CDDesc" ColumnName="CDDesc" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="CDDate" ColumnName="CDDate" />
+                <ScalarProperty Name="DepotID" ColumnName="DepotID" />
+                <ScalarProperty Name="CDID" ColumnName="CDID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CheckDepotDetail">
+            <EntityTypeMapping TypeName="SCMModel.CheckDepotDetail">
+              <MappingFragment StoreEntitySet="CheckDepotDetail">
+                <ScalarProperty Name="CDDDesc" ColumnName="CDDDesc" />
+                <ScalarProperty Name="DevAmount2" ColumnName="DevAmount2" />
+                <ScalarProperty Name="CDDAmount1" ColumnName="CDDAmount1" />
+                <ScalarProperty Name="ProID" ColumnName="ProID" />
+                <ScalarProperty Name="CDID" ColumnName="CDID" />
+                <ScalarProperty Name="CDDID" ColumnName="CDDID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Compose">
+            <EntityTypeMapping TypeName="SCMModel.Compose">
+              <MappingFragment StoreEntitySet="Compose">
+                <ScalarProperty Name="ComposePrice" ColumnName="ComposePrice" />
+                <ScalarProperty Name="ComposeAmount" ColumnName="ComposeAmount" />
+                <ScalarProperty Name="ComposeState" ColumnName="ComposeState" />
+                <ScalarProperty Name="ComposeDesc" ColumnName="ComposeDesc" />
+                <ScalarProperty Name="ComposeDate" ColumnName="ComposeDate" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="ProID" ColumnName="ProID" />
+                <ScalarProperty Name="DepotID" ColumnName="DepotID" />
+                <ScalarProperty Name="ComposeID" ColumnName="ComposeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ComposeDetail">
+            <EntityTypeMapping TypeName="SCMModel.ComposeDetail">
+              <MappingFragment StoreEntitySet="ComposeDetail">
+                <ScalarProperty Name="CDDesc" ColumnName="CDDesc" />
+                <ScalarProperty Name="CDPrice" ColumnName="CDPrice" />
+                <ScalarProperty Name="CDAmount" ColumnName="CDAmount" />
+                <ScalarProperty Name="ProID" ColumnName="ProID" />
+                <ScalarProperty Name="ComposeID" ColumnName="ComposeID" />
+                <ScalarProperty Name="CDID" ColumnName="CDID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CustomerLevel">
+            <EntityTypeMapping TypeName="SCMModel.CustomerLevel">
+              <MappingFragment StoreEntitySet="CustomerLevel">
+                <ScalarProperty Name="CLAgio" ColumnName="CLAgio" />
+                <ScalarProperty Name="CLName" ColumnName="CLName" />
+                <ScalarProperty Name="CLID" ColumnName="CLID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CustomerOrder">
+            <EntityTypeMapping TypeName="SCMModel.CustomerOrder">
+              <MappingFragment StoreEntitySet="CustomerOrder">
+                <ScalarProperty Name="CODesc" ColumnName="CODesc" />
+                <ScalarProperty Name="COState" ColumnName="COState" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="CORefDate" ColumnName="CORefDate" />
+                <ScalarProperty Name="CODate" ColumnName="CODate" />
+                <ScalarProperty Name="CusID" ColumnName="CusID" />
+                <ScalarProperty Name="COID" ColumnName="COID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CustomerOrderDetail">
+            <EntityTypeMapping TypeName="SCMModel.CustomerOrderDetail">
+              <MappingFragment StoreEntitySet="CustomerOrderDetail">
+                <ScalarProperty Name="CODDesc" ColumnName="CODDesc" />
+                <ScalarProperty Name="CODSale" ColumnName="CODSale" />
+                <ScalarProperty Name="CODDisPrice" ColumnName="CODDisPrice" />
+                <ScalarProperty Name="CODDiscont" ColumnName="CODDiscont" />
+                <ScalarProperty Name="CODPrice" ColumnName="CODPrice" />
+                <ScalarProperty Name="CODAmount" ColumnName="CODAmount" />
+                <ScalarProperty Name="ProID" ColumnName="ProID" />
+                <ScalarProperty Name="COID" ColumnName="COID" />
+                <ScalarProperty Name="CODID" ColumnName="CODID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="SCMModel.Customers">
+              <MappingFragment StoreEntitySet="Customers">
+                <ScalarProperty Name="CusDesc" ColumnName="CusDesc" />
+                <ScalarProperty Name="CusMan" ColumnName="CusMan" />
+                <ScalarProperty Name="CusCompany" ColumnName="CusCompany" />
+                <ScalarProperty Name="CusName" ColumnName="CusName" />
+                <ScalarProperty Name="CLID" ColumnName="CLID" />
+                <ScalarProperty Name="CusID" ColumnName="CusID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Depots">
+            <EntityTypeMapping TypeName="SCMModel.Depots">
+              <MappingFragment StoreEntitySet="Depots">
+                <ScalarProperty Name="DepotDesc" ColumnName="DepotDesc" />
+                <ScalarProperty Name="DepotAddress" ColumnName="DepotAddress" />
+                <ScalarProperty Name="DepotTel" ColumnName="DepotTel" />
+                <ScalarProperty Name="DepotMan" ColumnName="DepotMan" />
+                <ScalarProperty Name="DepotName" ColumnName="DepotName" />
+                <ScalarProperty Name="DepotID" ColumnName="DepotID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DepotStock">
+            <EntityTypeMapping TypeName="SCMModel.DepotStock">
+              <MappingFragment StoreEntitySet="DepotStock">
+                <ScalarProperty Name="DSPrice" ColumnName="DSPrice" />
+                <ScalarProperty Name="DSAmount" ColumnName="DSAmount" />
+                <ScalarProperty Name="ProID" ColumnName="ProID" />
+                <ScalarProperty Name="DepotID" ColumnName="DepotID" />
+                <ScalarProperty Name="DSID" ColumnName="DSID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DevolveDetail">
+            <EntityTypeMapping TypeName="SCMModel.DevolveDetail">
+              <MappingFragment StoreEntitySet="DevolveDetail">
+                <ScalarProperty Name="DevDDesc" ColumnName="DevDDesc" />
+                <ScalarProperty Name="DevDAmount" ColumnName="DevDAmount" />
+                <ScalarProperty Name="ProID" ColumnName="ProID" />
+                <ScalarProperty Name="DevID" ColumnName="DevID" />
+                <ScalarProperty Name="DevDID" ColumnName="DevDID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Devolves">
+            <EntityTypeMapping TypeName="SCMModel.Devolves">
+              <MappingFragment StoreEntitySet="Devolves">
+                <ScalarProperty Name="DevState" ColumnName="DevState" />
+                <ScalarProperty Name="DevDesc" ColumnName="DevDesc" />
+                <ScalarProperty Name="DevDate" ColumnName="DevDate" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="DevInID" ColumnName="DevInID" />
+                <ScalarProperty Name="DevOutID" ColumnName="DevOutID" />
+                <ScalarProperty Name="DevID" ColumnName="DevID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InOutDepot">
+            <EntityTypeMapping TypeName="SCMModel.InOutDepot">
+              <MappingFragment StoreEntitySet="InOutDepot">
+                <ScalarProperty Name="IODCus" ColumnName="IODCus" />
+                <ScalarProperty Name="IODLend" ColumnName="IODLend" />
+                <ScalarProperty Name="IODDesc" ColumnName="IODDesc" />
+                <ScalarProperty Name="IODUser" ColumnName="IODUser" />
+                <ScalarProperty Name="IODDate" ColumnName="IODDate" />
+                <ScalarProperty Name="IODNum" ColumnName="IODNum" />
+                <ScalarProperty Name="IODType" ColumnName="IODType" />
+                <ScalarProperty Name="DepotID" ColumnName="DepotID" />
+                <ScalarProperty Name="IODID" ColumnName="IODID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InOutDepotDetail">
+            <EntityTypeMapping TypeName="SCMModel.InOutDepotDetail">
+              <MappingFragment StoreEntitySet="InOutDepotDetail">
+                <ScalarProperty Name="IODDOutPrice" ColumnName="IODDOutPrice" />
+                <ScalarProperty Name="IODDPrice" ColumnName="IODDPrice" />
+                <ScalarProperty Name="IODDAmount" ColumnName="IODDAmount" />
+                <ScalarProperty Name="ProID" ColumnName="ProID" />
+                <ScalarProperty Name="IODID" ColumnName="IODID" />
+                <ScalarProperty Name="IODDID" ColumnName="IODDID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LostDetail">
+            <EntityTypeMapping TypeName="SCMModel.LostDetail">
+              <MappingFragment StoreEntitySet="LostDetail">
+                <ScalarProperty Name="LDDesc" ColumnName="LDDesc" />
+                <ScalarProperty Name="LDPrice" ColumnName="LDPrice" />
+                <ScalarProperty Name="LDAmount" ColumnName="LDAmount" />
+                <ScalarProperty Name="ProID" ColumnName="ProID" />
+                <ScalarProperty Name="LostID" ColumnName="LostID" />
+                <ScalarProperty Name="LDID" ColumnName="LDID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Losts">
+            <EntityTypeMapping TypeName="SCMModel.Losts">
+              <MappingFragment StoreEntitySet="Losts">
+                <ScalarProperty Name="LostState" ColumnName="LostState" />
+                <ScalarProperty Name="LostDesc" ColumnName="LostDesc" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="LostDate" ColumnName="LostDate" />
+                <ScalarProperty Name="DepotID" ColumnName="DepotID" />
+                <ScalarProperty Name="LostID" ColumnName="LostID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OtherInDepot">
+            <EntityTypeMapping TypeName="SCMModel.OtherInDepot">
+              <MappingFragment StoreEntitySet="OtherInDepot">
+                <ScalarProperty Name="OIDDesc" ColumnName="OIDDesc" />
+                <ScalarProperty Name="OIDState" ColumnName="OIDState" />
+                <ScalarProperty Name="OIDUser" ColumnName="OIDUser" />
+                <ScalarProperty Name="OIDDate" ColumnName="OIDDate" />
+                <ScalarProperty Name="DepotID" ColumnName="DepotID" />
+                <ScalarProperty Name="OIDID" ColumnName="OIDID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OtherInDepotDetail">
+            <EntityTypeMapping TypeName="SCMModel.OtherInDepotDetail">
+              <MappingFragment StoreEntitySet="OtherInDepotDetail">
+                <ScalarProperty Name="OIDDDesc" ColumnName="OIDDDesc" />
+                <ScalarProperty Name="OIDDPrice" ColumnName="OIDDPrice" />
+                <ScalarProperty Name="OIDDAmount" ColumnName="OIDDAmount" />
+                <ScalarProperty Name="OIDID" ColumnName="OIDID" />
+                <ScalarProperty Name="ProID" ColumnName="ProID" />
+                <ScalarProperty Name="OIDDID" ColumnName="OIDDID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OtherOutDepot">
+            <EntityTypeMapping TypeName="SCMModel.OtherOutDepot">
+              <MappingFragment StoreEntitySet="OtherOutDepot">
+                <ScalarProperty Name="OODDesc" ColumnName="OODDesc" />
+                <ScalarProperty Name="OODState" ColumnName="OODState" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="OODDate" ColumnName="OODDate" />
+                <ScalarProperty Name="DepotID" ColumnName="DepotID" />
+                <ScalarProperty Name="OODID" ColumnName="OODID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OtherOutDepotDetail">
+            <EntityTypeMapping TypeName="SCMModel.OtherOutDepotDetail">
+              <MappingFragment StoreEntitySet="OtherOutDepotDetail">
+                <ScalarProperty Name="OODDDesc" ColumnName="OODDDesc" />
+                <ScalarProperty Name="OODDPrice" ColumnName="OODDPrice" />
+                <ScalarProperty Name="OODDAmount" ColumnName="OODDAmount" />
+                <ScalarProperty Name="ProID" ColumnName="ProID" />
+                <ScalarProperty Name="OODID" ColumnName="OODID" />
+                <ScalarProperty Name="OODDID" ColumnName="OODDID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PayOffDetail">
+            <EntityTypeMapping TypeName="SCMModel.PayOffDetail">
+              <MappingFragment StoreEntitySet="PayOffDetail">
+                <ScalarProperty Name="PODDesc" ColumnName="PODDesc" />
+                <ScalarProperty Name="PODPrice" ColumnName="PODPrice" />
+                <ScalarProperty Name="PODAmount" ColumnName="PODAmount" />
+                <ScalarProperty Name="ProID" ColumnName="ProID" />
+                <ScalarProperty Name="POID" ColumnName="POID" />
+                <ScalarProperty Name="PODID" ColumnName="PODID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PayOffs">
+            <EntityTypeMapping TypeName="SCMModel.PayOffs">
+              <MappingFragment StoreEntitySet="PayOffs">
+                <ScalarProperty Name="POState" ColumnName="POState" />
+                <ScalarProperty Name="PODesc" ColumnName="PODesc" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="PODate" ColumnName="PODate" />
+                <ScalarProperty Name="DepotID" ColumnName="DepotID" />
+                <ScalarProperty Name="POID" ColumnName="POID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PopedomRole">
+            <EntityTypeMapping TypeName="SCMModel.PopedomRole">
+              <MappingFragment StoreEntitySet="PopedomRole">
+                <ScalarProperty Name="PopID" ColumnName="PopID" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="PRID" ColumnName="PRID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Popedoms">
+            <EntityTypeMapping TypeName="SCMModel.Popedoms">
+              <MappingFragment StoreEntitySet="Popedoms">
+                <ScalarProperty Name="PopDesc" ColumnName="PopDesc" />
+                <ScalarProperty Name="PopValue" ColumnName="PopValue" />
+                <ScalarProperty Name="PopIsMenu" ColumnName="PopIsMenu" />
+                <ScalarProperty Name="PopParentID" ColumnName="PopParentID" />
+                <ScalarProperty Name="PopName" ColumnName="PopName" />
+                <ScalarProperty Name="PopID" ColumnName="PopID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProduceInDepot">
+            <EntityTypeMapping TypeName="SCMModel.ProduceInDepot">
+              <MappingFragment StoreEntitySet="ProduceInDepot">
+                <ScalarProperty Name="PDIDesc" ColumnName="PDIDesc" />
+                <ScalarProperty Name="PIDState" ColumnName="PIDState" />
+                <ScalarProperty Name="PIDUser" ColumnName="PIDUser" />
+                <ScalarProperty Name="PIDDate" ColumnName="PIDDate" />
+                <ScalarProperty Name="DepotID" ColumnName="DepotID" />
+                <ScalarProperty Name="PIDID" ColumnName="PIDID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProduceInDepotDeteil">
+            <EntityTypeMapping TypeName="SCMModel.ProduceInDepotDeteil">
+              <MappingFragment StoreEntitySet="ProduceInDepotDeteil">
+                <ScalarProperty Name="PIDDDesc" ColumnName="PIDDDesc" />
+                <ScalarProperty Name="PIDDPrice" ColumnName="PIDDPrice" />
+                <ScalarProperty Name="PIDDAmount" ColumnName="PIDDAmount" />
+                <ScalarProperty Name="PIDID" ColumnName="PIDID" />
+                <ScalarProperty Name="ProID" ColumnName="ProID" />
+                <ScalarProperty Name="PIDDID" ColumnName="PIDDID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProduceOutDepot">
+            <EntityTypeMapping TypeName="SCMModel.ProduceOutDepot">
+              <MappingFragment StoreEntitySet="ProduceOutDepot">
+                <ScalarProperty Name="PODDesc" ColumnName="PODDesc" />
+                <ScalarProperty Name="PODState" ColumnName="PODState" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="PODDate" ColumnName="PODDate" />
+                <ScalarProperty Name="DepotID" ColumnName="DepotID" />
+                <ScalarProperty Name="PODID" ColumnName="PODID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProduceOutDepotDetail">
+            <EntityTypeMapping TypeName="SCMModel.ProduceOutDepotDetail">
+              <MappingFragment StoreEntitySet="ProduceOutDepotDetail">
+                <ScalarProperty Name="PODDDesc" ColumnName="PODDDesc" />
+                <ScalarProperty Name="PODDPrice" ColumnName="PODDPrice" />
+                <ScalarProperty Name="PODDAmount" ColumnName="PODDAmount" />
+                <ScalarProperty Name="ProID" ColumnName="ProID" />
+                <ScalarProperty Name="PODID" ColumnName="PODID" />
+                <ScalarProperty Name="PODDID" ColumnName="PODDID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductColor">
+            <EntityTypeMapping TypeName="SCMModel.ProductColor">
+              <MappingFragment StoreEntitySet="ProductColor">
+                <ScalarProperty Name="PCName" ColumnName="PCName" />
+                <ScalarProperty Name="PCID" ColumnName="PCID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductLend">
+            <EntityTypeMapping TypeName="SCMModel.ProductLend">
+              <MappingFragment StoreEntitySet="ProductLend">
+                <ScalarProperty Name="PPDesc" ColumnName="PPDesc" />
+                <ScalarProperty Name="PPGoods" ColumnName="PPGoods" />
+                <ScalarProperty Name="PPBank" ColumnName="PPBank" />
+                <ScalarProperty Name="PPUrl" ColumnName="PPUrl" />
+                <ScalarProperty Name="PPEmail" ColumnName="PPEmail" />
+                <ScalarProperty Name="PPFax" ColumnName="PPFax" />
+                <ScalarProperty Name="PPAddress" ColumnName="PPAddress" />
+                <ScalarProperty Name="PPTel" ColumnName="PPTel" />
+                <ScalarProperty Name="PPMan" ColumnName="PPMan" />
+                <ScalarProperty Name="PPCompany" ColumnName="PPCompany" />
+                <ScalarProperty Name="PPName" ColumnName="PPName" />
+                <ScalarProperty Name="PPID" ColumnName="PPID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="SCMModel.Products">
+              <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="DepotID" ColumnName="DepotID" />
+                <ScalarProperty Name="ProDesc" ColumnName="ProDesc" />
+                <ScalarProperty Name="ProPrice" ColumnName="ProPrice" />
+                <ScalarProperty Name="ProInPrice" ColumnName="ProInPrice" />
+                <ScalarProperty Name="ProMin" ColumnName="ProMin" />
+                <ScalarProperty Name="ProMax" ColumnName="ProMax" />
+                <ScalarProperty Name="ProWorkShop" ColumnName="ProWorkShop" />
+                <ScalarProperty Name="ProTM" ColumnName="ProTM" />
+                <ScalarProperty Name="ProJP" ColumnName="ProJP" />
+                <ScalarProperty Name="ProName" ColumnName="ProName" />
+                <ScalarProperty Name="PSID" ColumnName="PSID" />
+                <ScalarProperty Name="PCID" ColumnName="PCID" />
+                <ScalarProperty Name="PUID" ColumnName="PUID" />
+                <ScalarProperty Name="PTID" ColumnName="PTID" />
+                <ScalarProperty Name="ProID" ColumnName="ProID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductSpec">
+            <EntityTypeMapping TypeName="SCMModel.ProductSpec">
+              <MappingFragment StoreEntitySet="ProductSpec">
+                <ScalarProperty Name="PSName" ColumnName="PSName" />
+                <ScalarProperty Name="PSID" ColumnName="PSID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductTypes">
+            <EntityTypeMapping TypeName="SCMModel.ProductTypes">
+              <MappingFragment StoreEntitySet="ProductTypes">
+                <ScalarProperty Name="PTDes" ColumnName="PTDes" />
+                <ScalarProperty Name="PTName" ColumnName="PTName" />
+                <ScalarProperty Name="PTParentID" ColumnName="PTParentID" />
+                <ScalarProperty Name="PTID" ColumnName="PTID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductUnit">
+            <EntityTypeMapping TypeName="SCMModel.ProductUnit">
+              <MappingFragment StoreEntitySet="ProductUnit">
+                <ScalarProperty Name="PUName" ColumnName="PUName" />
+                <ScalarProperty Name="PUID" ColumnName="PUID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuotePrice">
+            <EntityTypeMapping TypeName="SCMModel.QuotePrice">
+              <MappingFragment StoreEntitySet="QuotePrice">
+                <ScalarProperty Name="QPDesc" ColumnName="QPDesc" />
+                <ScalarProperty Name="QPState" ColumnName="QPState" />
+                <ScalarProperty Name="QPDate" ColumnName="QPDate" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="CusID" ColumnName="CusID" />
+                <ScalarProperty Name="QPID" ColumnName="QPID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuotePriceDetail">
+            <EntityTypeMapping TypeName="SCMModel.QuotePriceDetail">
+              <MappingFragment StoreEntitySet="QuotePriceDetail">
+                <ScalarProperty Name="QPDDesc" ColumnName="QPDDesc" />
+                <ScalarProperty Name="QPDDisPrice" ColumnName="QPDDisPrice" />
+                <ScalarProperty Name="QPDDiscont" ColumnName="QPDDiscont" />
+                <ScalarProperty Name="QPDPrice" ColumnName="QPDPrice" />
+                <ScalarProperty Name="QPDAmount" ColumnName="QPDAmount" />
+                <ScalarProperty Name="ProID" ColumnName="ProID" />
+                <ScalarProperty Name="QPID" ColumnName="QPID" />
+                <ScalarProperty Name="QPDID" ColumnName="QPDID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="SCMModel.Roles">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="RoleDesc" ColumnName="RoleDesc" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SaleDepot">
+            <EntityTypeMapping TypeName="SCMModel.SaleDepot">
+              <MappingFragment StoreEntitySet="SaleDepot">
+                <ScalarProperty Name="SDDesc" ColumnName="SDDesc" />
+                <ScalarProperty Name="SDState" ColumnName="SDState" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="SDDate" ColumnName="SDDate" />
+                <ScalarProperty Name="DepotID" ColumnName="DepotID" />
+                <ScalarProperty Name="CusID" ColumnName="CusID" />
+                <ScalarProperty Name="SDID" ColumnName="SDID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SaleDepotDetail">
+            <EntityTypeMapping TypeName="SCMModel.SaleDepotDetail">
+              <MappingFragment StoreEntitySet="SaleDepotDetail">
+                <ScalarProperty Name="SDDAmount" ColumnName="SDDAmount" />
+                <ScalarProperty Name="SDDDesc" ColumnName="SDDDesc" />
+                <ScalarProperty Name="SDDDisPrice" ColumnName="SDDDisPrice" />
+                <ScalarProperty Name="SDDDiscount" ColumnName="SDDDiscount" />
+                <ScalarProperty Name="SDDPrice" ColumnName="SDDPrice" />
+                <ScalarProperty Name="ProID" ColumnName="ProID" />
+                <ScalarProperty Name="SDID" ColumnName="SDID" />
+                <ScalarProperty Name="SDDID" ColumnName="SDDID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SaleReturn">
+            <EntityTypeMapping TypeName="SCMModel.SaleReturn">
+              <MappingFragment StoreEntitySet="SaleReturn">
+                <ScalarProperty Name="SRDesc" ColumnName="SRDesc" />
+                <ScalarProperty Name="SRState" ColumnName="SRState" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="SRDate" ColumnName="SRDate" />
+                <ScalarProperty Name="DepotID" ColumnName="DepotID" />
+                <ScalarProperty Name="CusID" ColumnName="CusID" />
+                <ScalarProperty Name="SRID" ColumnName="SRID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SaleReturnDetail">
+            <EntityTypeMapping TypeName="SCMModel.SaleReturnDetail">
+              <MappingFragment StoreEntitySet="SaleReturnDetail">
+                <ScalarProperty Name="SRDDesc" ColumnName="SRDDesc" />
+                <ScalarProperty Name="SRDPrice" ColumnName="SRDPrice" />
+                <ScalarProperty Name="SRDAmount" ColumnName="SRDAmount" />
+                <ScalarProperty Name="ProID" ColumnName="ProID" />
+                <ScalarProperty Name="SRID" ColumnName="SRID" />
+                <ScalarProperty Name="SRDID" ColumnName="SRDID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SplitDetail">
+            <EntityTypeMapping TypeName="SCMModel.SplitDetail">
+              <MappingFragment StoreEntitySet="SplitDetail">
+                <ScalarProperty Name="SDDesc" ColumnName="SDDesc" />
+                <ScalarProperty Name="SDPrice" ColumnName="SDPrice" />
+                <ScalarProperty Name="SDAmount" ColumnName="SDAmount" />
+                <ScalarProperty Name="ProID" ColumnName="ProID" />
+                <ScalarProperty Name="SplitID" ColumnName="SplitID" />
+                <ScalarProperty Name="SDID" ColumnName="SDID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Splits">
+            <EntityTypeMapping TypeName="SCMModel.Splits">
+              <MappingFragment StoreEntitySet="Splits">
+                <ScalarProperty Name="SplitPrice" ColumnName="SplitPrice" />
+                <ScalarProperty Name="SplitAmount" ColumnName="SplitAmount" />
+                <ScalarProperty Name="SplitState" ColumnName="SplitState" />
+                <ScalarProperty Name="SplitDesc" ColumnName="SplitDesc" />
+                <ScalarProperty Name="SplitDate" ColumnName="SplitDate" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="ProID" ColumnName="ProID" />
+                <ScalarProperty Name="DepotID" ColumnName="DepotID" />
+                <ScalarProperty Name="SplitID" ColumnName="SplitID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StockDetail">
+            <EntityTypeMapping TypeName="SCMModel.StockDetail">
+              <MappingFragment StoreEntitySet="StockDetail">
+                <ScalarProperty Name="SDetailDesc" ColumnName="SDetailDesc" />
+                <ScalarProperty Name="SDetailDepAmount" ColumnName="SDetailDepAmount" />
+                <ScalarProperty Name="SDetailPrice" ColumnName="SDetailPrice" />
+                <ScalarProperty Name="SDetailAmount" ColumnName="SDetailAmount" />
+                <ScalarProperty Name="StockID" ColumnName="StockID" />
+                <ScalarProperty Name="ProID" ColumnName="ProID" />
+                <ScalarProperty Name="SDetailID" ColumnName="SDetailID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StockInDepot">
+            <EntityTypeMapping TypeName="SCMModel.StockInDepot">
+              <MappingFragment StoreEntitySet="StockInDepot">
+                <ScalarProperty Name="SIDDesc" ColumnName="SIDDesc" />
+                <ScalarProperty Name="SIDData" ColumnName="SIDData" />
+                <ScalarProperty Name="SIDUser" ColumnName="SIDUser" />
+                <ScalarProperty Name="SIDFreight" ColumnName="SIDFreight" />
+                <ScalarProperty Name="SIDDeliver" ColumnName="SIDDeliver" />
+                <ScalarProperty Name="SIDDate" ColumnName="SIDDate" />
+                <ScalarProperty Name="StockID" ColumnName="StockID" />
+                <ScalarProperty Name="DepotID" ColumnName="DepotID" />
+                <ScalarProperty Name="PPID" ColumnName="PPID" />
+                <ScalarProperty Name="SIDID" ColumnName="SIDID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StockInDepotDetail">
+            <EntityTypeMapping TypeName="SCMModel.StockInDepotDetail">
+              <MappingFragment StoreEntitySet="StockInDepotDetail">
+                <ScalarProperty Name="SIDDDesc" ColumnName="SIDDDesc" />
+                <ScalarProperty Name="SIDDPrice" ColumnName="SIDDPrice" />
+                <ScalarProperty Name="SIDDAmount" ColumnName="SIDDAmount" />
+                <ScalarProperty Name="SIDID" ColumnName="SIDID" />
+                <ScalarProperty Name="ProID" ColumnName="ProID" />
+                <ScalarProperty Name="SIDDID" ColumnName="SIDDID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StockOutDepot">
+            <EntityTypeMapping TypeName="SCMModel.StockOutDepot">
+              <MappingFragment StoreEntitySet="StockOutDepot">
+                <ScalarProperty Name="SIDDesc" ColumnName="SIDDesc" />
+                <ScalarProperty Name="SIDData" ColumnName="SIDData" />
+                <ScalarProperty Name="SIDUser" ColumnName="SIDUser" />
+                <ScalarProperty Name="SRDDate" ColumnName="SRDDate" />
+                <ScalarProperty Name="DepotID" ColumnName="DepotID" />
+                <ScalarProperty Name="StockID" ColumnName="StockID" />
+                <ScalarProperty Name="PPID" ColumnName="PPID" />
+                <ScalarProperty Name="SRDID" ColumnName="SRDID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StockOutDepotDetail">
+            <EntityTypeMapping TypeName="SCMModel.StockOutDepotDetail">
+              <MappingFragment StoreEntitySet="StockOutDepotDetail">
+                <ScalarProperty Name="SIDDDesc" ColumnName="SIDDDesc" />
+                <ScalarProperty Name="SIDDPrice" ColumnName="SIDDPrice" />
+                <ScalarProperty Name="SIDDAmount" ColumnName="SIDDAmount" />
+                <ScalarProperty Name="SRDID" ColumnName="SRDID" />
+                <ScalarProperty Name="ProID" ColumnName="ProID" />
+                <ScalarProperty Name="SRDDID" ColumnName="SRDDID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stocks">
+            <EntityTypeMapping TypeName="SCMModel.Stocks">
+              <MappingFragment StoreEntitySet="Stocks">
+                <ScalarProperty Name="StockDesc" ColumnName="StockDesc" />
+                <ScalarProperty Name="StockState" ColumnName="StockState" />
+                <ScalarProperty Name="StockUser" ColumnName="StockUser" />
+                <ScalarProperty Name="StockInDate" ColumnName="StockInDate" />
+                <ScalarProperty Name="StockDate" ColumnName="StockDate" />
+                <ScalarProperty Name="PPID" ColumnName="PPID" />
+                <ScalarProperty Name="StockID" ColumnName="StockID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="SCMModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="UUID" ColumnName="UUID" />
+                <ScalarProperty Name="UserLoginPwd" ColumnName="UserLoginPwd" />
+                <ScalarProperty Name="UserLoginName" ColumnName="UserLoginName" />
+                <ScalarProperty Name="UsersName" ColumnName="UsersName" />
+                <ScalarProperty Name="UsersID" ColumnName="UsersID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UsersRole">
+            <EntityTypeMapping TypeName="SCMModel.UsersRole">
+              <MappingFragment StoreEntitySet="UsersRole">
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="UsersID" ColumnName="UsersID" />
+                <ScalarProperty Name="URID" ColumnName="URID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="V_DS_P_PT">
             <EntityTypeMapping TypeName="SCMModel.V_DS_P_PT">
               <MappingFragment StoreEntitySet="V_DS_P_PT">
@@ -2612,22 +2528,93 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="V_Dl_D_D">
-            <EntityTypeMapping TypeName="SCMModel.V_Dl_D_D">
-              <MappingFragment StoreEntitySet="V_Dl_D_D">
-                <ScalarProperty Name="DevState" ColumnName="DevState" />
-                <ScalarProperty Name="DevDesc" ColumnName="DevDesc" />
+          <EntitySetMapping Name="V_InDepot">
+            <EntityTypeMapping TypeName="SCMModel.V_InDepot">
+              <MappingFragment StoreEntitySet="V_InDepot">
+                <ScalarProperty Name="SumMoney" ColumnName="SumMoney" />
+                <ScalarProperty Name="PPName" ColumnName="PPName" />
                 <ScalarProperty Name="UsersName" ColumnName="UsersName" />
-                <ScalarProperty Name="DevDate" ColumnName="DevDate" />
-                <ScalarProperty Name="InDepot" ColumnName="InDepot" />
-                <ScalarProperty Name="OutDepot" ColumnName="OutDepot" />
-                <ScalarProperty Name="DevID" ColumnName="DevID" />
+                <ScalarProperty Name="DepotName" ColumnName="DepotName" />
+                <ScalarProperty Name="IODCus" ColumnName="IODCus" />
+                <ScalarProperty Name="IODLend" ColumnName="IODLend" />
+                <ScalarProperty Name="IODDesc" ColumnName="IODDesc" />
+                <ScalarProperty Name="IODUser" ColumnName="IODUser" />
+                <ScalarProperty Name="IODDate" ColumnName="IODDate" />
+                <ScalarProperty Name="IODNum" ColumnName="IODNum" />
+                <ScalarProperty Name="IODType" ColumnName="IODType" />
+                <ScalarProperty Name="DepotID" ColumnName="DepotID" />
+                <ScalarProperty Name="IODID" ColumnName="IODID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="V_Sl_SD">
-            <EntityTypeMapping TypeName="SCMModel.V_Sl_SD">
-              <MappingFragment StoreEntitySet="V_Sl_SD">
+          <EntitySetMapping Name="V_InOutDepotDetail">
+            <EntityTypeMapping TypeName="SCMModel.V_InOutDepotDetail">
+              <MappingFragment StoreEntitySet="V_InOutDepotDetail">
+                <ScalarProperty Name="IODDMoney" ColumnName="IODDMoney" />
+                <ScalarProperty Name="DepotName" ColumnName="DepotName" />
+                <ScalarProperty Name="DepotID" ColumnName="DepotID" />
+                <ScalarProperty Name="PSName" ColumnName="PSName" />
+                <ScalarProperty Name="PCName" ColumnName="PCName" />
+                <ScalarProperty Name="PUName" ColumnName="PUName" />
+                <ScalarProperty Name="PTName" ColumnName="PTName" />
+                <ScalarProperty Name="ProName" ColumnName="ProName" />
+                <ScalarProperty Name="IODDOutPrice" ColumnName="IODDOutPrice" />
+                <ScalarProperty Name="IODDPrice" ColumnName="IODDPrice" />
+                <ScalarProperty Name="IODDAmount" ColumnName="IODDAmount" />
+                <ScalarProperty Name="ProID" ColumnName="ProID" />
+                <ScalarProperty Name="IODID" ColumnName="IODID" />
+                <ScalarProperty Name="IODDID" ColumnName="IODDID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="V_OutDepot">
+            <EntityTypeMapping TypeName="SCMModel.V_OutDepot">
+              <MappingFragment StoreEntitySet="V_OutDepot">
+                <ScalarProperty Name="SumMoney" ColumnName="SumMoney" />
+                <ScalarProperty Name="CusName" ColumnName="CusName" />
+                <ScalarProperty Name="UsersName" ColumnName="UsersName" />
+                <ScalarProperty Name="DepotName" ColumnName="DepotName" />
+                <ScalarProperty Name="IODCus" ColumnName="IODCus" />
+                <ScalarProperty Name="IODLend" ColumnName="IODLend" />
+                <ScalarProperty Name="IODDesc" ColumnName="IODDesc" />
+                <ScalarProperty Name="IODUser" ColumnName="IODUser" />
+                <ScalarProperty Name="IODDate" ColumnName="IODDate" />
+                <ScalarProperty Name="IODNum" ColumnName="IODNum" />
+                <ScalarProperty Name="IODType" ColumnName="IODType" />
+                <ScalarProperty Name="DepotID" ColumnName="DepotID" />
+                <ScalarProperty Name="IODID" ColumnName="IODID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="V_Products">
+            <EntityTypeMapping TypeName="SCMModel.V_Products">
+              <MappingFragment StoreEntitySet="V_Products">
+                <ScalarProperty Name="DepotName" ColumnName="DepotName" />
+                <ScalarProperty Name="PSName" ColumnName="PSName" />
+                <ScalarProperty Name="PCName" ColumnName="PCName" />
+                <ScalarProperty Name="PUName" ColumnName="PUName" />
+                <ScalarProperty Name="PTName" ColumnName="PTName" />
+                <ScalarProperty Name="DepotID" ColumnName="DepotID" />
+                <ScalarProperty Name="ProDesc" ColumnName="ProDesc" />
+                <ScalarProperty Name="ProPrice" ColumnName="ProPrice" />
+                <ScalarProperty Name="ProInPrice" ColumnName="ProInPrice" />
+                <ScalarProperty Name="ProMin" ColumnName="ProMin" />
+                <ScalarProperty Name="ProMax" ColumnName="ProMax" />
+                <ScalarProperty Name="ProWorkShop" ColumnName="ProWorkShop" />
+                <ScalarProperty Name="ProTM" ColumnName="ProTM" />
+                <ScalarProperty Name="ProJP" ColumnName="ProJP" />
+                <ScalarProperty Name="ProName" ColumnName="ProName" />
+                <ScalarProperty Name="PSID" ColumnName="PSID" />
+                <ScalarProperty Name="PCID" ColumnName="PCID" />
+                <ScalarProperty Name="PUID" ColumnName="PUID" />
+                <ScalarProperty Name="PTID" ColumnName="PTID" />
+                <ScalarProperty Name="ProID" ColumnName="ProID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="V_Sl_SD_P_U">
+            <EntityTypeMapping TypeName="SCMModel.V_Sl_SD_P_U">
+              <MappingFragment StoreEntitySet="V_Sl_SD_P_U">
                 <ScalarProperty Name="UsersName" ColumnName="UsersName" />
                 <ScalarProperty Name="ProName" ColumnName="ProName" />
                 <ScalarProperty Name="DepotName" ColumnName="DepotName" />
@@ -2663,7 +2650,20 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-        </EntityContainerMapping>
+          <EntitySetMapping Name="V_Dl_D_D">
+            <EntityTypeMapping TypeName="SCMModel.V_Dl_D_D">
+              <MappingFragment StoreEntitySet="V_Dl_D_D">
+                <ScalarProperty Name="DevState" ColumnName="DevState" />
+                <ScalarProperty Name="DevDesc" ColumnName="DevDesc" />
+                <ScalarProperty Name="UsersName" ColumnName="UsersName" />
+                <ScalarProperty Name="DevDate" ColumnName="DevDate" />
+                <ScalarProperty Name="InDepot" ColumnName="InDepot" />
+                <ScalarProperty Name="OutDepot" ColumnName="OutDepot" />
+                <ScalarProperty Name="DevID" ColumnName="DevID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

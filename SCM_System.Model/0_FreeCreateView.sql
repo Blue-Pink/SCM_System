@@ -64,10 +64,10 @@ Users u on dl_d_d.UserID=u.UsersID
 go
 
 
-if(exists(select * from sysobjects where name='V_Sl_SD'))
-drop view V_Sl_SD
+if(exists(select * from sysobjects where name='V_Sl_SD_P_U'))
+drop view V_Sl_SD_P_U
 go
-create view V_Sl_SD
+create view V_Sl_SD_P_U
 as 
 select sl_sd_p_u.*,u.UsersName from (select sl_sd_p.*
 ,p.ProName from (select sl_sd.*,
