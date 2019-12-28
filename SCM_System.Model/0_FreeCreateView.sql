@@ -89,4 +89,13 @@ as
 select a.*,b.CLAgio,b.CLName from Customers a join CustomerLevel b on a.CLID = b.CLID
 go
 
-select * from V_Sl_SD_P_U
+
+if(exists(select * from sysobjects where name='Vw_DP'))
+drop view Vw_DP
+go
+create view Vw_DP
+as
+select a.DepotID,a.ProName,a.ProJP,a.ProTM,b.PCName,c.PUName,d.PSName from Products a join ProductColor b on a.PCID = b.PCID
+join ProductUnit c on a.PUID = c.PUID
+join ProductSpec d on a.PSID = d.PSID
+go
