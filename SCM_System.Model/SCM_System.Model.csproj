@@ -251,7 +251,7 @@
     <Compile Include="V_Products.cs">
       <DependentUpon>SCM_System.tt</DependentUpon>
     </Compile>
-    <Compile Include="V_Sl_SD.cs">
+    <Compile Include="V_Sl_SD_P_U.cs">
       <DependentUpon>SCM_System.tt</DependentUpon>
     </Compile>
   </ItemGroup>

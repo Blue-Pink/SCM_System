@@ -729,8 +729,8 @@
           <Property Name="DepotName" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <!--生成过程中发现错误:
-警告 6002: 表/视图“SCM.dbo.V_Sl_SD”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
-        <EntityType Name="V_Sl_SD">
+警告 6002: 表/视图“SCM.dbo.V_Sl_SD_P_U”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="V_Sl_SD_P_U">
           <Key>
             <PropertyRef Name="SplitID" />
           </Key>
@@ -1038,24 +1038,24 @@
     [V_Products].[DepotName] AS [DepotName]
     FROM [dbo].[V_Products] AS [V_Products]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="V_Sl_SD" EntityType="Self.V_Sl_SD" store:Type="Views" store:Schema="dbo">
+          <EntitySet Name="V_Sl_SD_P_U" EntityType="Self.V_Sl_SD_P_U" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
-    [V_Sl_SD].[SplitID] AS [SplitID], 
-    [V_Sl_SD].[DepotID] AS [DepotID], 
-    [V_Sl_SD].[ProID] AS [ProID], 
-    [V_Sl_SD].[UserID] AS [UserID], 
-    [V_Sl_SD].[SplitDate] AS [SplitDate], 
-    [V_Sl_SD].[SplitDesc] AS [SplitDesc], 
-    [V_Sl_SD].[SplitState] AS [SplitState], 
-    [V_Sl_SD].[SplitAmount] AS [SplitAmount], 
-    [V_Sl_SD].[SplitPrice] AS [SplitPrice], 
-    [V_Sl_SD].[SDAmount] AS [SDAmount], 
-    [V_Sl_SD].[SDPrice] AS [SDPrice], 
-    [V_Sl_SD].[SDDesc] AS [SDDesc], 
-    [V_Sl_SD].[DepotName] AS [DepotName], 
-    [V_Sl_SD].[ProName] AS [ProName], 
-    [V_Sl_SD].[UsersName] AS [UsersName]
-    FROM [dbo].[V_Sl_SD] AS [V_Sl_SD]</DefiningQuery>
+    [V_Sl_SD_P_U].[SplitID] AS [SplitID], 
+    [V_Sl_SD_P_U].[DepotID] AS [DepotID], 
+    [V_Sl_SD_P_U].[ProID] AS [ProID], 
+    [V_Sl_SD_P_U].[UserID] AS [UserID], 
+    [V_Sl_SD_P_U].[SplitDate] AS [SplitDate], 
+    [V_Sl_SD_P_U].[SplitDesc] AS [SplitDesc], 
+    [V_Sl_SD_P_U].[SplitState] AS [SplitState], 
+    [V_Sl_SD_P_U].[SplitAmount] AS [SplitAmount], 
+    [V_Sl_SD_P_U].[SplitPrice] AS [SplitPrice], 
+    [V_Sl_SD_P_U].[SDAmount] AS [SDAmount], 
+    [V_Sl_SD_P_U].[SDPrice] AS [SDPrice], 
+    [V_Sl_SD_P_U].[SDDesc] AS [SDDesc], 
+    [V_Sl_SD_P_U].[DepotName] AS [DepotName], 
+    [V_Sl_SD_P_U].[ProName] AS [ProName], 
+    [V_Sl_SD_P_U].[UsersName] AS [UsersName]
+    FROM [dbo].[V_Sl_SD_P_U] AS [V_Sl_SD_P_U]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="Vw_CDU" EntityType="Self.Vw_CDU" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -2210,12 +2210,24 @@
                 <ScalarProperty Name="ProID" ColumnName="ProID" />
                 <ScalarProperty Name="LostID" ColumnName="LostID" />
                 <ScalarProperty Name="LDID" ColumnName="LDID" />
+                <ScalarProperty Name="LDDesc" ColumnName="LDDesc" />
+                <ScalarProperty Name="LDPrice" ColumnName="LDPrice" />
+                <ScalarProperty Name="LDAmount" ColumnName="LDAmount" />
+                <ScalarProperty Name="ProID" ColumnName="ProID" />
+                <ScalarProperty Name="LostID" ColumnName="LostID" />
+                <ScalarProperty Name="LDID" ColumnName="LDID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Losts">
             <EntityTypeMapping TypeName="SCMModel.Losts">
               <MappingFragment StoreEntitySet="Losts">
+                <ScalarProperty Name="LostState" ColumnName="LostState" />
+                <ScalarProperty Name="LostDesc" ColumnName="LostDesc" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="LostDate" ColumnName="LostDate" />
+                <ScalarProperty Name="DepotID" ColumnName="DepotID" />
+                <ScalarProperty Name="LostID" ColumnName="LostID" />
                 <ScalarProperty Name="LostState" ColumnName="LostState" />
                 <ScalarProperty Name="LostDesc" ColumnName="LostDesc" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
@@ -2234,12 +2246,24 @@
                 <ScalarProperty Name="OIDDate" ColumnName="OIDDate" />
                 <ScalarProperty Name="DepotID" ColumnName="DepotID" />
                 <ScalarProperty Name="OIDID" ColumnName="OIDID" />
+                <ScalarProperty Name="OIDDesc" ColumnName="OIDDesc" />
+                <ScalarProperty Name="OIDState" ColumnName="OIDState" />
+                <ScalarProperty Name="OIDUser" ColumnName="OIDUser" />
+                <ScalarProperty Name="OIDDate" ColumnName="OIDDate" />
+                <ScalarProperty Name="DepotID" ColumnName="DepotID" />
+                <ScalarProperty Name="OIDID" ColumnName="OIDID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="OtherInDepotDetail">
             <EntityTypeMapping TypeName="SCMModel.OtherInDepotDetail">
               <MappingFragment StoreEntitySet="OtherInDepotDetail">
+                <ScalarProperty Name="OIDDDesc" ColumnName="OIDDDesc" />
+                <ScalarProperty Name="OIDDPrice" ColumnName="OIDDPrice" />
+                <ScalarProperty Name="OIDDAmount" ColumnName="OIDDAmount" />
+                <ScalarProperty Name="OIDID" ColumnName="OIDID" />
+                <ScalarProperty Name="ProID" ColumnName="ProID" />
+                <ScalarProperty Name="OIDDID" ColumnName="OIDDID" />
                 <ScalarProperty Name="OIDDDesc" ColumnName="OIDDDesc" />
                 <ScalarProperty Name="OIDDPrice" ColumnName="OIDDPrice" />
                 <ScalarProperty Name="OIDDAmount" ColumnName="OIDDAmount" />
@@ -2792,9 +2816,9 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="V_Sl_SD">
-            <EntityTypeMapping TypeName="SCMModel.V_Sl_SD">
-              <MappingFragment StoreEntitySet="V_Sl_SD">
+          <EntitySetMapping Name="V_Sl_SD_P_U">
+            <EntityTypeMapping TypeName="SCMModel.V_Sl_SD_P_U">
+              <MappingFragment StoreEntitySet="V_Sl_SD_P_U">
                 <ScalarProperty Name="UsersName" ColumnName="UsersName" />
                 <ScalarProperty Name="ProName" ColumnName="ProName" />
                 <ScalarProperty Name="DepotName" ColumnName="DepotName" />

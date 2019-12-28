@@ -59,7 +59,26 @@
                         </th>
                 </thead>
                 <tbody>
-                    <tr>
+                    <tr v-for="(t,index) in ProductLend">
+                        <td>
+                            {{t.CusID}}
+                        </td>
+                        <td>
+                            {{t.CusName}}
+                        </td>
+                        <td>
+                            {{t.CusCompany}}
+                        </td>
+                        <td>{{t.CLName}}</td>
+                        <td>{{t.CusMan}}</td>
+                        <td>
+                            客户好
+                        </td>
+                        <td align="center">
+                            <a href="javascript:;">删除</a> | <a href="javascript:;" v-on:click="ShowPage(1)">修改</a>
+                        </td>
+                    </tr>
+                    @*<tr>
                         <td>
                             1
                         </td>
@@ -96,26 +115,7 @@
                         <td align="center">
                             <a href="javascript:;">删除</a> | <a href="javascript:;" v-on:click="ShowPage(1)">修改</a>
                         </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            1
-                        </td>
-                        <td>
-                            衣服
-                        </td>
-                        <td>
-                            娃哈哈集团
-                        </td>
-                        <td>高级</td>
-                        <td>胡杨成</td>
-                        <td>
-                            客户好
-                        </td>
-                        <td align="center">
-                            <a href="javascript:;">删除</a> | <a href="javascript:;" v-on:click="ShowPage(1)">修改</a>
-                        </td>
-                    </tr>
+                    </tr>*@
                 </tbody>
             </table>
             <div align="center">
@@ -151,7 +151,7 @@
             ProductLend:[],
         },
         created: function () {
-            this.$http.get("http://localhost:8625/api/Basic/GetProductLend")
+            this.$http.get("http://localhost:8625/api/Basic/GetCustomers")
                 .then(d => {
                     this.ProductLend = d.data;
                     console.log(d.data);
