@@ -12,11 +12,8 @@ namespace SCM_System.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class V_DS_P_PT
+    public partial class Vw_ptc
     {
-        public int DSID { get; set; }
-        public Nullable<int> DSAmount { get; set; }
-        public Nullable<decimal> DSPrice { get; set; }
         public string ProID { get; set; }
         public Nullable<int> PTID { get; set; }
         public Nullable<int> PUID { get; set; }
@@ -33,5 +30,6 @@ namespace SCM_System.Model
         public string ProDesc { get; set; }
         public string DepotID { get; set; }
         public string PTName { get; set; }
+        public string PCName { get; set; }
     }
 }
