@@ -6,7 +6,7 @@
 <div id="app">
     <div class="sub-heard-part">
         <ol class="breadcrumb m-b-0">
-            <li><a href="#" onclick='$("#div1").load("/basic/Index.html")'>基础数据</a></li>
+            <li><a href="#" onclick='$("#div1").load("/basic/Index")'>基础数据</a></li>
             <li><a href="#">商品资料</a></li>
 
             <input style="float: right" class="btn btn-default btn-xs" type="submit" value="添加商品资料" v-on:click="ShowPage()">
@@ -47,7 +47,23 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    <tr v-for="(t,index) in Products">
+                        <td scope="row">
+                            {{t.ProID}}
+                        </td>
+                        <td>{{t.ProName}}</td>
+                        <td>
+                            {{t.ProJP}}
+
+                        </td>
+                        <td>{{t.ProTM}}</td>
+                        <td>{{t.PSName}}</td>
+                        <td>{{t.PUName}}</td>
+                        <td>{{t.PCName}}</td>
+                        <td><a href="javascript:;">删除</a> | <a href="javascript:;" v-on:click="ShowPage(1)">修改</a></td>
+
+                    </tr>
+                    @*<tr>
                         <td scope="row">
                             1
                         </td>
@@ -78,23 +94,7 @@
                         <td>wu</td>
                         <td><a href="javascript:;">删除</a> | <a href="javascript:;" v-on:click="ShowPage(1)">修改</a></td>
 
-                    </tr>
-                    <tr>
-                        <td scope="row">
-                            1
-                        </td>
-                        <td>娃哈哈</td>
-                        <td>
-                            ddddfd
-
-                        </td>
-                        <td>151515151515</td>
-                        <td>株洲市</td>
-                        <td>wu</td>
-                        <td>wu</td>
-                        <td><a href="javascript:;">删除</a> | <a href="javascript:;" v-on:click="ShowPage(1)">修改</a></td>
-
-                    </tr>
+                    </tr>*@
                 </tbody>
             </table>
             <div align="center">
@@ -123,9 +123,18 @@
 </div>
 
 <script>
-    var myVue = new Vue({
+        var myVue = new Vue({
         el: "#app",
-        data:
+        data: {
+            Products:[],
+        },
+        created: function () {
+            this.$http.get("http://localhost:8625/api/Basic/GetVw_DPP")
+                .then(d => {
+                    this.Products = d.data;
+                    console.log(d.data);
+                })
+        }
         //methods: {
         //    //跳转到添加/修改页面
         //    ShowPage: function (id) {

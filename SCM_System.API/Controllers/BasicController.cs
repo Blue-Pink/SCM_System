@@ -42,7 +42,7 @@ namespace SCM_System.API.Controllers
         [Inject]
         //通用模块
         //商品资料资料表
-        public DAL_UniversalModuel<Vw_DPP> universalModuelVw_DP { get; set; }
+        public DAL_UniversalModuel<Vw_DPP> universalModuelVw_DPP { get; set; }
         
         //[Inject]
         ////项目对应模块
@@ -81,7 +81,11 @@ namespace SCM_System.API.Controllers
         }
 
 
-
+        [Route("GetVw_DPP")]
+        public async Task<List<Vw_DPP>> GetVw_DPP()
+        {
+            return await universalModuelVw_DPP.Select_All();
+        }
 
 
         public void Options() { }  //这是预请求
