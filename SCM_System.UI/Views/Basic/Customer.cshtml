@@ -6,7 +6,7 @@
 <div id="app">
     <div class="sub-heard-part">
         <ol class="breadcrumb m-b-0">
-            <li><a href="#" onclick='$("#div1").load("/basic/Index.html")'>基础数据</a></li>
+            <li><a href="#" onclick='$("#div1").load("/basic/Index")'>基础数据</a></li>
             <li><a href="#">客户资料</a></li>
 
             <input style="float: right" class="btn btn-default btn-xs" type="submit" value="添加客户资料" v-on:click="ShowPage()">
@@ -144,7 +144,6 @@
 </div>
 
 <script>
-    window.addEventListener('load', function () {
         var app = new Vue({
         el: "#app",
         data: {
@@ -183,6 +182,5 @@
         //    }
         //}
     });
-    })
 </script>
 

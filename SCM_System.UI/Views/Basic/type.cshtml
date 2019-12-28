@@ -2,7 +2,7 @@
 <div id="app">
     <div class="sub-heard-part">
         <ol class="breadcrumb m-b-0">
-            <li><a href="#" onclick='$("#div1").load("/basic/Index.html")'>基础数据</a></li>
+            <li><a href="#" onclick='$("#div1").load("/basic/Index")'>基础数据</a></li>
             <li><a href="#">商品分类</a></li>
 
             <input style="float: right" class="btn btn-default btn-xs" type="submit" value="添加类别" v-on:click="ShowPage()">
@@ -81,9 +81,7 @@
     </div>
 </div>
 
-@section CustomJs{
     <script>
-        window.addEventListener('load', function () {
             var app = new Vue({
                 el: "#app",
                 data: {
@@ -96,6 +94,5 @@
                         })
                 }
             })
-        })
     </script>
 }

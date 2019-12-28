@@ -2,7 +2,7 @@
 <div id="app">
     <div class="sub-heard-part">
         <ol class="breadcrumb m-b-0">
-            <li><a href="#" onclick='$("#div1").load("/basic/Index.html")'>基础数据</a></li>
+            <li><a href="#" onclick='$("#div1").load("/basic/Index")'>基础数据</a></li>
             <li><a href="#">供应商</a></li>
 
             <input style="float: right" class="btn btn-default btn-xs" type="submit" value="添加供应商" v-on:click="ShowPage()">
@@ -120,7 +120,7 @@
 
 
 <script>
-    var myVue = new Vue({
+        var app = new Vue({
         el: "#app",
         data: {
             ProductLend: [],
