@@ -92,7 +92,7 @@ namespace SCM_System.API.Controllers
 
         [HttpGet]
         [Route("GetVSSDPU")]
-        public async Task<dynamic> GetVSSDPU(int ps,int pi)
+        public async Task<dynamic> GetVSSDPU(int ps,int pi)  
         {
             pager_V_Sl_SD_P_U.IsAsc = true;
             pager_V_Sl_SD_P_U.PageSize = ps;
