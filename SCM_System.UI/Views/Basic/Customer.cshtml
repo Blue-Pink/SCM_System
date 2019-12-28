@@ -48,7 +48,7 @@
                         <th>
                             客户等级
                         </th>
-                        <th>
+                        <th> 
                             联系人
                         </th>
                         <th>
@@ -145,7 +145,6 @@
 
 <script>
     window.addEventListener('load', function () {
-        alert(1)
         var app = new Vue({
         el: "#app",
         data: {
@@ -154,8 +153,8 @@
         created: function () {
             this.$http.get("http://localhost:8625/api/Basic/GetProductLend")
                 .then(d => {
-                    alert(2)
                     this.ProductLend = d.data;
+                    console.log(d.data);
                 })
         }
         //methods: {
