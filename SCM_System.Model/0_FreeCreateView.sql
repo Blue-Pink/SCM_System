@@ -81,6 +81,7 @@ Products p on sl_sd_p.ProID=p.ProID) sl_sd_p_u left join
 Users u on sl_sd_p_u.UserID=u.UsersID
 go
 
+
 if(exists(select * from sysobjects where name='Vw_CL'))
 drop view Vw_CL
 go
@@ -100,4 +101,4 @@ join ProductUnit c on a.PUID = c.PUID
 join ProductSpec d on a.PSID = d.PSID
 go
 
-select * from Vw_DPP
+
