@@ -781,6 +781,20 @@
           <Property Name="CLName" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <!--生成过程中发现错误:
+警告 6002: 表/视图“SCM.dbo.Vw_DPP”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="Vw_DPP">
+          <Key>
+            <PropertyRef Name="ProID" />
+          </Key>
+          <Property Name="ProID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ProName" Type="nvarchar" MaxLength="100" />
+          <Property Name="ProJP" Type="varchar" MaxLength="100" />
+          <Property Name="ProTM" Type="varchar" MaxLength="100" />
+          <Property Name="PCName" Type="nvarchar" MaxLength="50" />
+          <Property Name="PUName" Type="nvarchar" MaxLength="50" />
+          <Property Name="PSName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--生成过程中发现错误:
 警告 6002: 表/视图“SCM.dbo.Vw_ptc”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
         <EntityType Name="Vw_ptc">
           <Key>
@@ -1081,6 +1095,17 @@
     [Vw_CL].[CLName] AS [CLName]
     FROM [dbo].[Vw_CL] AS [Vw_CL]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="Vw_DPP" EntityType="Self.Vw_DPP" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Vw_DPP].[ProID] AS [ProID], 
+    [Vw_DPP].[ProName] AS [ProName], 
+    [Vw_DPP].[ProJP] AS [ProJP], 
+    [Vw_DPP].[ProTM] AS [ProTM], 
+    [Vw_DPP].[PCName] AS [PCName], 
+    [Vw_DPP].[PUName] AS [PUName], 
+    [Vw_DPP].[PSName] AS [PSName]
+    FROM [dbo].[Vw_DPP] AS [Vw_DPP]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="Vw_ptc" EntityType="Self.Vw_ptc" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [Vw_ptc].[ProID] AS [ProID], 
@@ -1227,6 +1252,7 @@
           <EntitySet Name="Vw_CDU" EntityType="SCMModel.Vw_CDU" />
           <EntitySet Name="Vw_CL" EntityType="SCMModel.Vw_CL" />
           <EntitySet Name="Vw_ptc" EntityType="SCMModel.Vw_ptc" />
+          <EntitySet Name="Vw_DPP" EntityType="SCMModel.Vw_DPP" />
           </EntityContainer>
         <EntityType Name="CheckDepot">
           <Key>
@@ -2004,6 +2030,18 @@
           <Property Name="DepotID" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
           <Property Name="PTName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="PCName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Vw_DPP">
+          <Key>
+            <PropertyRef Name="ProID" />
+          </Key>
+          <Property Name="ProID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ProName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ProJP" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ProTM" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PCName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PUName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PSName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -2860,6 +2898,19 @@
                 <ScalarProperty Name="PCID" ColumnName="PCID" />
                 <ScalarProperty Name="PUID" ColumnName="PUID" />
                 <ScalarProperty Name="PTID" ColumnName="PTID" />
+                <ScalarProperty Name="ProID" ColumnName="ProID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vw_DPP">
+            <EntityTypeMapping TypeName="SCMModel.Vw_DPP">
+              <MappingFragment StoreEntitySet="Vw_DPP">
+                <ScalarProperty Name="PSName" ColumnName="PSName" />
+                <ScalarProperty Name="PUName" ColumnName="PUName" />
+                <ScalarProperty Name="PCName" ColumnName="PCName" />
+                <ScalarProperty Name="ProTM" ColumnName="ProTM" />
+                <ScalarProperty Name="ProJP" ColumnName="ProJP" />
+                <ScalarProperty Name="ProName" ColumnName="ProName" />
                 <ScalarProperty Name="ProID" ColumnName="ProID" />
               </MappingFragment>
             </EntityTypeMapping>

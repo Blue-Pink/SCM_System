@@ -39,6 +39,11 @@ namespace SCM_System.API.Controllers
         //客户资料资料表
         public DAL_UniversalModuel<Vw_CL> universalModuelCustomers { get; set; }
 
+        [Inject]
+        //通用模块
+        //商品资料资料表
+        public DAL_UniversalModuel<Vw_DPP> universalModuelVw_DP { get; set; }
+        
         //[Inject]
         ////项目对应模块
         //public DAL_BasicModuel<CheckDepot> basicModuel { get; set; }

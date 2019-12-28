@@ -227,6 +227,9 @@
     <Compile Include="Vw_CL.cs">
       <DependentUpon>SCM_System.tt</DependentUpon>
     </Compile>
+    <Compile Include="Vw_DPP.cs">
+      <DependentUpon>SCM_System.tt</DependentUpon>
+    </Compile>
     <Compile Include="Vw_ptc.cs">
       <DependentUpon>SCM_System.tt</DependentUpon>
     </Compile>
