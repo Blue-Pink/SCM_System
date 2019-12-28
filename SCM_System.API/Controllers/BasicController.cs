@@ -22,7 +22,7 @@ namespace SCM_System.API.Controllers
         [Inject]
         //通用模块
         //仓库设置表
-        public DAL_UniversalModuel<Depots> universalModuelDepots { get; set; }
+        public DAL_UniversalModuel<Depots> universalModuelDepots { get; set; }  
 
         [Inject]
         //通用模块
