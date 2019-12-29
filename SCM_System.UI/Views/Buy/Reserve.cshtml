@@ -116,7 +116,6 @@
 </div>
 
 <script>
-    window.addEventListener("load", function () {
          new Vue({
             el: "#app",
             data: {
@@ -133,5 +132,4 @@
                  status: function (m) { return m.DSAmount>m.ProMax?"爆库":m.DSAmount<m.ProMin?"缺货":"正常" }
              }
         })
-    })
 </script>
