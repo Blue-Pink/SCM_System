@@ -48,7 +48,7 @@
                         <th>
                             客户等级
                         </th>
-                        <th> 
+                        <th>
                             联系人
                         </th>
                         <th>
@@ -59,6 +59,7 @@
                         </th>
                 </thead>
                 <tbody>
+
                     <tr v-for="(t,index) in ProductLend">
                         <td>
                             {{t.CusID}}
@@ -79,108 +80,120 @@
                         </td>
                     </tr>
                     @*<tr>
-                        <td>
-                            1
-                        </td>
-                        <td>
-                            衣服
-                        </td>
-                        <td>
-                            娃哈哈集团
-                        </td>
-                        <td>高级</td>
-                        <td>胡杨成</td>
-                        <td>
-                            客户好
-                        </td>
-                        <td align="center">
-                            <a href="javascript:;">删除</a> | <a href="javascript:;" v-on:click="ShowPage(1)">修改</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            1
-                        </td>
-                        <td>
-                            衣服
-                        </td>
-                        <td>
-                            娃哈哈集团
-                        </td>
-                        <td>高级</td>
-                        <td>胡杨成</td>
-                        <td>
-                            客户好
-                        </td>
-                        <td align="center">
-                            <a href="javascript:;">删除</a> | <a href="javascript:;" v-on:click="ShowPage(1)">修改</a>
-                        </td>
-                    </tr>*@
+                            <td>
+                                1
+                            </td>
+                            <td>
+                                衣服
+                            </td>
+                            <td>
+                                娃哈哈集团
+                            </td>
+                            <td>高级</td>
+                            <td>胡杨成</td>
+                            <td>
+                                客户好
+                            </td>
+                            <td align="center">
+                                <a href="javascript:;">删除</a> | <a href="javascript:;" v-on:click="ShowPage(1)">修改</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                1
+                            </td>
+                            <td>
+                                衣服
+                            </td>
+                            <td>
+                                娃哈哈集团
+                            </td>
+                            <td>高级</td>
+                            <td>胡杨成</td>
+                            <td>
+                                客户好
+                            </td>
+                            <td align="center">
+                                <a href="javascript:;">删除</a> | <a href="javascript:;" v-on:click="ShowPage(1)">修改</a>
+                            </td>
+                        </tr>*@
                 </tbody>
             </table>
             <div align="center">
-                <nav aria-label="Page navigation">
-                    <ul class="pagination">
-                        <li>
-                            <a href="#" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                            </a>
-                        </li>
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li>
-                            <a href="#" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
+                <div id="test1"></div>
+                @*<nav aria-label="Page navigation"  >
+                        <ul class="pagination">
+                            <li>
+                                <a href="#" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                            <li @@click="dian(i)" v-for="i in total" >
+                            <a href="#">{{i}}</a>
+                            </li>
+                            <li>
+                                <a href="#" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>*@
             </div>
         </div>
     </div>
 </div>
 
 <script>
-        var app = new Vue({
+    var app = new Vue({
         el: "#app",
         data: {
-            ProductLend:[],
+            ProductLend: [],
+            total: 0,
+            ps: 3,
+            pi: 1
         },
         created: function () {
-            this.$http.get("http://localhost:8625/api/Basic/GetCustomers")
+            this.$http.get("http://localhost:8625/api/Basic/GetCustomers", { "params": { "ps": this.ps, "pi": this.pi } })
                 .then(d => {
-                    this.ProductLend = d.data;
-                    console.log(d.data);
+                    this.ProductLend = d.data.data;
+                    this.total = d.data.total;
+                    console.log("VUE-first");
                 })
+        },
+        methods: {
+
+            dian: function (ps,pi) {
+                this.$http.get("http://localhost:8625/api/Basic/GetCustomers", { "params": { "ps": ps, "pi": pi } })
+                    .then(d => {
+                        this.ProductLend = d.data.data;
+                        this.total = d.data.total;
+                        console.log(ps+"---"+pi);
+                    })
+            }
         }
-        //methods: {
-        //    //跳转到添加/修改页面
-        //    ShowPage: function (id) {
-        //        var url = "";
-        //        var mes = "";
-        //        if (!id) {
-        //            url = "/basic/customeradd.html";
-        //            mes = "添加成功!";
-        //        } else {
-        //            url = "/basic/customerEdit.html?id=" + id;
-        //            mes = "修改成功!";
-        //        }
-        //        layer.open({
-        //            type: 2,
-        //            shade: false,
-        //            area: ['500px', '550px'],
-        //            maxmin: true,
-        //            content: url,
-        //            zIndex: layer.zIndex,
-        //            end: function () { //子页面关闭时调用
-        //                layer.alert(mes);
-        //            }
-        //        });
-        //    }
-        //}
+    });
+
+    layui.use('laypage', function () {
+        var laypage = layui.laypage;
+        //执行一个laypage实例
+        laypage.render({
+            elem: 'test1' //注意，这里的 test1 是 ID，不用加 # 号
+            , count: app.total //数据总数，从服务端得到
+            , limit: app.ps
+            , limits: [1, 2, 3, 4, 5]
+            , layout:['prev', 'page', 'next','limit','count','skip']
+            , jump: function (obj, first) {
+                //obj包含了当前分页的所有参数，比如：
+                //console.log(obj.curr); 得到当前页，以便向服务端请求对应页的数据。
+                //console.log(obj.limit); 得到每页显示的条数
+                app.dian(obj.limit, obj.curr)
+                //首次不执行
+                if (!first) {
+                    console.log("Layui-first");
+                    //do something
+                }
+            }
+        });
     });
 </script>
 
