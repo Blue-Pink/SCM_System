@@ -207,7 +207,8 @@
         }
     });
 
-    layui.use('laypage', function () {
+    $(function () {
+        alert(app.total)
         var laypage = layui.laypage;
         //执行一个laypage实例
         laypage.render({

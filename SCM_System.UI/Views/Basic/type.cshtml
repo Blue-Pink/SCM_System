@@ -83,7 +83,8 @@
 </div>
 
 <script>
-    var app = new Vue({
+    var totals;
+        var app = new Vue({
         el: "#app",
         data: {
             ProductTypes: [],
@@ -96,6 +97,7 @@
                 .then(d => {
                     this.ProductTypes = d.data.data;
                     this.total = d.data.total;
+                   
                 })
         },
         methods: {
@@ -109,9 +111,10 @@
                     })
             }
         }
-    });
+        });
 
-    layui.use('laypage', function () {
+    
+    $(function () {
         var laypage = layui.laypage;
         //执行一个laypage实例
         laypage.render({
@@ -132,5 +135,7 @@
                 }
             }
         });
-    });
+   
+});
+
 </script>

@@ -174,7 +174,7 @@
 </div>
 
 <script>
-    new Vue({
+   var app = new Vue({
         el: "#app",
         data: {
             data: [],
@@ -188,6 +188,39 @@
                     this.data = result.data.data
                     this.total = result.data.total
                 })
+        },
+        methods: {
+            dian: function (ps, pi) {
+                this.$http.get("http://localhost:8625/api/pdskc/GetVInOutDepotDetail", { "params": { "ps": ps, "pi": pi } })
+                    .then(d => {
+                        this.data = d.data.data;
+                        this.total = d.data.total;
+                        console.log(ps + "---" + pi);
+                    })
+            }
         }
-    })
+    });
+
+    $(function () {
+        var laypage = layui.laypage;
+        //执行一个laypage实例
+        laypage.render({
+            elem: 'test1' //注意，这里的 test1 是 ID，不用加 # 号
+            , count: app.total //数据总数，从服务端得到
+            , limit: app.ps
+            , limits: [1, 2, 3, 4, 5]
+            , layout: ['prev', 'page', 'next', 'limit', 'count', 'skip']
+            , jump: function (obj, first) {
+                //obj包含了当前分页的所有参数，比如：
+                //console.log(obj.curr); 得到当前页，以便向服务端请求对应页的数据。
+                //console.log(obj.limit); 得到每页显示的条数
+                app.dian(obj.limit, obj.curr)
+                //首次不执行
+                if (!first) {
+                    console.log("Layui-first");
+                    //do something
+                }
+            }
+        });
+    });
 </script>
