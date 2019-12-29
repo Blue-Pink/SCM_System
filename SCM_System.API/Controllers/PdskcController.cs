@@ -108,14 +108,14 @@ namespace SCM_System.API.Controllers
         //public async Task<dynamic> GetVInOutDepotDetail(int ps,int pi)
         //{
             
-           pager_V_InOutDepotDetail.IsAsc = true;
-           pager_V_InOutDepotDetail.PageSize = ps;
-           pager_V_InOutDepotDetail.PageIndex = pi;
-           pager_V_InOutDepotDetail.OrderByLambda = a => a.IODDID;
-            pager_V_InOutDepotDetail.WhereLambda = a => true;
-            var set = await pager_V_InOutDepotDetail.Paging().ConfigureAwait(false);
-            return new Dictionary<string, dynamic>() { { "data", set }, { "total", pager_V_InOutDepotDetail.Count } };
-        }
+        //   pager_V_InOutDepotDetail.IsAsc = true;
+        //   pager_V_InOutDepotDetail.PageSize = ps;
+        //   pager_V_InOutDepotDetail.PageIndex = pi;
+        //   pager_V_InOutDepotDetail.OrderByLambda = a => a.IODDID;
+        //    pager_V_InOutDepotDetail.WhereLambda = a => true;
+        //    var set = await pager_V_InOutDepotDetail.Paging().ConfigureAwait(false);
+        //    return new Dictionary<string, dynamic>() { { "data", set }, { "total", pager_V_InOutDepotDetail.Count } };
+        //}
         //[HttpGet]
         //[Route("GetVProducts/{DepotID}")]
         //public async Task<List<V_Products>> GetVProducts(String DepotID)
