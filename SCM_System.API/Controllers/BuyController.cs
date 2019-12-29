@@ -51,7 +51,7 @@ namespace SCM_System.API.Controllers
             Pager_V_DS_P_PT.OrderByLambda = a => a.DSID;
             var set = await Pager_V_DS_P_PT.Paging().ConfigureAwait(false);
             //var temp = await buyModuel.GetDS_P_D(ps, pi).ConfigureAwait(false);
-            return new Dictionary<string, dynamic>() { { "data",set},{ "total",Pager_V_DS_P_PT.PageCount} };
+            return new Dictionary<string, dynamic>() { { "data",set},{ "total",Pager_V_DS_P_PT.Count} };
         }
 
         public void Options() { }  //这是预请求
