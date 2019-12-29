@@ -9,6 +9,7 @@
 --Dl        -> 仓库调拨单(Devolves)
 --Sl        -> 拆分表(Splits)
 --SD        -> 拆分单详单(SplitDetail)
+--DD		->仓库调拨单详单(DevolveDetail)
 use SCM
 go
 
@@ -96,9 +97,28 @@ drop view Vw_DPP
 go
 create view Vw_DPP
 as
-select a.ProID,a.ProName,a.ProJP,a.ProTM,b.PCName,c.PUName,d.PSName from Products a join ProductColor b on a.PCID = b.PCID
+select a.ProID,
+a.ProName,
+a.ProJP,
+a.ProTM,
+b.PCName,
+c.PUName,
+d.PSName from Products a join ProductColor b on a.PCID = b.PCID
 join ProductUnit c on a.PUID = c.PUID
 join ProductSpec d on a.PSID = d.PSID
 go
 
 
+if(exists(select * from sysobjects where name='V_Dl_D_D_U'))
+drop view V_Dl_D_D_U
+go
+create view V_Dl_D_D_U
+as
+select dl_d_d.*,
+u.UsersName from (select dl_d.*,
+'InDepot'=d.DepotName from (select dl.*,
+'OutDepot'=d.DepotName from Devolves dl left join 
+Depots d on dl.DevInID=d.DepotID) dl_d left join 
+Depots d on dl_d.DevInID=d.DepotID) dl_d_d  left join 
+Users u on dl_d_d.UserID=u.UsersID
+go

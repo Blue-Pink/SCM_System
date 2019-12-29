@@ -90,6 +90,7 @@ namespace SCM_System.Model
         public virtual DbSet<Vw_CL> Vw_CL { get; set; }
         public virtual DbSet<Vw_ptc> Vw_ptc { get; set; }
         public virtual DbSet<Vw_DPP> Vw_DPP { get; set; }
+        public virtual DbSet<V_Dl_D_D_U> V_Dl_D_D_U { get; set; }
     
         public virtual int proc_CFNO(ObjectParameter no)
         {

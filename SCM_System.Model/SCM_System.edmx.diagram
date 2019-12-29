@@ -68,6 +68,7 @@
         <EntityTypeShape EntityType="SCMModel.Vw_CL" Width="1.5" PointX="20.75" PointY="9.75" />
         <EntityTypeShape EntityType="SCMModel.Vw_ptc" Width="1.5" PointX="10.75" PointY="20.75" />
         <EntityTypeShape EntityType="SCMModel.Vw_DPP" Width="1.5" PointX="0.75" PointY="21.75" />
+        <EntityTypeShape EntityType="SCMModel.V_Dl_D_D_U" Width="1.5" PointX="3.375" PointY="21.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -77,7 +77,7 @@ namespace SCM_System.API.Controllers
             pager_V_CD_CDD_P_D_U.WhereLambda = a => true;
             pager_V_CD_CDD_P_D_U.OrderByLambda = a => a.CDID;
             var set = await pager_V_CD_CDD_P_D_U.Paging().ConfigureAwait(false);
-            return new Dictionary<string, dynamic>() { { "data",set},{ "total", pager_V_CD_CDD_P_D_U.PageCount} };
+            return new Dictionary<string, dynamic>() { { "data",set},{ "total", pager_V_CD_CDD_P_D_U.Count} };
         }
         [HttpGet]
         [Route("GetVDlD")]
@@ -89,7 +89,7 @@ namespace SCM_System.API.Controllers
             pager_V_Dl_D_D.WhereLambda = a => true;
             pager_V_Dl_D_D.OrderByLambda = a => a.DevID;
             var set = await pager_V_Dl_D_D.Paging().ConfigureAwait(false);
-            return new Dictionary<string, dynamic>() { { "data", set }, { "total", pager_V_Dl_D_D.PageCount } };
+            return new Dictionary<string, dynamic>() { { "data", set }, { "total", pager_V_Dl_D_D.Count } };
         }
 
         [HttpGet]
@@ -102,7 +102,7 @@ namespace SCM_System.API.Controllers
             pager_V_Sl_SD_P_U.OrderByLambda = a => a.SplitID;
             pager_V_Sl_SD_P_U.WhereLambda = a => true;
             var set = await pager_V_Sl_SD_P_U.Paging().ConfigureAwait(false);
-            return new Dictionary<string, dynamic>() { { "data", set }, { "total", pager_V_Dl_D_D.PageCount } };
+            return new Dictionary<string, dynamic>() { { "data", set }, { "total", pager_V_Dl_D_D.Count } };
         }
 
         [HttpGet]
@@ -116,7 +116,7 @@ namespace SCM_System.API.Controllers
            pager_V_InOutDepotDetail.OrderByLambda = a => a.IODDID;
             pager_V_InOutDepotDetail.WhereLambda = a => true;
             var set = await pager_V_InOutDepotDetail.Paging().ConfigureAwait(false);
-            return new Dictionary<string, dynamic>() { { "data", set }, { "total", pager_V_InOutDepotDetail.PageCount } };
+            return new Dictionary<string, dynamic>() { { "data", set }, { "total", pager_V_InOutDepotDetail.Count } };
         }
         //[HttpGet]
         //[Route("GetVProducts/{DepotID}")]

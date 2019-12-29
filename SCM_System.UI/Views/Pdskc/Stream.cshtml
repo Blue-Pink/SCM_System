@@ -69,77 +69,84 @@
                 </thead>
                 @*<tbody>
 
-                    <tr>
-                        <td>
-                            DB0001
-                        </td>
-                        <td>
-                            郴州
-                        </td>
-                        <td>
-                            2012-12-20
-                        </td>
-                        <td>
-                            胡杨成
-                        </td>
-                        <td>
-                            500.00
-                        </td>
-                        <td>
-                            新建
-                        </td>
-                        <td align="center">
-                            <a href="#">查看</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            DB0001
-                        </td>
-                        <td>
-                            郴州
-                        </td>
-                        <td>
-                            2012-12-20
-                        </td>
-                        <td>
-                            胡杨成
-                        </td>
-                        <td>
-                            500.00
-                        </td>
-                        <td>
-                            生产入库
-                        </td>
-                        <td align="center">
-                            <a href="#">查看</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            DB0001
-                        </td>
-                        <td>
-                            郴州
-                        </td>
-                        <td>
-                            2012-12-20
-                        </td>
-                        <td>
-                            胡杨成
-                        </td>
-                        <td>
-                            500.00
-                        </td>
-                        <td>
-                            采购入库
-                        </td>
-                        <td align="center">
-                            <a href="#">查看</a>
-                        </td>
-                    </tr>
-                </tbody>*@
-                <tbody></tbody>
+                        <tr>
+                            <td>
+                                DB0001
+                            </td>
+                            <td>
+                                郴州
+                            </td>
+                            <td>
+                                2012-12-20
+                            </td>
+                            <td>
+                                胡杨成
+                            </td>
+                            <td>
+                                500.00
+                            </td>
+                            <td>
+                                新建
+                            </td>
+                            <td align="center">
+                                <a href="#">查看</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                DB0001
+                            </td>
+                            <td>
+                                郴州
+                            </td>
+                            <td>
+                                2012-12-20
+                            </td>
+                            <td>
+                                胡杨成
+                            </td>
+                            <td>
+                                500.00
+                            </td>
+                            <td>
+                                生产入库
+                            </td>
+                            <td align="center">
+                                <a href="#">查看</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                DB0001
+                            </td>
+                            <td>
+                                郴州
+                            </td>
+                            <td>
+                                2012-12-20
+                            </td>
+                            <td>
+                                胡杨成
+                            </td>
+                            <td>
+                                500.00
+                            </td>
+                            <td>
+                                采购入库
+                            </td>
+                            <td align="center">
+                                <a href="#">查看</a>
+                            </td>
+                        </tr>
+                    </tbody>*@
+                <tbody>
+                    <tr v-for="m in data">
+                        <td>{{p.IODDID}}/td>
+                        <td>{{p.DepotName}}/td>
+                        <td></td>
+                        <td>{{p.DepotName}}/td>
+</tr>
+                </tbody>
             </table>
             <div align="center">
                 <nav aria-label="Page navigation">
@@ -168,6 +175,19 @@
 
 <script>
     new Vue({
-
+        el: "#app",
+        data: {
+            data: [],
+            ps: 3,
+            pi: 1,
+            total: 0,
+        },
+        created: function () {
+            this.$http.get("http://localhost:8625/api/pdskc/GetVInOutDepotDetail",
+                { "params": { "ps": this.ps, "pi": this.pi } }).then(result => {
+                    this.data = result.data.data
+                    this.total = result.data.total
+                })
+        }
     })
 </script>
