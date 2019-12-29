@@ -32,6 +32,8 @@ namespace SCM_System.API.Controllers
         public UniversalPager<V_Dl_D_D, dynamic> pager_V_Dl_D_D { get; set; }
         [Inject]
         public UniversalPager<V_Sl_SD_P_U, dynamic> pager_V_Sl_SD_P_U { get; set; }
+         [Inject]
+        public UniversalPager<V_InOutDepotDetail, int> pager_V_InOutDepotDetail { get; set; }
 
 
         /// <summary>
@@ -39,7 +41,7 @@ namespace SCM_System.API.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [Route("GetCDUs")]
+        [Route("GetCDUs")] 
         public async Task<Dictionary<string, dynamic>> GetCDUs()
         {
             return await basicModuel.GetVwCDUs().ConfigureAwait(false);
@@ -101,6 +103,20 @@ namespace SCM_System.API.Controllers
             pager_V_Sl_SD_P_U.WhereLambda = a => true;
             var set = await pager_V_Sl_SD_P_U.Paging().ConfigureAwait(false);
             return new Dictionary<string, dynamic>() { { "data", set }, { "total", pager_V_Dl_D_D.PageCount } };
+        }
+
+        [HttpGet]
+        [Route("GetVInOutDepotDetail")]
+        public async Task<dynamic> GetVInOutDepotDetail(int ps,int pi)
+        {
+            
+           pager_V_InOutDepotDetail.IsAsc = true;
+           pager_V_InOutDepotDetail.PageSize = ps;
+           pager_V_InOutDepotDetail.PageIndex = pi;
+           pager_V_InOutDepotDetail.OrderByLambda = a => a.IODDID;
+            pager_V_InOutDepotDetail.WhereLambda = a => true;
+            var set = await pager_V_InOutDepotDetail.Paging().ConfigureAwait(false);
+            return new Dictionary<string, dynamic>() { { "data", set }, { "total", pager_V_InOutDepotDetail.PageCount } };
         }
         //[HttpGet]
         //[Route("GetVProducts/{DepotID}")]
