@@ -96,7 +96,7 @@ drop view Vw_DPP
 go
 create view Vw_DPP
 as
-select a.ProID,a.ProName,a.ProJP,a.ProTM,b.PCName,c.PUName,d.PSName from Products a join ProductColor b on a.PCID = b.PCID
+select a.ProID,a.ProName,a.ProJP,a.ProTM,b.PCName,c.PUName,d.PSName from Products a join ProductColor b on a.PCID = b.PCID 
 join ProductUnit c on a.PUID = c.PUID
 join ProductSpec d on a.PSID = d.PSID
 go
