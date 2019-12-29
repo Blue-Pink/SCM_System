@@ -32,8 +32,6 @@ namespace SCM_System.API.Controllers
         public UniversalPager<V_Dl_D_D, dynamic> pager_V_Dl_D_D { get; set; }
         [Inject]
         public UniversalPager<V_Sl_SD_P_U, dynamic> pager_V_Sl_SD_P_U { get; set; }
-         [Inject]
-        public UniversalPager<V_InOutDepotDetail, int> pager_V_InOutDepotDetail { get; set; }
 
 
         /// <summary>
@@ -105,10 +103,10 @@ namespace SCM_System.API.Controllers
             return new Dictionary<string, dynamic>() { { "data", set }, { "total", pager_V_Dl_D_D.Count } };
         }
 
-        [HttpGet]
-        [Route("GetVInOutDepotDetail")]
-        public async Task<dynamic> GetVInOutDepotDetail(int ps,int pi)
-        {
+        //[HttpGet]
+        //[Route("GetVInOutDepotDetail")]
+        //public async Task<dynamic> GetVInOutDepotDetail(int ps,int pi)
+        //{
             
            pager_V_InOutDepotDetail.IsAsc = true;
            pager_V_InOutDepotDetail.PageSize = ps;
