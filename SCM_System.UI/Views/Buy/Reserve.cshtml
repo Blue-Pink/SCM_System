@@ -19,8 +19,7 @@
 
     <div class="graph">
         <div class="row">
-            <form class="form-inline">
-
+            <form class="form-inline" action="/Buy/Reserve_Select" method="get">
                 <div class="form-group">
                     <label for="exampleInputName2">编号:</label>
                     <input type="text" class="form-control" id="exampleInputName2" placeholder="请输入">
@@ -42,9 +41,6 @@
                         <option>请选择</option>
                     </select>
                 </div>
-
-
-
                 <button type="submit" class="btn btn-default">查询</button>
             </form>
         </div>
@@ -85,7 +81,7 @@
                         <td>{{m.DSAmount}}</td>
                         <td>{{m.ProInPrice}}</td>
                         <td>{{status(m)}}</td>
-                        <td><a href="#" onclick='$("#div1").load("/buy/ReserveDetail.html")'>查看</a></td>
+                        <td><a href="#" @@click="dian2(m.ProID)">查看</a></td>
                     </tr>
 
                 </tbody>
@@ -143,6 +139,9 @@
                         this.total = d.data.total;
                         console.log(ps + "---" + pi);
                     })
+            },
+            dian2: function (ProID) {
+                $('#div1').load('/buy/ReserveDetail?ProID=' +ProID)
             }
         }
     });

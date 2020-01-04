@@ -15,9 +15,14 @@ namespace SCM_System.API.Controllers
     {
 
         [Inject]
-        public DAL.DAL_BuyModuel<BaseModel> buyModuel { get; set; }
+        public DAL_BuyModuel<BaseModel> buyModuel { get; set; }
         [Inject]
         public UniversalPager<V_DS_P_PT, int> Pager_V_DS_P_PT { get; set; }
+        [Inject]
+        public DAL_UniversalModuel<V_Products> UV_Products { get; set; }
+        [Inject]
+        public DAL_UniversalModuel<V_DS_P_PT> UV_DS_P_PT { get; set; }
+
         #region 表名标注
         //P     -> 商品表(Products)
         //S     -> 采购单(Stocks)
@@ -43,15 +48,29 @@ namespace SCM_System.API.Controllers
         [HttpGet]
         [Route("GetDS_P_Ds")]
         public async Task<dynamic> GetDS_P_Ds(int ps, int pi)
-        { 
+        {
             Pager_V_DS_P_PT.PageSize = ps;
-            Pager_V_DS_P_PT.PageIndex = pi; 
+            Pager_V_DS_P_PT.PageIndex = pi;
             Pager_V_DS_P_PT.IsAsc = true;
             Pager_V_DS_P_PT.WhereLambda = a => true;
             Pager_V_DS_P_PT.OrderByLambda = a => a.DSID;
             var set = await Pager_V_DS_P_PT.Paging().ConfigureAwait(false);
             //var temp = await buyModuel.GetDS_P_D(ps, pi).ConfigureAwait(false);
-            return new Dictionary<string, dynamic>() { { "data",set},{ "total",Pager_V_DS_P_PT.Count} };
+            return new Dictionary<string, dynamic>() { { "data", set }, { "total", Pager_V_DS_P_PT.Count } };
+        }
+
+        [HttpGet]
+        [Route("GetProduct")]
+        public async Task<V_Products> GetProduct(string ProID)
+        {
+            return await UV_Products.Select_Key(ProID).ConfigureAwait(false);
+        }
+
+        [HttpGet]
+        [Route("GetVDSPPT_P")]
+        public async Task<List<V_DS_P_PT>> GetVDSPPT_P(string properties_json)
+        {
+            return await UV_DS_P_PT.Select_Properties(UV_DS_P_PT.JsonToDictionary(properties_json)).ConfigureAwait(false);
         }
 
         public void Options() { }  //这是预请求
