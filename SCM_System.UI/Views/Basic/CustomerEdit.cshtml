@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "CustomerEdit";
 }
-
+    <div id="app">
         <div class="sub-heard-part">
             <ol class="breadcrumb m-b-0">
                 <li><a href="#">基础数据</a></li>
@@ -17,13 +17,13 @@
                         <div class="form-group">
                             <label for="inputEmail3" class="col-sm-2 control-label">商户编号:</label>
                             <div class="col-sm-10">
-                                <label>a5155a</label>
+                                <label>{{Customers.CusID}}</label>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputEmail3" class="col-sm-2 control-label">客户等级:</label>
                             <div class="col-sm-10">
-                                <select class="form-control">
+                                <select class="form-control" v-model="sele">
                                     <option>请选择</option>
                                     <option>请选择</option>
                                 </select>
@@ -34,27 +34,27 @@
                             <label for="inputEmail3" class="col-sm-2 control-label">客户名称:</label>
                             <div class="col-sm-10">
 
-                                <input type="text" class="form-control" id="txtBkName" @*v-model="RowData.BkName" *@ placeholder="客户名称">
+                                <input type="text" class="form-control" id="txtBkName" v-model="Customers.CusName"  placeholder="客户名称">
 
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputEmail3" class="col-sm-2 control-label">公司名称:</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="txtBkName" @*v-model="RowData.BkName" *@ placeholder="公司名称">
+                                <input type="text" class="form-control" id="txtBkName" v-model="Customers.CusCompany"  placeholder="公司名称">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputEmail3" class="col-sm-2 control-label">联系人:</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="txtBkName" @*v-model="RowData.BkName" *@ placeholder="联系人">
+                                <input type="text" class="form-control" id="txtBkName" v-model="Customers.CusMan"  placeholder="联系人">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="inputEmail3" class="col-sm-2 control-label">备注:</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="txtBkName" @*v-model="RowData.BkName" *@ placeholder="备注">
+                                <input type="text" class="form-control" id="txtBkName" v-model="Customers.CusDesc"  placeholder="备注">
                             </div>
                         </div>
 
@@ -68,5 +68,28 @@
             </div>
 
         </div>
+    </div>
 
+<script>
+    id = window.location.href.split("id")[1];
+    idd = id.split("=")[1];
+    //alert(idd);
 
+    var app = new Vue({
+        el: "#app",
+        data: {
+            Customers: {},
+            sele: {},
+        },
+        created: function () {
+            this.$http.get("http://localhost:8625/api/Basic/SeleKeyuniversalModuelCustomers/" + idd + "")
+                .then(d => {
+                    this.Customers = d.data;
+                    console.log(d.data)
+                })
+        },
+        methods: {
+            
+        }
+    })
+</script>

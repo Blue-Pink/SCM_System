@@ -3,6 +3,7 @@ using SCM_System.DAL;
 using SCM_System.Model;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -13,16 +14,16 @@ namespace SCM_System.API.Controllers
 {
     [RoutePrefix("api/Basic")]
     public class BasicController : ApiController
-    { 
-        //[Inject]
-        ////通用模块
-        ////商品分类表 
-        //public DAL_UniversalModuel<ProductTypes> universalModuelProductTypes { get; set; }
+    {
+        [Inject]
+        //通用模块
+        //客户资料
+        public DAL_UniversalModuel<Customers> universalModuelCustomers { get; set; }
 
-        //[Inject]
+        [Inject]
         ////通用模块
-        ////仓库设置表
-        //public DAL_UniversalModuel<Depots> universalModuelDepots { get; set; }  
+        ////客户等级
+        public DAL_UniversalModuel<CustomerLevel> universalModuelCustomerLevel { get; set; }
 
         //[Inject]
         ////通用模块
@@ -49,7 +50,7 @@ namespace SCM_System.API.Controllers
         //public DAL_BasicModuel<CheckDepot> basicModuel { get; set; }
 
 
-            //分页后
+        //分页后
         [Inject]
         ////通用模块
         ////客户资料资料表
@@ -81,18 +82,31 @@ namespace SCM_System.API.Controllers
         ////商品分类表 
         public UniversalPager<ProductTypes, int> pager_ProductTypes { get; set; }
 
-        //[HttpGet]
-        //[Route("GetVCDCDDP")]
-        //public async Task<dynamic> GetVCDCDDP(int ps, int pi)
-        //{
-        //    pager_V_CD_CDD_P_D_U.IsAsc = true;
-        //    pager_V_CD_CDD_P_D_U.PageSize = ps;
-        //    pager_V_CD_CDD_P_D_U.PageIndex = pi;
-        //    pager_V_CD_CDD_P_D_U.WhereLambda = a => true;
-        //    pager_V_CD_CDD_P_D_U.OrderByLambda = a => a.CDID;
-        //    var set = await pager_V_CD_CDD_P_D_U.Paging().ConfigureAwait(false);
-        //    return new Dictionary<string, dynamic>() { { "data", set }, { "total", pager_V_CD_CDD_P_D_U.PageCount } };
-        //}
+
+        [Inject]
+        public SCMEntities db { get; set; }
+
+
+        [HttpGet]
+        [Route("DeluniversalModuelCustomers/{id}")]
+        public async Task<int> DeluniversalModuelCustomers(string id)
+        {
+            return await universalModuelCustomers.Delete_Key(id);
+        }
+
+        [HttpGet]
+        [Route("GetuniversalModuelCustomerLevel")]
+        public async Task<List<CustomerLevel>> GetuniversalModuelCustomerLevel()
+        {
+            return await db.CustomerLevel.ToListAsync();
+        }
+        //修改客户资料ID查询
+        [HttpGet]
+        [Route("SeleKeyuniversalModuelCustomers/{id}")]
+        public async Task<Customers> SeleKeyuniversalModuelCustomers(string id)
+        {
+            return await universalModuelCustomers.Select_Key(id);
+        }
 
         [Route("GetProductTypes")]
         public async Task<dynamic> GetProductTypes(int ps, int pi) {
