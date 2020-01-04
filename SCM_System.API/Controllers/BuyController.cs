@@ -21,7 +21,7 @@ namespace SCM_System.API.Controllers
         [Inject]
         public DAL_UniversalModuel<V_Products> UV_Products { get; set; }
         [Inject]
-        public DAL_UniversalModuel<V_DS_P_PT> UV_DS_P_PT { get; set; }
+        public DAL_UniversalModuel<V_DS_D> UV_DS_D { get; set; }
 
         #region 表名标注
         //P     -> 商品表(Products)
@@ -67,10 +67,10 @@ namespace SCM_System.API.Controllers
         }
 
         [HttpGet]
-        [Route("GetVDSPPT_P")]
-        public async Task<List<V_DS_P_PT>> GetVDSPPT_P(string properties_json)
+        [Route("GetVDSD_P")]
+        public async Task<List<V_DS_D>> GetVDSD_P(string properties_json)
         {
-            return await UV_DS_P_PT.Select_Properties(UV_DS_P_PT.JsonToDictionary(properties_json)).ConfigureAwait(false);
+            return await UV_DS_D.Select_Properties(UV_DS_D.JsonToDictionary(properties_json)).ConfigureAwait(false);
         }
 
         public void Options() { }  //这是预请求

@@ -164,26 +164,11 @@
                     </thead>
                     <tbody>
 
-                        <tr>
-                            <td scope="col">
-                                <div align="center">
-                                    002
-                                </div>
-                            </td>
-                            <td scope="col">
-                                <div align="center">郴州</div>
-                            </td>
-
-
-
-                            <td scope="col">
-                                <div align="center">20(件)</div>
-                            </td>
-                            <td scope="col">
-                                <div style="margin-right: 20px">
-                                    1000.00
-                                </div>
-                            </td>
+                        <tr v-for="m in Depots">
+                            <td>{{m.DSID}}</td>
+                            <td>{{m.DepotName}}</td>
+                            <td>{{m.DSAmount}}</td>
+                            <td>{{m.amount}}</td>
                         </tr>
 
                     </tbody>
@@ -223,14 +208,16 @@
         var app = new Vue({
             el: "#app",
             data: {
-                data: [],
                 Product: {},
-                ProID:"@ViewBag.ProID",
+                ProID: "@ViewBag.ProID",
+                Depots: {},
             },
             created: function () {
                 this.$http.get("http://localhost:8625/api/buy/GetProduct", { params: { "ProID": this.ProID } }).then(result => {
                     this.Product = result.data
-                    console.log(this.Product)
+                })
+                this.$http.get("http://localhost:8625/api/buy/GetVDSPPT_P", { params: { "properties_json": "{'ProID':'" + this.ProID + "'}" } }).then(result => {
+                    this.Depots = result.data
                 })
             }
         })

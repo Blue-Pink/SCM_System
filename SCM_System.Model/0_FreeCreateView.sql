@@ -19,8 +19,7 @@ go
 create view V_DS_P_PT
 as 
 select ds_p.*,
-pt.PTName,
-'Amount'=ds_p.DSAmount*ds_p.DSPrice from (select ds.DSID,
+pt.PTName from (select ds.DSID,
 DSAmount,
 DSPrice,
 p.* from DepotStock ds left join 
@@ -122,4 +121,16 @@ u.UsersName from (select dl_d.*,
 Depots d on dl.DevInID=d.DepotID) dl_d left join 
 Depots d on dl_d.DevInID=d.DepotID) dl_d_d  left join 
 Users u on dl_d_d.UserID=u.UsersID
+go
+
+
+if(exists(select * from sysobjects where name='V_DS_D'))
+drop view V_DS_D
+go
+create view V_DS_D
+as
+select ds.*,
+d.DepotName,
+amount=ds.DSAmount*DSPrice from DepotStock ds left join 
+Depots d on ds.DepotID=d.DepotID
 go

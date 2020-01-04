@@ -33,6 +33,5 @@ namespace SCM_System.Model
         public string ProDesc { get; set; }
         public string DepotID { get; set; }
         public string PTName { get; set; }
-        public Nullable<decimal> Amount { get; set; }
     }
 }

@@ -630,6 +630,20 @@
           <Property Name="UsersName" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <!--生成过程中发现错误:
+警告 6002: 表/视图“SCM.dbo.V_DS_D”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="V_DS_D">
+          <Key>
+            <PropertyRef Name="DSID" />
+          </Key>
+          <Property Name="DSID" Type="int" Nullable="false" />
+          <Property Name="DepotID" Type="char" MaxLength="6" />
+          <Property Name="ProID" Type="varchar" MaxLength="50" />
+          <Property Name="DSAmount" Type="int" />
+          <Property Name="DSPrice" Type="numeric" Precision="10" Scale="2" />
+          <Property Name="DepotName" Type="nvarchar" MaxLength="100" />
+          <Property Name="amount" Type="numeric" Precision="21" Scale="2" />
+        </EntityType>
+        <!--生成过程中发现错误:
 警告 6002: 表/视图“SCM.dbo.V_DS_P_PT”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
         <EntityType Name="V_DS_P_PT">
           <Key>
@@ -654,7 +668,6 @@
           <Property Name="ProDesc" Type="nvarchar" MaxLength="2000" />
           <Property Name="DepotID" Type="char" MaxLength="6" />
           <Property Name="PTName" Type="nvarchar" MaxLength="100" />
-          <Property Name="Amount" Type="numeric" Precision="21" Scale="2" />
         </EntityType>
         <!--生成过程中发现错误:
 警告 6002: 表/视图“SCM.dbo.V_InDepot”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
@@ -946,6 +959,17 @@
     [V_Dl_D_D_U].[UsersName] AS [UsersName]
     FROM [dbo].[V_Dl_D_D_U] AS [V_Dl_D_D_U]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="V_DS_D" EntityType="Self.V_DS_D" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [V_DS_D].[DSID] AS [DSID], 
+    [V_DS_D].[DepotID] AS [DepotID], 
+    [V_DS_D].[ProID] AS [ProID], 
+    [V_DS_D].[DSAmount] AS [DSAmount], 
+    [V_DS_D].[DSPrice] AS [DSPrice], 
+    [V_DS_D].[DepotName] AS [DepotName], 
+    [V_DS_D].[amount] AS [amount]
+    FROM [dbo].[V_DS_D] AS [V_DS_D]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="V_DS_P_PT" EntityType="Self.V_DS_P_PT" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [V_DS_P_PT].[DSID] AS [DSID], 
@@ -966,8 +990,7 @@
     [V_DS_P_PT].[ProPrice] AS [ProPrice], 
     [V_DS_P_PT].[ProDesc] AS [ProDesc], 
     [V_DS_P_PT].[DepotID] AS [DepotID], 
-    [V_DS_P_PT].[PTName] AS [PTName], 
-    [V_DS_P_PT].[Amount] AS [Amount]
+    [V_DS_P_PT].[PTName] AS [PTName]
     FROM [dbo].[V_DS_P_PT] AS [V_DS_P_PT]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="V_InDepot" EntityType="Self.V_InDepot" store:Type="Views" store:Schema="dbo">
@@ -1205,16 +1228,15 @@
           <EntitySet Name="V_CD_CDD_P_D_U" EntityType="SCMModel.V_CD_CDD_P_D_U" />
           <EntitySet Name="V_Dl_D_D" EntityType="SCMModel.V_Dl_D_D" />
           <EntitySet Name="V_Dl_D_D_U" EntityType="SCMModel.V_Dl_D_D_U" />
-          <EntitySet Name="V_DS_P_PT" EntityType="SCMModel.V_DS_P_PT" />
           <EntitySet Name="V_InDepot" EntityType="SCMModel.V_InDepot" />
           <EntitySet Name="V_InOutDepotDetail" EntityType="SCMModel.V_InOutDepotDetail" />
           <EntitySet Name="V_OutDepot" EntityType="SCMModel.V_OutDepot" />
           <EntitySet Name="V_Products" EntityType="SCMModel.V_Products" />
           <EntitySet Name="V_Sl_SD_P_U" EntityType="SCMModel.V_Sl_SD_P_U" />
-          <EntitySet Name="Vw_CDU" EntityType="SCMModel.Vw_CDU" />
           <EntitySet Name="Vw_CL" EntityType="SCMModel.Vw_CL" />
           <EntitySet Name="Vw_DPP" EntityType="SCMModel.Vw_DPP" />
-          <EntitySet Name="Vw_ptc" EntityType="SCMModel.Vw_ptc" />
+          <EntitySet Name="V_DS_D" EntityType="SCMModel.V_DS_D" />
+          <EntitySet Name="V_DS_P_PT" EntityType="SCMModel.V_DS_P_PT" />
           </EntityContainer>
         <EntityType Name="CheckDepot">
           <Key>
@@ -1834,31 +1856,6 @@
           <Property Name="InDepot" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="UsersName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="V_DS_P_PT">
-          <Key>
-            <PropertyRef Name="DSID" />
-          </Key>
-          <Property Name="DSID" Type="Int32" Nullable="false" />
-          <Property Name="DSAmount" Type="Int32" />
-          <Property Name="DSPrice" Type="Decimal" Precision="10" Scale="2" />
-          <Property Name="ProID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="PTID" Type="Int32" />
-          <Property Name="PUID" Type="Int32" />
-          <Property Name="PCID" Type="Int32" />
-          <Property Name="PSID" Type="Int32" />
-          <Property Name="ProName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="ProJP" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="ProTM" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="ProWorkShop" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="ProMax" Type="Int32" />
-          <Property Name="ProMin" Type="Int32" />
-          <Property Name="ProInPrice" Type="Decimal" Precision="10" Scale="2" />
-          <Property Name="ProPrice" Type="Decimal" Precision="10" Scale="2" />
-          <Property Name="ProDesc" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
-          <Property Name="DepotID" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
-          <Property Name="PTName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Amount" Type="Decimal" Precision="21" Scale="2" />
-        </EntityType>
         <EntityType Name="V_InDepot">
           <Key>
             <PropertyRef Name="IODID" />
@@ -1961,19 +1958,6 @@
           <Property Name="ProName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="UsersName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="Vw_CDU">
-          <Key>
-            <PropertyRef Name="CDID" />
-          </Key>
-          <Property Name="CDID" Type="String" Nullable="false" MaxLength="14" FixedLength="true" Unicode="false" />
-          <Property Name="DepotID" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
-          <Property Name="CDDate" Type="DateTime" Precision="3" />
-          <Property Name="UserID" Type="Int32" />
-          <Property Name="CDDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <Property Name="CDState" Type="Int32" />
-          <Property Name="DepotName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="UsersName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="Vw_CL">
           <Key>
             <PropertyRef Name="CusID" />
@@ -1999,11 +1983,26 @@
           <Property Name="PUName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="PSName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="Vw_ptc">
+        <EntityType Name="V_DS_D">
           <Key>
-            <PropertyRef Name="ProID" />
+            <PropertyRef Name="DSID" />
           </Key>
-          <Property Name="ProID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DSID" Type="Int32" Nullable="false" />
+          <Property Name="DepotID" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="ProID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DSAmount" Type="Int32" />
+          <Property Name="DSPrice" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="DepotName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="amount" Type="Decimal" Precision="21" Scale="2" />
+        </EntityType>
+        <EntityType Name="V_DS_P_PT">
+          <Key>
+            <PropertyRef Name="DSID" />
+          </Key>
+          <Property Name="DSID" Type="Int32" Nullable="false" />
+          <Property Name="DSAmount" Type="Int32" />
+          <Property Name="DSPrice" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="ProID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="PTID" Type="Int32" />
           <Property Name="PUID" Type="Int32" />
           <Property Name="PCID" Type="Int32" />
@@ -2019,7 +2018,6 @@
           <Property Name="ProDesc" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
           <Property Name="DepotID" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
           <Property Name="PTName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="PCName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -2715,32 +2713,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="V_DS_P_PT">
-            <EntityTypeMapping TypeName="SCMModel.V_DS_P_PT">
-              <MappingFragment StoreEntitySet="V_DS_P_PT">
-                <ScalarProperty Name="Amount" ColumnName="Amount" />
-                <ScalarProperty Name="PTName" ColumnName="PTName" />
-                <ScalarProperty Name="DepotID" ColumnName="DepotID" />
-                <ScalarProperty Name="ProDesc" ColumnName="ProDesc" />
-                <ScalarProperty Name="ProPrice" ColumnName="ProPrice" />
-                <ScalarProperty Name="ProInPrice" ColumnName="ProInPrice" />
-                <ScalarProperty Name="ProMin" ColumnName="ProMin" />
-                <ScalarProperty Name="ProMax" ColumnName="ProMax" />
-                <ScalarProperty Name="ProWorkShop" ColumnName="ProWorkShop" />
-                <ScalarProperty Name="ProTM" ColumnName="ProTM" />
-                <ScalarProperty Name="ProJP" ColumnName="ProJP" />
-                <ScalarProperty Name="ProName" ColumnName="ProName" />
-                <ScalarProperty Name="PSID" ColumnName="PSID" />
-                <ScalarProperty Name="PCID" ColumnName="PCID" />
-                <ScalarProperty Name="PUID" ColumnName="PUID" />
-                <ScalarProperty Name="PTID" ColumnName="PTID" />
-                <ScalarProperty Name="ProID" ColumnName="ProID" />
-                <ScalarProperty Name="DSPrice" ColumnName="DSPrice" />
-                <ScalarProperty Name="DSAmount" ColumnName="DSAmount" />
-                <ScalarProperty Name="DSID" ColumnName="DSID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="V_InDepot">
             <EntityTypeMapping TypeName="SCMModel.V_InDepot">
               <MappingFragment StoreEntitySet="V_InDepot">
@@ -2870,6 +2842,44 @@
                 <ScalarProperty Name="ProJP" ColumnName="ProJP" />
                 <ScalarProperty Name="ProName" ColumnName="ProName" />
                 <ScalarProperty Name="ProID" ColumnName="ProID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="V_DS_D">
+            <EntityTypeMapping TypeName="SCMModel.V_DS_D">
+              <MappingFragment StoreEntitySet="V_DS_D">
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="DepotName" ColumnName="DepotName" />
+                <ScalarProperty Name="DSPrice" ColumnName="DSPrice" />
+                <ScalarProperty Name="DSAmount" ColumnName="DSAmount" />
+                <ScalarProperty Name="ProID" ColumnName="ProID" />
+                <ScalarProperty Name="DepotID" ColumnName="DepotID" />
+                <ScalarProperty Name="DSID" ColumnName="DSID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="V_DS_P_PT">
+            <EntityTypeMapping TypeName="SCMModel.V_DS_P_PT">
+              <MappingFragment StoreEntitySet="V_DS_P_PT">
+                <ScalarProperty Name="PTName" ColumnName="PTName" />
+                <ScalarProperty Name="DepotID" ColumnName="DepotID" />
+                <ScalarProperty Name="ProDesc" ColumnName="ProDesc" />
+                <ScalarProperty Name="ProPrice" ColumnName="ProPrice" />
+                <ScalarProperty Name="ProInPrice" ColumnName="ProInPrice" />
+                <ScalarProperty Name="ProMin" ColumnName="ProMin" />
+                <ScalarProperty Name="ProMax" ColumnName="ProMax" />
+                <ScalarProperty Name="ProWorkShop" ColumnName="ProWorkShop" />
+                <ScalarProperty Name="ProTM" ColumnName="ProTM" />
+                <ScalarProperty Name="ProJP" ColumnName="ProJP" />
+                <ScalarProperty Name="ProName" ColumnName="ProName" />
+                <ScalarProperty Name="PSID" ColumnName="PSID" />
+                <ScalarProperty Name="PCID" ColumnName="PCID" />
+                <ScalarProperty Name="PUID" ColumnName="PUID" />
+                <ScalarProperty Name="PTID" ColumnName="PTID" />
+                <ScalarProperty Name="ProID" ColumnName="ProID" />
+                <ScalarProperty Name="DSPrice" ColumnName="DSPrice" />
+                <ScalarProperty Name="DSAmount" ColumnName="DSAmount" />
+                <ScalarProperty Name="DSID" ColumnName="DSID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
