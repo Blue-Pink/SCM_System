@@ -19,7 +19,8 @@ go
 create view V_DS_P_PT
 as 
 select ds_p.*,
-pt.PTName from (select ds.DSID,
+pt.PTName,
+'Amount'=ds_p.DSAmount*ds_p.DSPrice from (select ds.DSID,
 DSAmount,
 DSPrice,
 p.* from DepotStock ds left join 

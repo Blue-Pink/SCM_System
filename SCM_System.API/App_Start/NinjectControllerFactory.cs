@@ -45,8 +45,8 @@ namespace SCM_System.API.App_Start
         {
             //绑定接口和实现类
             //_kernel.Bind<接口>().To<实例类>();
-            _kernel.Bind<IDAL.IDAL_UniversalModuel<Model.BaseModel>>().To<DAL.DAL_UniversalModuel<Model.BaseModel>>();
-            _kernel.Bind<IDAL.IUniversalPager<Model.BaseModel,dynamic>>().To<DAL.UniversalPager<Model.BaseModel,dynamic>>();
+            _kernel.Bind<IDAL.IDAL_UniversalModuel<dynamic>>().To<DAL.DAL_UniversalModuel<dynamic>>();
+            _kernel.Bind<IDAL.IUniversalPager<dynamic, dynamic>>().To<DAL.UniversalPager<dynamic, dynamic>>();
 
             //InRequestScope 需要命名空间 Ninject.Web.Common，更需要程序集 Ninject.Web.Common
             //_kernel.Bind<Model1>().ToSelf().InRequestScope(); 

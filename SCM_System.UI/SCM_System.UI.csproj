@@ -242,7 +242,7 @@
     <Content Include="images\timer.png" />
     <Content Include="images\tw.png" />
     <Content Include="images\watch.png" />
-    <Content Include="index.html" />
+    <Content Include="static-html\index.html" />
     <Content Include="js\amcharts.js" />
     <Content Include="js\arbor.js" />
     <Content Include="js\atlas.js" />
@@ -392,8 +392,8 @@
     <Content Include="layui\lay\modules\tree.js" />
     <Content Include="layui\lay\modules\upload.js" />
     <Content Include="layui\lay\modules\util.js" />
-    <Content Include="login.html" />
-    <Content Include="main.html" />
+    <Content Include="static-html\login.html" />
+    <Content Include="static-html\main.html" />
     <Content Include="static-html\pdskc\Assemble.html" />
     <Content Include="static-html\pdskc\AssembleAdd.html" />
     <Content Include="static-html\pdskc\AssembleEdit.html" />

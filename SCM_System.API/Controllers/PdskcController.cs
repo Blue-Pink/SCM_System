@@ -32,13 +32,15 @@ namespace SCM_System.API.Controllers
         public UniversalPager<V_Dl_D_D, dynamic> pager_V_Dl_D_D { get; set; }
         [Inject]
         public UniversalPager<V_Sl_SD_P_U, dynamic> pager_V_Sl_SD_P_U { get; set; }
+        [Inject]
+        public UniversalPager<V_Dl_D_D_U, dynamic> pager_V_Dl_D_D_U { get; set; }
 
         /// <summary>
         /// 查询当前所有库存
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [Route("GetCDUs")] 
+        [Route("GetCDUs")]
         public async Task<Dictionary<string, dynamic>> GetCDUs()
         {
             return await basicModuel.GetVwCDUs().ConfigureAwait(false);
@@ -66,7 +68,7 @@ namespace SCM_System.API.Controllers
 
         [HttpGet]
         [Route("GetVCDCDDP")]
-        public async Task<dynamic> GetVCDCDDP(int ps,int pi)
+        public async Task<dynamic> GetVCDCDDP(int ps, int pi)
         {
             pager_V_CD_CDD_P_D_U.IsAsc = true;
             pager_V_CD_CDD_P_D_U.PageSize = ps;
@@ -74,11 +76,11 @@ namespace SCM_System.API.Controllers
             pager_V_CD_CDD_P_D_U.WhereLambda = a => true;
             pager_V_CD_CDD_P_D_U.OrderByLambda = a => a.CDID;
             var set = await pager_V_CD_CDD_P_D_U.Paging().ConfigureAwait(false);
-            return new Dictionary<string, dynamic>() { { "data",set},{ "total", pager_V_CD_CDD_P_D_U.Count} };
+            return new Dictionary<string, dynamic>() { { "data", set }, { "total", pager_V_CD_CDD_P_D_U.Count } };
         }
         [HttpGet]
         [Route("GetVDlD")]
-        public async Task<dynamic> GetVDlD(int ps,int pi)
+        public async Task<dynamic> GetVDlD(int ps, int pi)
         {
             pager_V_Dl_D_D.IsAsc = true;
             pager_V_Dl_D_D.PageSize = ps;
@@ -91,17 +93,29 @@ namespace SCM_System.API.Controllers
 
         [HttpGet]
         [Route("GetVSSDPU")]
-        public async Task<dynamic> GetVSSDPU(int ps,int pi)  
+        public async Task<dynamic> GetVSSDPU(int ps, int pi)
         {
             pager_V_Sl_SD_P_U.IsAsc = true;
             pager_V_Sl_SD_P_U.PageSize = ps;
-            pager_V_Sl_SD_P_U.PageIndex = pi;   
+            pager_V_Sl_SD_P_U.PageIndex = pi;
             pager_V_Sl_SD_P_U.OrderByLambda = a => a.SplitID;
             pager_V_Sl_SD_P_U.WhereLambda = a => true;
             var set = await pager_V_Sl_SD_P_U.Paging().ConfigureAwait(false);
             return new Dictionary<string, dynamic>() { { "data", set }, { "total", pager_V_Dl_D_D.Count } };
         }
 
+        [HttpGet]
+        [Route("GetVDlDDU")]
+        public async Task<dynamic> GetVDlDDU(int ps, int pi)
+        {
+            pager_V_Dl_D_D_U.IsAsc = true;
+            pager_V_Dl_D_D_U.PageSize = ps;
+            pager_V_Dl_D_D_U.PageIndex = pi;
+            pager_V_Dl_D_D_U.OrderByLambda = a => a.DevID;
+            pager_V_Dl_D_D_U.WhereLambda = a => true;
+            var set = await pager_V_Dl_D_D_U.Paging().ConfigureAwait(false);
+            return new Dictionary<string, dynamic>() { { "data", set }, { "total", pager_V_Dl_D_D_U.Count } };
+        }
         public void Options() { }  //这是预请求
     }
 }

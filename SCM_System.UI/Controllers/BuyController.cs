@@ -57,8 +57,9 @@ namespace SCM_System.UI.Controllers
             return View();
         }
 
-        public ActionResult ReserveDetail()
+        public ActionResult ReserveDetail(dynamic ProID)
         {
+            ViewBag.ProID = ProID[0];
             return View();
         }
 
