@@ -13,7 +13,7 @@ namespace SCM_System.API.Controllers
 {
     [RoutePrefix("api/Basic")]
     public class BasicController : ApiController
-    {
+    { 
         //[Inject]
         ////通用模块
         ////商品分类表 
