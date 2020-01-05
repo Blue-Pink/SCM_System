@@ -7,7 +7,7 @@
 
     <div class="sub-heard-part">
         <ol class="breadcrumb m-b-0">
-            <li><a href="#" onclick='$("#div1").load("/buy/Index")'>入库管理</a></li>
+            <li><a href="#" onclick='$("#div1").load("/pdskc/Index")'>入库管理</a></li>
             <li><a href="#" onclick='$("#div1").load("/buy/Reserve")'>当前库存</a></li>
             <li><a href="#">库存详细信息</a></li>
 
@@ -184,7 +184,7 @@
 
                                         <div class="input-group">
                                             <div class="input-group-addon">合计￥</div>
-                                            <input type="text" class="form-control" id="exampleInputAmount" placeholder="Amount" readonly="readonly" style="background-color:#ffffff">
+                                            <input type="text" :value="Amount" class="form-control" id="exampleInputAmount" placeholder="Amount" readonly="readonly" style="background-color:#ffffff">
                                             <div class="input-group-addon">元</div>
                                         </div>
                                     </div>
@@ -211,13 +211,20 @@
                 Product: {},
                 ProID: "@ViewBag.ProID",
                 Depots: {},
+                Amount: 0,
             },
             created: function () {
                 this.$http.get("http://localhost:8625/api/buy/GetProduct", { params: { "ProID": this.ProID } }).then(result => {
                     this.Product = result.data
                 })
-                this.$http.get("http://localhost:8625/api/buy/GetVDSPPT_P", { params: { "properties_json": "{'ProID':'" + this.ProID + "'}" } }).then(result => {
+                var temp = 0;
+                this.$http.get("http://localhost:8625/api/buy/GetVDSD_P", { params: { "properties_json": "{'ProID':'" + this.ProID + "'}" } }).then(result => {
                     this.Depots = result.data
+                    $.each(this.Depots, function (key, value) {
+                        //this.Amount = this.Amount+value.amount
+                        temp = temp + value.amount
+                    })
+                    this.Amount = temp;
                 })
             }
         })

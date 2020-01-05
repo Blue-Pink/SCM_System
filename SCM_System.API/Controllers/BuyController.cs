@@ -55,7 +55,6 @@ namespace SCM_System.API.Controllers
             Pager_V_DS_P_PT.WhereLambda = a => true;
             Pager_V_DS_P_PT.OrderByLambda = a => a.DSID;
             var set = await Pager_V_DS_P_PT.Paging().ConfigureAwait(false);
-            //var temp = await buyModuel.GetDS_P_D(ps, pi).ConfigureAwait(false);
             return new Dictionary<string, dynamic>() { { "data", set }, { "total", Pager_V_DS_P_PT.Count } };
         }
 
@@ -73,6 +72,18 @@ namespace SCM_System.API.Controllers
             return await UV_DS_D.Select_Properties(UV_DS_D.JsonToDictionary(properties_json)).ConfigureAwait(false);
         }
 
+        [HttpGet]
+        [Route("GetDSPDs_P")]
+        public async Task<dynamic> GetDSPDs_P(int ps,int pi,int ? DSID, string Status,string Depot)
+        {
+            Pager_V_DS_P_PT.PageSize = ps;
+            Pager_V_DS_P_PT.PageIndex = pi;
+            Pager_V_DS_P_PT.IsAsc = true;
+            Pager_V_DS_P_PT.WhereLambda = a => (DSID != null?a.DSID == DSID : true);
+            Pager_V_DS_P_PT.OrderByLambda = a => a.DSID;
+            var set = await Pager_V_DS_P_PT.Paging().ConfigureAwait(false);
+            return new Dictionary<string, dynamic>() { { "data", set }, { "total", Pager_V_DS_P_PT.Count } };
+        }
         public void Options() { }  //这是预请求
     }
 }

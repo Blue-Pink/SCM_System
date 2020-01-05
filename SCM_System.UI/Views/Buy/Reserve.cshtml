@@ -19,20 +19,22 @@
 
     <div class="graph">
         <div class="row">
-            <form class="form-inline" action="/Buy/Reserve_Select" method="get">
+            <form class="form-inline">
                 <div class="form-group">
                     <label for="exampleInputName2">编号:</label>
-                    <input type="text" class="form-control" id="exampleInputName2" placeholder="请输入">
+                    <input v-model="DSID" type="text" class="form-control" id="exampleInputName2" placeholder="请输入">
                 </div>
-
-                <div class="form-group">
+                @*<div class="form-group">
                     <label for="exampleInputEmail2">创建人:</label>
                     <input type="email" class="form-control" id="exampleInputEmail2" placeholder="请输入">
-                </div>
+                </div>*@
                 <div class="form-group">
                     <label for="exampleInputEmail2">状态:</label>
-                    <select class="form-control">
+                    <select v-model="Status" class="form-control">
                         <option>请选择</option>
+                        <option>正常</option>
+                        <option>爆库</option>
+                        <option>缺货</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -41,7 +43,7 @@
                         <option>请选择</option>
                     </select>
                 </div>
-                <button type="submit" class="btn btn-default">查询</button>
+                <button type="submit" class="btn btn-default" @@click="select()">查询</button>
             </form>
         </div>
         <div class="tables row">
@@ -119,7 +121,10 @@
             data: [],
             total: 0,
             ps: 3,
-            pi: 1
+            pi: 1,
+            DSID: '',
+            Status: [],
+            Depot:'',
         },
         created: function () {
             this.$http.get("http://localhost:8625/api/buy/GetDS_P_Ds", { "params": { "ps": this.ps, "pi": this.pi } },
@@ -137,11 +142,15 @@
                     .then(d => {
                         this.data = d.data.data;
                         this.total = d.data.total;
-                        console.log(ps + "---" + pi);
                     })
             },
             dian2: function (ProID) {
                 $('#div1').load('/buy/ReserveDetail?ProID=' +ProID)
+            },
+            select: function () {
+                $.http.get("").then(result => {
+                    this.data = result.data.data;
+                })
             }
         }
     });
