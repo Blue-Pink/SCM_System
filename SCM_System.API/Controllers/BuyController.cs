@@ -34,10 +34,7 @@ namespace SCM_System.API.Controllers
         #endregion
         [HttpGet]
         [Route("GetS_PL_Us")]
-        public async Task<dynamic> GetS_PL_Us()
-        {
-            return await buyModuel.GetS_PL_Us().ConfigureAwait(false);
-        }
+        public async Task<dynamic> GetS_PL_Us() => await buyModuel.GetS_PL_Us().ConfigureAwait(false);
 
         /// <summary>
         /// 获取库存详细信息
@@ -60,30 +57,36 @@ namespace SCM_System.API.Controllers
 
         [HttpGet]
         [Route("GetProduct")]
-        public async Task<V_Products> GetProduct(string ProID)
-        {
-            return await UV_Products.Select_Key(ProID).ConfigureAwait(false);
-        }
+        public async Task<V_Products> GetProduct(string ProID) => await UV_Products.Select_Key(ProID).ConfigureAwait(false);
 
         [HttpGet]
         [Route("GetVDSD_P")]
-        public async Task<List<V_DS_D>> GetVDSD_P(string properties_json)
-        {
-            return await UV_DS_D.Select_Properties(UV_DS_D.JsonToDictionary(properties_json)).ConfigureAwait(false);
-        }
+        public async Task<List<V_DS_D>> GetVDSD_P(string properties_json) => await UV_DS_D.Select_Properties(UV_DS_D.JsonToDictionary(properties_json)).ConfigureAwait(false);
 
         [HttpGet]
         [Route("GetDSPDs_P")]
-        public async Task<dynamic> GetDSPDs_P(int ps,int pi,int ? DSID, string Status,string Depot)
+        public async Task<dynamic> GetDSPDs_P(int ps, int pi, int? DSID, int Status, string Depot)
         {
             Pager_V_DS_P_PT.PageSize = ps;
             Pager_V_DS_P_PT.PageIndex = pi;
             Pager_V_DS_P_PT.IsAsc = true;
-            Pager_V_DS_P_PT.WhereLambda = a => (DSID != null?a.DSID == DSID : true);
+            Pager_V_DS_P_PT.WhereLambda = a =>
+            (DSID != null ? a.DSID == DSID : true) &&
+            (Depot != "-1" ? a.DepotID == Depot : true) &&
+            (Status != -1 ?
+            (Status == 1 ?
+            a.DSAmount >= a.ProMax :
+            Status == 2 ?
+            a.DSAmount <= a.ProMin :
+            Status == 0 ?
+            a.DSAmount < a.ProMax && a.DSAmount > a.ProMin :
+            true) :
+            true);
             Pager_V_DS_P_PT.OrderByLambda = a => a.DSID;
             var set = await Pager_V_DS_P_PT.Paging().ConfigureAwait(false);
             return new Dictionary<string, dynamic>() { { "data", set }, { "total", Pager_V_DS_P_PT.Count } };
         }
+
         public void Options() { }  //这是预请求
     }
 }

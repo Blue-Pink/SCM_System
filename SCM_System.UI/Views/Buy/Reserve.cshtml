@@ -9,7 +9,7 @@
 <div id="app">
     <div class="sub-heard-part">
         <ol class="breadcrumb m-b-0">
-            <li><a href="index" onclick='$("#div1").load("/buy/Index.html")'>入库管理</a></li>
+            <li><a href="#" onclick='$("#div1").load("/pdskc/Index")'>入库管理</a></li>
             <li><a href="#">库存商品信息</a></li>
             <!--<a class="btn green two" href="#" onclick='$("#div1").load("/buy/StocksAdd.html")' style="float: right;font-size:10px">新增订单</a>-->
 
@@ -25,22 +25,23 @@
                     <input v-model="DSID" type="text" class="form-control" id="exampleInputName2" placeholder="请输入">
                 </div>
                 @*<div class="form-group">
-                    <label for="exampleInputEmail2">创建人:</label>
-                    <input type="email" class="form-control" id="exampleInputEmail2" placeholder="请输入">
-                </div>*@
+                        <label for="exampleInputEmail2">创建人:</label>
+                        <input type="email" class="form-control" id="exampleInputEmail2" placeholder="请输入">
+                    </div>*@
                 <div class="form-group">
                     <label for="exampleInputEmail2">状态:</label>
                     <select v-model="Status" class="form-control">
-                        <option>请选择</option>
-                        <option>正常</option>
-                        <option>爆库</option>
-                        <option>缺货</option>
+                        <option value="-1">请选择</option>
+                        <option value="0">正常</option>
+                        <option value="1">爆库</option>
+                        <option value="2">缺货</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail2">仓库:</label>
-                    <select class="form-control">
-                        <option>请选择</option>
+                    <select v-model="Depot" class="form-control">
+                        <option value="-1">请选择</option>
+                        <option v-for="m in Depots" :value="m.DepotID">{{m.DepotName}}</option>
                     </select>
                 </div>
                 <button type="submit" class="btn btn-default" @@click="select()">查询</button>
@@ -123,40 +124,69 @@
             ps: 3,
             pi: 1,
             DSID: '',
-            Status: [],
-            Depot:'',
+            Status: '-1',
+            Depot: '-1',
+            Depots:[],
         },
         created: function () {
-            this.$http.get("http://localhost:8625/api/buy/GetDS_P_Ds", { "params": { "ps": this.ps, "pi": this.pi } },
-                { "params": { "ps": 3, "pi": 1 } }).then(result => {
+            this.$http.get("http://localhost:8625/api/buy/GetDS_P_Ds", { "params": { "ps": this.ps, "pi": this.pi } }).then(result => {
                     this.data = result.data.data
                     this.total = result.data.total
                 })
+            this.$http.get("http://localhost:8625/api/Basic/GetDepots", { "params": { "ps": 999, "pi": 1 } }).then(result => {
+                this.Depots = result.data.data
+            })
         },
         methods: {
             status: function (m) {
-                return m.DSAmount > m.ProMax ? "爆库" : m.DSAmount < m.ProMin ? "缺货" : "正常"
+                return m.DSAmount >= m.ProMax ? "爆库" : m.DSAmount <= m.ProMin ? "缺货" : "正常"
             },
             dian: function (ps, pi) {
                 this.$http.get("http://localhost:8625/api/buy/GetDS_P_Ds", { "params": { "ps": ps, "pi": pi } })
                     .then(d => {
-                        this.data = d.data.data;
-                        this.total = d.data.total;
+                        this.data = d.data.data
+                        this.total = d.data.total
                     })
             },
             dian2: function (ProID) {
-                $('#div1').load('/buy/ReserveDetail?ProID=' +ProID)
+                $('#div1').load('/buy/ReserveDetail?ProID=' + ProID)
             },
-            select: function () {
-                $.http.get("").then(result => {
-                    this.data = result.data.data;
+            dian3: function (ps, pi) {
+                this.$http.get("http://localhost:8625/api/buy/GetDSPDs_P", { "params": { "ps": ps, "pi": pi, "DSID": this.DSID, "Status": this.Status, "Depot": this.Depot } }).then(result => {
+                    this.data = result.data.data
+                    this.total = result.data.total
                 })
+            },
+            select: function (event) {
+                this.$http.get("http://localhost:8625/api/buy/GetDSPDs_P", { "params": { "ps": this.ps, "pi": this.pi, "DSID": this.DSID, "Status": this.Status, "Depot": this.Depot, } }).then(result => {
+                    this.data = result.data.data
+                    this.total = result.data.total
+
+                    laypage.render({
+                        elem: 'test1' //注意，这里的 test1 是 ID，不用加 # 号
+                        , count: result.data.total //数据总数，从服务端得到
+                        , limit: app.ps
+                        , limits: [1, 2, 3, 4, 5]
+                        , layout: ['prev', 'page', 'next', 'limit', 'count', 'skip']
+                        , jump: function (obj, first) {
+                            //obj包含了当前分页的所有参数，比如：
+                            //console.log(obj.curr); 得到当前页，以便向服务端请求对应页的数据。
+                            //console.log(obj.limit); 得到每页显示的条数
+                            app.dian3(obj.limit, obj.curr)
+                            //首次不执行
+                            if (!first) {
+                                //do something
+                            }
+                        }
+                    })
+                })
+                event.preventDefault();
             }
         }
     });
-
+    var laypage;
     $(function () {
-        var laypage = layui.laypage;
+        laypage = layui.laypage;
         //执行一个laypage实例
         laypage.render({
             elem: 'test1' //注意，这里的 test1 是 ID，不用加 # 号
@@ -169,12 +199,13 @@
                 //console.log(obj.curr); 得到当前页，以便向服务端请求对应页的数据。
                 //console.log(obj.limit); 得到每页显示的条数
                 app.dian(obj.limit, obj.curr)
+                app.ps = this.limit
                 //首次不执行
                 if (!first) {
-                    console.log("Layui-first");
                     //do something
                 }
             }
         });
     });
 </script>
+
