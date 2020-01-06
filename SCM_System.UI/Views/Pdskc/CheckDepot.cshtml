@@ -3,9 +3,9 @@
 <div id="app">
     <div class="sub-heard-part">
         <ol class="breadcrumb m-b-0">
-            <li><a href="#" onclick='$("#div1").load("/pdskc/Index.html")'>库存管理</a></li>
+            <li><a href="#" onclick='$("#div1").load("/pdskc/Index")'>库存管理</a></li>
             <li><a href="#">库存盘点</a></li>
-            <a class="btn green two" href="#" onclick='$("#div1").load("/pdskc/CheckDepotAdd.html")' style="float: right;font-size:10px">新增盘点单</a>
+            <a class="btn green two" href="#" onclick='$("#div1").load("/pdskc/CheckDepotAdd")' style="float: right;font-size:10px">新增盘点单</a>
 
         </ol>
 
@@ -26,8 +26,11 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail2">状态:</label>
-                    <select class="form-control">
-                        <option>请选择</option>
+                    <select class="form-control" v-model="CDState">
+                        <option value="-1">请选择</option>
+                        <option value="1">盘点中</option>
+                        <option value="2">盘点核算</option>
+                        <option value="3">盘点结束</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -84,83 +87,16 @@
                         <td>{{m.CDState}}</td>
                             <td><a href="#" @@click="sele(tm)">查看</a> | <a href="javascript:;">审核</a> | <a href="#" @@click="del(m,index)">删除</a> | <a href="/pdskc/CheckDepotEdit" onclick='    $("#div1").load("/pdskc/CheckDepotEdit.html")'>修改</a></td>
                         </tr>
-                    @*<tr>
-                            <td>
-                                DB0001
-                            </td>
-                            <td>
-                                郴州
-                            </td>
-                            <td>
-                                2012-12-20
-                            </td>
-                            <td>
-                                胡杨成
-                            </td>
-                            <td>
-                                500.00
-                            </td>
-                            <td>
-                                备注
-                            </td>
-                            <td>
-                                审核
-                            </td>
-                            <td><a href="#" onclick='$("#div1").load("/pdskc/CheckDepotDetail.html")'>查看</a> | <a href="javascript:;">审核</a></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                DB0001
-                            </td>
-                            <td>
-                                郴州
-                            </td>
-                            <td>
-                                2012-12-20
-                            </td>
-                            <td>
-                                胡杨成
-                            </td>
-                            <td>
-                                500.00
-                            </td>
-                            <td>
-                                备注
-                            </td>
-                            <td>
-                                完成
-                            </td>
-                            <td><a href="#" onclick='$("#div1").load("/pdskc/CheckDepotDetail.html")'>查看</a></td>
-                        </tr>*@
+                    
                 </tbody>
             </table>
             <div align="center">
                 <div id="test1"></div>
-                @*<nav aria-label="Page navigation">
-            <ul class="pagination">
-                <li>
-                    <a href="#" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                    </a>
-                </li>
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li>
-                    <a href="#" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>*@
             </div>
         </div>
     </div>
 </div>
 <script>
-    alert(1)
        var app = new Vue({
             el: "#app",
             data: {
@@ -208,7 +144,6 @@
                 app.dian(obj.limit, obj.curr)
                 //首次不执行
                 if (!first) {
-                    console.log("Layui-first");
                     //do something
                 }
             }
