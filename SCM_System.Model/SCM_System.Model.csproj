@@ -221,16 +221,10 @@
     <Compile Include="UsersRole.cs">
       <DependentUpon>SCM_System.tt</DependentUpon>
     </Compile>
-    <Compile Include="Vw_CDU.cs">
-      <DependentUpon>SCM_System.tt</DependentUpon>
-    </Compile>
     <Compile Include="Vw_CL.cs">
       <DependentUpon>SCM_System.tt</DependentUpon>
     </Compile>
     <Compile Include="Vw_DPP.cs">
-      <DependentUpon>SCM_System.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Vw_ptc.cs">
       <DependentUpon>SCM_System.tt</DependentUpon>
     </Compile>
     <Compile Include="V_CD_CDD_P_D_U.cs">
@@ -240,6 +234,9 @@
       <DependentUpon>SCM_System.tt</DependentUpon>
     </Compile>
     <Compile Include="V_Dl_D_D_U.cs">
+      <DependentUpon>SCM_System.tt</DependentUpon>
+    </Compile>
+    <Compile Include="V_DS_D.cs">
       <DependentUpon>SCM_System.tt</DependentUpon>
     </Compile>
     <Compile Include="V_DS_P_PT.cs">

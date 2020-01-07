@@ -169,8 +169,8 @@ namespace SCM_System.DAL
         /// <returns>结果集</returns>
         public async Task<List<T>> Select_Properties(Dictionary<string, dynamic> properties)
         {
-            try
-            {
+            //try
+            //{
                 //循环 properties 属性集
                 foreach (var item in properties)
                 {
@@ -203,11 +203,11 @@ namespace SCM_System.DAL
                         temp_set.Add(t_item);
                 }
                 return temp_set;
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
-            }
+            //}
+            //catch (Exception e)
+            //{
+            //    throw new Exception(e.Message);
+            //}
         }
 
         /// <summary>

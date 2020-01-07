@@ -4,17 +4,18 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Ninject;
 using SCM_System.Model;
 namespace SCM_System.DAL
 {
-    public class DAL_BuyModuel<T> : DAL_UniversalModuel<T>, IDAL.IDAL_UniversalModuel<T> where T : BaseModel
+    public class DAL_BuyModuel<T> : DAL_UniversalModuel<T>, IDAL.IDAL_UniversalModuel<T> where T : class
     {
         //!表明标注: P -> 商品表(Products)
 
         //表明标注: S -> 采购单(Stocks)
         //表明标注: PL -> 供货商(ProductLend)
         //表明标注: U -> 用户表(Users)
-
+        
         public async Task<Dictionary<string, dynamic>> GetS_PL_Us()
         {
             var temp = await entities.Stocks.Join(entities.ProductLend,
@@ -82,5 +83,6 @@ namespace SCM_System.DAL
                 .ToListAsync();
             return new Dictionary<string, dynamic>() { { "data",temp} };
         }
+
     }
 }

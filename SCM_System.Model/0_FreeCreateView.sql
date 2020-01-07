@@ -122,3 +122,15 @@ Depots d on dl.DevInID=d.DepotID) dl_d left join
 Depots d on dl_d.DevInID=d.DepotID) dl_d_d  left join 
 Users u on dl_d_d.UserID=u.UsersID
 go
+
+
+if(exists(select * from sysobjects where name='V_DS_D'))
+drop view V_DS_D
+go
+create view V_DS_D
+as
+select ds.*,
+d.DepotName,
+amount=ds.DSAmount*DSPrice from DepotStock ds left join 
+Depots d on ds.DepotID=d.DepotID
+go
