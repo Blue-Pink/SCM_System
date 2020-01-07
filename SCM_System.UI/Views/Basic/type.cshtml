@@ -41,7 +41,7 @@
                     <tr v-for="(t,index) in ProductTypes">
                         <th scope="row">{{t.PTID}}</th>
                         <td>{{t.PTName}}</td>
-                        <td><a href="javascript:;">删除</a> | <a href="javascript:;" v-on:click="ShowPage(1)">修改</a></td>
+                        <td><a href="javascript:;" @@click="dl(t,index)">删除</a> | <a href="javascript:;" v-on:click="ShowPage(1)">修改</a></td>
                     </tr>
                     @*<tr>
                             <th scope="row">2</th>
@@ -109,7 +109,17 @@
                         this.total = d.data.total;
                         console.log(ps + "---" + pi);
                     })
-            }
+            },
+            dl: function (t, index) {
+                alert(t.PTID)
+                        this.$http.get("http://localhost:8625/api/Basic/DeluniversalModuelProductTypes/"+t.PTID+"",)
+                            .then(d => {
+                                
+                                if (d.data > 0) {
+                                    this.ProductTypes.splice(index, 1);
+                                }
+                    })
+            },
         }
         });
 

@@ -3,104 +3,100 @@
     ViewBag.Title = "CustomerAdd";
 }
 
-    <script>
-        layui.use(['form'], function () { });
+<script>
+    layui.use(['form'], function () { });
 
-        var app = new Vue({
-        el:"#app",
+    
+
+    var ap = new Vue({
+        el: "#app",
         data: {
             CustomerLevel: [],
-            sele:0,
+            options: [],
         },
         created: function () {
             this.$http.get("http://localhost:8625/api/Basic/GetuniversalModuelCustomerLevel")
                 .then(d => {
-                    this.CustomerLevel = d.data;
-                    console.log(this.CustomerLevel)
-                    //for (var i = 0; i < d.data.length; i++) {
-                    //    this.CustomerLevel = d.data[i];
-                    //}
-                    //console.log("---------");
-                    //console.log(this.CustomerLevel)
+                    this.options = d.data;
+                  
                 })
         }
-    })
-    </script>
+    });
+</script>
 
-    <div id="app">
-        <div class="sub-heard-part">
-            <ol class="breadcrumb m-b-0">
-                <li><a href="#">基础数据</a></li>
-                <li><a href="#">客户资料</a></li>
-                <li><a href="#">添加</a></li>
-            </ol>
-        </div>
-
-        <div class="graph">
-            <div class="layui-container">
-                <div class="layui-row">
-                    <form class="layui-form layui-col-md-offset-3 layui-col-md-6 layui-col-md-offset-3 layui-form-pane">
-
-
-                        <div class="layui-form-item">
-                            <label for="inputEmail3" class="layui-form-label">商户编号:</label>
-                            <div class="layui-input-block">
-
-                                <input type="text" class="layui-input" id="txtBkName" @*v-model="RowData.BkName" *@ value="aaa" readonly="readonly">
-                            </div>
-                        </div>
-                        <div class="layui-form-item">
-                            <label class="layui-form-label">客户名称:</label>
-                            <div class="layui-input-block">
-                                <input type="text" class="layui-input" id="txtBkName" @*v-model="RowData.BkName" *@ placeholder="客户名称">
-                            </div>
-                        </div>
-                        <table>
-                            <tr v-for="(t,index) in CustomerLevel.)">
-                                <td v-for="(a,b) in t">{{a}}</td>
-                            </tr>
-                        </table>
-                        <div class="layui-form-item">
-                            <label class="layui-form-label">客户等级</label>
-                            <div class="layui-input-block">
-                                <select v-model="sele">
-                                    <option v-for="(t,index) in CustomerLevel :key=index">
-                                        {{index}}
-                                    </option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="layui-form-item">
-                            <label class="layui-form-label">公司名称:</label>
-                            <div class="layui-input-block">
-                                <input type="text" class="layui-input" id="txtBkName" @*v-model="RowData.BkName" *@ placeholder="公司名称">
-                            </div>
-                        </div>
-                        <div class="layui-form-item">
-                            <label class="layui-form-label">联系人:</label>
-                            <div class="layui-input-block">
-                                <input type="text" class="layui-input" id="txtBkName" @*v-model="RowData.BkName" *@ placeholder="联系人">
-                            </div>
-                        </div>
-
-                        <div class="layui-form-item">
-                            <label class="layui-form-label">备注:</label>
-                            <div class="layui-input-block">
-                                <input type="text" class="layui-input" id="txtBkName" @*v-model="RowData.BkName" *@ placeholder="备注">
-                            </div>
-                        </div>
-
-                        <div class="layui-form-item">
-                            <div class="layui-input-block">
-                                <button class="layui-btn" v-on:click="EditData()" type="button" id="butAdd">立即提交</button>
-
-                            </div>
-                        </div>
-
-                    </form>
-                </div>
-            </div>
-
-        </div>
+    <div class="sub-heard-part">
+        <ol class="breadcrumb m-b-0">
+            <li><a href="#">基础数据</a></li>
+            <li><a href="#">客户资料</a></li>
+            <li><a href="#">添加</a></li>
+        </ol>
     </div>
+
+    <div class="graph" id="app">
+        <div class="layui-container">
+            <div class="layui-row">
+                <form class="layui-form layui-col-md-offset-3 layui-col-md-6 layui-col-md-offset-3 layui-form-pane">
+
+
+                    <div class="layui-form-item">
+                        <label for="inputEmail3" class="layui-form-label">商户编号:</label>
+                        <div class="layui-input-block">
+
+                            <input type="text" class="layui-input" id="txtBkName" @*v-model="RowData.BkName" *@ value="aaa" readonly="readonly">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">客户名称:</label>
+                        <div class="layui-input-block">
+                            <input type="text" class="layui-input" id="txtBkName" @*v-model="RowData.BkName" *@ placeholder="客户名称">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">客户等级</label>
+                        <div class="layui-input-block">
+                            @*<select v-model="sele">
+                                <option v-for="(t,index) in CustomerLevel :key=index">
+                                    {{index}}
+                                </option>
+                            </select>*@
+                            <select v-model="CustomerLevel.CLID" class="form-control">
+                                <option v-for="option in options" v-bind:value="option.CLID">
+                                    {{ option.CLName }}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">公司名称:</label>
+                        <div class="layui-input-block">
+                            <input type="text" class="layui-input" id="txtBkName" @*v-model="RowData.BkName" *@ placeholder="公司名称">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">联系人:</label>
+                        <div class="layui-input-block">
+                            <input type="text" class="layui-input" id="txtBkName" @*v-model="RowData.BkName" *@ placeholder="联系人">
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">备注:</label>
+                        <div class="layui-input-block">
+                            <input type="text" class="layui-input" id="txtBkName" @*v-model="RowData.BkName" *@ placeholder="备注">
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <div class="layui-input-block">
+                            <button class="layui-btn" v-on:click="EditData()" type="button" id="butAdd">立即提交</button>
+
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+ 

@@ -56,7 +56,7 @@
                         <td>{{t.PPDesc}}</td>
                         <td>{{t.PPTel}}</td>
 
-                        <td><a href="javascript:;">删除</a> | <a href="javascript:;" v-on:click="ShowPage(1)">修改</a></td>
+                        <td><a href="javascript:;" @@click="dl(t,index)">删除</a> | <a href="javascript:;" v-on:click="ShowPage(1)">修改</a></td>
 
                     </tr>
                     @*<tr>
@@ -145,7 +145,16 @@
                         this.total = d.data.total;
                         console.log(ps+"---"+pi);
                     })
-            }
+            },
+             dl: function(t,index) {
+                        this.$http.get("http://localhost:8625/api/Basic/DeluniversalModuelProductLend/"+t.PPID+"",)
+                            .then(d => {
+                                
+                                if (d.data > 0) {
+                                    this.ProductLend.splice(index, 1);
+                                }
+                    })
+            },
         }
     });
 

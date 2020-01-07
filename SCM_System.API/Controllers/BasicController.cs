@@ -25,16 +25,25 @@ namespace SCM_System.API.Controllers
         ////客户等级
         public DAL_UniversalModuel<CustomerLevel> universalModuelCustomerLevel { get; set; }
 
-        //[Inject]
-        ////通用模块
-        ////客户资料表
-        //public DAL_UniversalModuel<Products> universalModuelProducts { get; set; }
+        [Inject]
+        //通用模块
+        //客户资料表
+        public DAL_UniversalModuel<Products> universalModuelProducts { get; set; }
 
-        //[Inject]
-        ////通用模块
-        ////供应商表
-        //public DAL_UniversalModuel<ProductLend> universalModuelProductLend { get; set; }
-
+        [Inject]
+        //通用模块
+        //供应商表
+        public DAL_UniversalModuel<ProductLend> universalModuelProductLend { get; set; }
+        
+            [Inject]
+        //通用模块
+        //供应商表
+        public DAL_UniversalModuel<Depots> universalModuelDepots { get; set; }
+        
+                [Inject]
+        //通用模块
+        //供应商表
+        public DAL_UniversalModuel<ProductTypes> universalModuelProductTypes { get; set; }
         //[Inject]
         ////通用模块
         ////客户资料资料表
@@ -92,6 +101,41 @@ namespace SCM_System.API.Controllers
         public async Task<int> DeluniversalModuelCustomers(string id)
         {
             return await universalModuelCustomers.Delete_Key(id);
+        }
+
+        [HttpGet]
+        [Route("DeluniversalModuelProducts/{id}")]
+        public async Task<int> DeluniversalModuelProducts(string id)
+        {
+            return await universalModuelProducts.Delete_Key(id);
+        }
+
+        [HttpGet]
+        [Route("DeluniversalModuelProductLend/{id}")]
+        public async Task<int> DeluniversalModuelProductLend(string id)
+        {
+            return await universalModuelProductLend.Delete_Key(id);
+        }
+
+        [HttpGet]
+        [Route("DeluniversalModuelDepots/{id}")]
+        public async Task<int> DeluniversalModuelDepots(string id)
+        {
+            return await universalModuelDepots.Delete_Key(id);
+        }
+
+        [HttpGet]
+        [Route("DeluniversalModuelProductTypes/{id}")]
+        public async Task<int> DeluniversalModuelProductTypes(int id)
+        {
+            return await universalModuelProductTypes.Delete_Key(id);
+        }
+
+        [HttpPost]
+        [Route("UPDATEuniversalModuelCustomers")]
+        public async Task<int> UPDATEuniversalModuelCustomers(Customers s)
+        {
+            return await universalModuelCustomers.Update_Key(s.CusID, s);
         }
 
         [HttpGet]

@@ -23,9 +23,7 @@
                         <div class="form-group">
                             <label for="inputEmail3" class="col-sm-2 control-label">客户等级:</label>
                             <div class="col-sm-10">
-                                @*<select v-model="selected" class="form-control">
-                                    <option v-bind:value="Customers.CusID">{{ Customers.CusID }}</option>
-                                </select>*@
+                               
 
                                 <select v-model="Customers.CLID" class="form-control">
                                     <option v-for="option in options" v-bind:value="option.CLID">
@@ -84,7 +82,7 @@
         el: "#app",
         data: {
             Customers: {},
-             options: []
+            options: []
         },
         created: function () {
             this.$http.get("http://localhost:8625/api/Basic/SeleKeyuniversalModuelCustomers/" + idd + "")
@@ -92,14 +90,20 @@
                     this.Customers = d.data;
                 }),
                 this.$http.get("http://localhost:8625/api/Basic/GetuniversalModuelCustomerLevel")
-                .then(d => {
-                    this.options = d.data;
-                    console.log(this.options)
-                })
+                    .then(d => {
+                        this.options = d.data;
+                        console.log(this.options)
+                    })
         },
         methods: {
             EditData: function () {
-                console.log(this.Customers);
+                console.log(this.Customers)
+                this.$http.post("http://localhost:8625/api/Basic/UPDATEuniversalModuelCustomers/", this.Customers)
+                    .then(d => {
+                        if (d.data > 0) {
+                            alert('ok')
+                        }
+                })
             }
         }
     })
