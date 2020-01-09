@@ -60,7 +60,7 @@
                         <td>{{t.PSName}}</td>
                         <td>{{t.PUName}}</td>
                         <td>{{t.PCName}}</td>
-                        <td><a href="javascript:;">删除</a> | <a href="javascript:;" v-on:click="ShowPage(1)">修改</a></td>
+                        <td><a href="javascript:;" @@click="dl(t,index)">删除</a> | <a href="javascript:;" v-on:click="ShowPage(1)">修改</a></td>
 
                     </tr>
                     @*<tr>
@@ -150,7 +150,16 @@
                         this.total = d.data.total;
                         console.log(ps+"---"+pi);
                     })
-            }
+             },
+             dl: function(t,index) {
+                        this.$http.get("http://localhost:8625/api/Basic/DeluniversalModuelProducts/"+t.ProID+"",)
+                            .then(d => {
+                                
+                                if (d.data > 0) {
+                                    this.Products.splice(index, 1);
+                                }
+                    })
+            },
         }
         });
     $(function () {
