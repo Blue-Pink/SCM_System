@@ -490,7 +490,6 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Basic\Customer.cshtml" />
-    <Content Include="Views\Basic\CustomerAdd.cshtml" />
     <Content Include="Views\Basic\CustomerEdit.cshtml" />
     <Content Include="Views\Basic\Index.cshtml" />
     <Content Include="Views\Basic\Product.cshtml" />
@@ -562,6 +561,7 @@
     <Content Include="Views\Basic\typeadd.cshtml" />
     <Content Include="Views\Basic\typeedit.cshtml" />
     <Content Include="Views\Basic\storeEdit.cshtml" />
+    <Content Include="Views\Basic\CustomerAdd.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

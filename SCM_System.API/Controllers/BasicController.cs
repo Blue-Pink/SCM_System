@@ -109,6 +109,13 @@ namespace SCM_System.API.Controllers
         {
             return await universalModuelCustomers.Update_Key(s.CusID, s);
         }
+        [HttpPost]
+        [Route("INSERTuniversalCustomers")]
+        public async Task<int> INSERTuniversalCustomers(Customers s)
+        {
+            return await universalModuelCustomers.Insert(s);
+        }
+
 
         //删除商品资料+修改
         [HttpGet]
@@ -200,13 +207,25 @@ namespace SCM_System.API.Controllers
         {
             return await universalModuelDepots.Delete_Key(id);
         }
-        [HttpGet]
+        [HttpPost]
         [Route("UPuniversalModuelDepots")]
         public async Task<int> UPuniversalModuelDepots(Depots s)
         {
             return await universalModuelDepots.Update_Key(s.DepotID, s);
         }
+        [HttpPost]
+        [Route("INSERTuniversalDepots")]
+        public async Task<int> INSERTuniversalDepots(Depots s)
+        {
+            return await universalModuelDepots.Insert(s);
+        }
 
+        [HttpGet]
+        [Route("SeleKeyuniversalModuelDepots/{idd}")]
+        public async Task<Depots> SeleKeyuniversalModuelDepots(string idd)
+        {
+            return await universalModuelDepots.Select_Key(idd);
+        }
 
         //商品类型模板
         [HttpGet]

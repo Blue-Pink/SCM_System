@@ -1,57 +1,94 @@
 ﻿
-@{
-    ViewBag.Title = "StoreAdd";
-}
 
-        <div class="sub-heard-part">
-            <ol class="breadcrumb m-b-0">
-                <li><a href="#">基础数据</a></li>
-                <li><a href="#">仓库设置</a></li>
-                <li><a href="#">添加</a></li>
-            </ol>
+<div id="app">
+
+    <div class="sub-heard-part">
+        <ol class="breadcrumb m-b-0">
+            <li><a href="#">基础数据</a></li>
+            <li><a href="#">仓库设置</a></li>
+            <li><a href="/Basic/Store">添加</a></li>
+        </ol>
+    </div>
+    <div class="graph">
+        <div class="row">
+            <form class="form-horizontal col-md-offset-3 col-md-6 col-md-offset-3">
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">仓库编号:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="txtBkName" v-model="Depots.DepotID" placeholder="输入名称:CK0001">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">仓库名称:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="txtBkName" v-model="Depots.DepotName" placeholder="输入名称">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">联系人:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="txtBkName" v-model="Depots.DepotMan" placeholder="输入名称">
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">联系电话:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="txtBkName" v-model="Depots.DepotTel" placeholder="输入名称">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">联系地址:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="txtBkName" v-model="Depots.DepotAddress" placeholder="输入名称">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">备注:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="txtBkName" v-model="Depots.DepotDesc" placeholder="输入名称">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button id="butAdd" type="button" class="btn btn-default" @@click="EditData()">添加</button>
+                    </div>
+                </div>
+            </form>
         </div>
-        <div class="graph">
-            <div class="row">
-                <form class="form-horizontal col-md-offset-3 col-md-6 col-md-offset-3">
-                    <div class="form-group">
-                        <label for="inputEmail3" class="col-sm-2 control-label">仓库名称:</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="txtBkName" @*v-model="RowData.BkName" *@ placeholder="输入名称">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputEmail3" class="col-sm-2 control-label">联系人:</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="txtBkName" @*v-model="RowData.BkName" *@ placeholder="输入名称">
-                        </div>
+    </div>
 
-                    </div>
-                    <div class="form-group">
-                        <label for="inputEmail3" class="col-sm-2 control-label">联系电话:</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="txtBkName" @*v-model="RowData.BkName" *@ placeholder="输入名称">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputEmail3" class="col-sm-2 control-label">联系地址:</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="txtBkName" @*v-model="RowData.BkName" *@ placeholder="输入名称">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputEmail3" class="col-sm-2 control-label">备注:</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="txtBkName" @*v-model="RowData.BkName" *@ placeholder="输入名称">
-                        </div>
-                    </div>
+</div>
 
-                    <div class="form-group">
-                        <div class="col-sm-offset-2 col-sm-10">
-                            <button id="butAdd" type="button" class="btn btn-default" v-on:click="EditData()">添加</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
+<script>
+    //id = window.location.href.split("id")[1];
+    //idd = id.split("=")[1];
+    //alert(idd);
 
+    var app = new Vue({
+        el: "#app",
+        data: {
+            Depots: {},
+        },
+        created: function () {
+        //    this.$http.get("http://localhost:8625/api/Basic/SeleKeyuniversalModuelDepots/" + idd + "")
+        //        .then(d => {
 
+        //            this.Depots = d.data;
+        //            console.log(d.data)
+        //        })
+       },
+        methods: {
+            EditData: function () {
+                console.log(this.Depots)
+                this.$http.post("http://localhost:8625/api/Basic/INSERTuniversalDepots/", this.Depots)
+                    .then(d => {
+                        if (d.data > 0) {
+                            window.location.href = "/Basic/Store"
+                        }
+                })
+            }
+        }
+    })
+</script>
