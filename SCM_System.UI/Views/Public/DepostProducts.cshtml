@@ -17,7 +17,7 @@
                 },
                 methods: {
                     LoadPage: function () {
-                        this.$http.get("http://localhost:50086/api/public/GetVProductsAllAboutPageHaveCount", {
+                        this.$http.get("http://localhost:8625/api/public/GetVProductsAllAboutPageHaveCount", {
                             params: {
                                 pname: this.cname == "" ? "输入名称" : this.cname,
                                 plevel: this.level,
@@ -29,7 +29,7 @@
                         });
                     },
                     LoadLevel: function () {
-                        this.$http.get("http://localhost:50086/api/public/GetProductTypesAll").then(d => {
+                        this.$http.get("http://localhost:8625/api/public/GetProductTypesAll").then(d => {
                             this.cllist = d.data;
                         });
                     },

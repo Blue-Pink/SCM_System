@@ -14,7 +14,7 @@
                 },
                 methods: {
                     LoadPage: function () {
-                        this.$http.get("http://localhost:50086/api/public/GetV_CusAndCusOrderAndClvUponCondtionAndPage", {
+                        this.$http.get("http://localhost:8625/api/public/GetV_CusAndCusOrderAndClvUponCondtionAndPage", {
                             params: {
                                 name: this.cname == "" ? "输入名称" : this.cname,
                                 index: this.index,
@@ -109,12 +109,12 @@
                         {{o.CLName}}
                     </td>
                     <td>
-                       {{o.CODDiscount}}
+                        {{o.CODDiscount}}
                     </td>
                     <td>
-                       {{o.CODCount}}
+                        {{o.CODCount}}
                     </td>
-                </tr>     
+                </tr>
             </tbody>
         </table>
         <div align="center">

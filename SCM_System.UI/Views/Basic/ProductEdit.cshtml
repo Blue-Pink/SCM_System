@@ -3,7 +3,7 @@
     ViewBag.Title = "ProductEdit";
 }
 
-    <body>
+    <body >
         <div class="sub-heard-part">
             <ol class="breadcrumb m-b-0">
                 <li><a href="#">基础数据</a></li>
@@ -11,20 +11,22 @@
                 <li><a href="#">编辑</a></li>
             </ol>
         </div>
-        <div class="graph">
+        <div class="graph" id="app">
             <div class="row">
                 <form class="form-horizontal col-md-offset-3 col-md-6 col-md-offset-3">
                     <div class="form-group">
                         <label for="inputEmail3" class="col-sm-2 control-label">商品编号:</label>
                         <div class="col-sm-10">
-                            <label>a5155a</label>
+                            <label>{{Products.ProID}}</label>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="inputEmail3" class="col-sm-2 control-label">所属类别:</label>
                         <div class="col-sm-10">
-                            <select class="form-control">
-                                <option>请选择</option>
+                            <select v-model="Products.PTID" class="form-control">
+                                <option v-for="option in optionstype" v-bind:value="option.PTID">
+                                    {{ option.PTName }}
+                                </option>
                             </select>
                         </div>
 
@@ -32,54 +34,60 @@
                     <div class="form-group">
                         <label for="inputEmail3" class="col-sm-2 control-label">颜色:</label>
                         <div class="col-sm-10">
-                            <select class="form-control">
-                                <option>请选择</option>
+                            <select v-model="Products.PCID" class="form-control">
+                                <option v-for="option in optionscolor" v-bind:value="option.PCID">
+                                    {{ option.PCName }}
+                                </option>
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="inputEmail3" class="col-sm-2 control-label">拼英简码:</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="txtBkName" @*v-model="RowData.BkName" *@ placeholder="拼英简码">
+                            <input type="text" class="form-control" id="txtBkName" v-model="Products.ProJP"  placeholder="拼英简码">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="inputEmail3" class="col-sm-2 control-label">生产厂家:</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="txtBkName" @*v-model="RowData.BkName" *@ placeholder="生产厂家">
+                            <input type="text" class="form-control" id="txtBkName" v-model="Products.ProWorkShop"  placeholder="生产厂家">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="inputEmail3" class="col-sm-2 control-label">库存下限:</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="txtBkName" @*v-model="RowData.BkName" *@ placeholder="库存下限">
+                            <input type="text" class="form-control" id="txtBkName" v-model="Products.ProMin"  placeholder="库存下限">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="inputEmail3" class="col-sm-2 control-label">销售价格:</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="txtBkName" @*v-model="RowData.BkName" *@ placeholder="销售价格">
+                            <input type="text" class="form-control" id="txtBkName" v-model="Products.ProPrice"  placeholder="销售价格">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="inputEmail3" class="col-sm-2 control-label">商品名称:</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="txtBkName" @*v-model="RowData.BkName" *@ placeholder="商品名称">
+                            <input type="text" class="form-control" id="txtBkName" v-model="Products.ProName"  placeholder="商品名称">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="inputEmail3" class="col-sm-2 control-label">单位:</label>
                         <div class="col-sm-10">
-                            <select class="form-control">
-                                <option>请选择</option>
+                            <select v-model="Products.PUID" class="form-control">
+                                <option v-for="option in optionsProductUnit" v-bind:value="option.PUID">
+                                    {{ option.PUName }}
+                                </option>
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="inputEmail3" class="col-sm-2 control-label">规格:</label>
                         <div class="col-sm-10">
-                            <select class="form-control">
-                                <option>请选择</option>
+                            <select v-model="Products.PSID" class="form-control">
+                                <option v-for="option in optionsProductSpec" v-bind:value="option.PSID">
+                                    {{ option.PSName }}
+                                </option>
                             </select>
                         </div>
                     </div>
@@ -87,31 +95,31 @@
                     <div class="form-group">
                         <label for="inputEmail3" class="col-sm-2 control-label">条码:</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="txtBkName" @*v-model="RowData.BkName" *@ placeholder="条码">
+                            <input type="text" class="form-control" id="txtBkName" v-model="Products.ProTM"  placeholder="条码">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="inputEmail3" class="col-sm-2 control-label">预设进价:</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="txtBkName" @*v-model="RowData.BkName" *@ placeholder="条码">
+                            <input type="text" class="form-control" id="txtBkName" v-model="Products.ProInPrice"  placeholder="预设进价">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="inputEmail3" class="col-sm-2 control-label">库存上限:</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="txtBkName" @*v-model="RowData.BkName" *@ placeholder="库存上限">
+                            <input type="text" class="form-control" id="txtBkName" v-model="Products.ProMax"  placeholder="库存上限">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="inputEmail3" class="col-sm-2 control-label">备注:</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="txtBkName" @*v-model="RowData.BkName" *@ placeholder="条码">
+                            <input type="text" class="form-control" id="txtBkName" v-model="Products.ProDesc"  placeholder="备注">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
-                            <button id="butAdd" type="button" class="btn btn-default" v-on:click="EditData()">编辑</button>
+                            <button id="butAdd" type="button" class="btn btn-default" @@click="EditData()">编辑</button>
                         </div>
                     </div>
                 </form>
@@ -120,3 +128,54 @@
 
     </body>
 
+<script>
+
+    id = window.location.href.split("id")[1];
+    idd = id.split("=")[1];
+    var app = new Vue({
+        el: "#app",
+        data: {
+            Products: {},
+            optionstype: [],
+            optionscolor: [],
+            optionsProductUnit: [],
+             optionsProductSpec: [],
+        },
+        created: function () {
+            this.$http.get("http://localhost:8625/api/Basic/SeleKeyuniversalModuelProducts/" + idd + "")
+                .then(d => {
+                    this.Products = d.data;
+                    console.log(this.Products)
+                }),
+                //类别表
+                this.$http.get("http://localhost:8625/api/Basic/GetuniversalModuelProductTypes")
+                    .then(d => {
+                        this.optionstype = d.data;
+                        console.log(d.data)
+                    }),
+                //颜色表
+                this.$http.get("http://localhost:8625/api/Basic/GetuniversalModuelProductColor")
+                    .then(d => {
+                        this.optionscolor = d.data;
+                         console.log(d.data)
+                    }),
+                    //单位表
+                this.$http.get("http://localhost:8625/api/Basic/GetuniversalModuelProductUnit")
+                    .then(d => {
+                        this.optionsProductUnit = d.data;
+                         console.log(d.data)
+                    }),
+                    //规格表
+                this.$http.get("http://localhost:8625/api/Basic/GetuniversalModuelProductSpec")
+                    .then(d => {
+                        this.optionsProductSpec = d.data;
+                         console.log(d.data)
+                    })
+        },
+        methods: {
+            EditData: function () {
+                console.log(this.Products);
+            }
+        }
+    })
+</script>

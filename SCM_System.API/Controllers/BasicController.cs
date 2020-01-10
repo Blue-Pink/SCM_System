@@ -103,11 +103,59 @@ namespace SCM_System.API.Controllers
             return await universalModuelCustomers.Delete_Key(id);
         }
 
+        [HttpPost]
+        [Route("UPDATEuniversalModuelCustomers")]
+        public async Task<int> UPDATEuniversalModuelCustomers(Customers s)
+        {
+            return await universalModuelCustomers.Update_Key(s.CusID, s);
+        }
+
+        //删除商品资料+修改
         [HttpGet]
         [Route("DeluniversalModuelProducts/{id}")]
         public async Task<int> DeluniversalModuelProducts(string id)
         {
             return await universalModuelProducts.Delete_Key(id);
+        }
+        [HttpGet]
+        [Route("UPuniversalModuelProducts")]
+        public async Task<int> UPuniversalModuelCustomers(Products s)
+        {
+            return await universalModuelProducts.Update_Key(s.ProID, s);
+        }
+        [HttpGet]
+        [Route("SeleKeyuniversalModuelProducts/{idd}")]
+        public async Task<Products> SeleKeyuniversalModuelProducts(string idd)
+        {
+            return await universalModuelProducts.Select_Key(idd);
+        }
+        //下拉列表类别表
+        [HttpGet]
+        [Route("GetuniversalModuelProductTypes")]
+        public async Task<List<ProductTypes>> GetuniversalModuelProductTypes()
+        {
+            return await db.ProductTypes.ToListAsync();
+        }
+        //下拉列表颜色表
+        [HttpGet]
+        [Route("GetuniversalModuelProductColor")]
+        public async Task<List<ProductColor>> GetuniversalModuelProductColor()
+        {
+            return await db.ProductColor.ToListAsync();
+        }
+        //下拉列表单位表
+        [HttpGet]
+        [Route("GetuniversalModuelProductUnit")]
+        public async Task<List<ProductUnit>> GetuniversalModuelProductUnit()
+        {
+            return await db.ProductUnit.ToListAsync();
+        }
+        //下拉列表规格表
+        [HttpGet]
+        [Route("GetuniversalModuelProductSpec")]
+        public async Task<List<ProductSpec>> GetuniversalModuelProductSpec()
+        {
+            return await db.ProductSpec.ToListAsync();
         }
 
         [HttpGet]
@@ -116,12 +164,24 @@ namespace SCM_System.API.Controllers
         {
             return await universalModuelProductLend.Delete_Key(id);
         }
+        [HttpGet]
+        [Route("UPuniversalModuelProductLend")]
+        public async Task<int> UPuniversalModuelProductLend(ProductLend s)
+        {
+            return await universalModuelProductLend.Update_Key(s.PPID,s);
+        }
 
         [HttpGet]
         [Route("DeluniversalModuelDepots/{id}")]
         public async Task<int> DeluniversalModuelDepots(string id)
         {
             return await universalModuelDepots.Delete_Key(id);
+        }
+        [HttpGet]
+        [Route("UPuniversalModuelDepots")]
+        public async Task<int> UPuniversalModuelDepots(Depots s)
+        {
+            return await universalModuelDepots.Update_Key(s.DepotID, s);
         }
 
         [HttpGet]
@@ -130,13 +190,13 @@ namespace SCM_System.API.Controllers
         {
             return await universalModuelProductTypes.Delete_Key(id);
         }
-
-        [HttpPost]
-        [Route("UPDATEuniversalModuelCustomers")]
-        public async Task<int> UPDATEuniversalModuelCustomers(Customers s)
+        [HttpGet]
+        [Route("UPuniversalModuelProductTypes")]
+        public async Task<int> UPuniversalModuelProductTypes(ProductTypes s)
         {
-            return await universalModuelCustomers.Update_Key(s.CusID, s);
+            return await universalModuelProductTypes.Update_Key(s.PTID, s);
         }
+
 
         [HttpGet]
         [Route("GetuniversalModuelCustomerLevel")]
@@ -151,6 +211,8 @@ namespace SCM_System.API.Controllers
         {
             return await universalModuelCustomers.Select_Key(id);
         }
+
+        
 
         [Route("GetProductTypes")]
         public async Task<dynamic> GetProductTypes(int ps, int pi) {

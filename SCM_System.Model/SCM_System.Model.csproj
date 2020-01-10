@@ -112,6 +112,7 @@
     <Compile Include="OtherOutDepotDetail.cs">
       <DependentUpon>SCM_System.tt</DependentUpon>
     </Compile>
+    <Compile Include="PageClass\MyPage.cs" />
     <Compile Include="PayOffDetail.cs">
       <DependentUpon>SCM_System.tt</DependentUpon>
     </Compile>
@@ -221,13 +222,31 @@
     <Compile Include="UsersRole.cs">
       <DependentUpon>SCM_System.tt</DependentUpon>
     </Compile>
+    <Compile Include="Vw_CDU.cs">
+      <DependentUpon>SCM_System.tt</DependentUpon>
+    </Compile>
     <Compile Include="Vw_CL.cs">
       <DependentUpon>SCM_System.tt</DependentUpon>
     </Compile>
     <Compile Include="Vw_DPP.cs">
       <DependentUpon>SCM_System.tt</DependentUpon>
     </Compile>
+    <Compile Include="Vw_ptc.cs">
+      <DependentUpon>SCM_System.tt</DependentUpon>
+    </Compile>
     <Compile Include="V_CD_CDD_P_D_U.cs">
+      <DependentUpon>SCM_System.tt</DependentUpon>
+    </Compile>
+    <Compile Include="V_CusAndCusOrderAndClv.cs">
+      <DependentUpon>SCM_System.tt</DependentUpon>
+    </Compile>
+    <Compile Include="V_CustomersAndLevel.cs">
+      <DependentUpon>SCM_System.tt</DependentUpon>
+    </Compile>
+    <Compile Include="V_DepotsAndDepotsStock.cs">
+      <DependentUpon>SCM_System.tt</DependentUpon>
+    </Compile>
+    <Compile Include="V_DepotsAndUsersAndDetailAndProducts.cs">
       <DependentUpon>SCM_System.tt</DependentUpon>
     </Compile>
     <Compile Include="V_Dl_D_D.cs">
@@ -248,13 +267,31 @@
     <Compile Include="V_InOutDepotDetail.cs">
       <DependentUpon>SCM_System.tt</DependentUpon>
     </Compile>
+    <Compile Include="V_LostsAndDetailAndUsersAndDepots.cs">
+      <DependentUpon>SCM_System.tt</DependentUpon>
+    </Compile>
     <Compile Include="V_OutDepot.cs">
+      <DependentUpon>SCM_System.tt</DependentUpon>
+    </Compile>
+    <Compile Include="V_ProAndDepotAndProType.cs">
       <DependentUpon>SCM_System.tt</DependentUpon>
     </Compile>
     <Compile Include="V_Products.cs">
       <DependentUpon>SCM_System.tt</DependentUpon>
     </Compile>
+    <Compile Include="V_QuotePriceAndDetailAndCustomers.cs">
+      <DependentUpon>SCM_System.tt</DependentUpon>
+    </Compile>
     <Compile Include="V_Sl_SD_P_U.cs">
+      <DependentUpon>SCM_System.tt</DependentUpon>
+    </Compile>
+    <Compile Include="V_StockAndDetailAndProLendAndUsers.cs">
+      <DependentUpon>SCM_System.tt</DependentUpon>
+    </Compile>
+    <Compile Include="V_StockDetailAndProAndColorAndTypes.cs">
+      <DependentUpon>SCM_System.tt</DependentUpon>
+    </Compile>
+    <Compile Include="V_VProductsAndDepotStock.cs">
       <DependentUpon>SCM_System.tt</DependentUpon>
     </Compile>
   </ItemGroup>

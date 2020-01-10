@@ -8,6 +8,7 @@ using SCM_System.IDAL;
 using Ninject;
 using System.Data.Entity;
 using System.Web.Script.Serialization;
+using SCM_System.Model.PageClass;
 
 namespace SCM_System.DAL
 {
@@ -375,5 +376,32 @@ namespace SCM_System.DAL
                 throw new Exception(e.Message);
             }
         }
+        #region Page_Yao
+        /// <summary>
+        /// 实现分页
+        /// </summary>
+        /// <typeparam name="T">对模型类的哪个类型需要分页</typeparam>
+        /// <param name="mainkey">主键</param>
+        /// <param name="index">页码</param>
+        /// <param name="size">页大小(默认为3)</param>
+        /// <returns></returns>
+        public MyPage<T> AchieveMyPage<T>(string mainkey, int index = 1, int size = 3) where T : class
+        {
+            return entities.customPage<T>(mainkey, index, size);
+        }
+
+
+        /// <summary>
+        /// 根据条件进行分页,把根据条件查询完之后的集合放入此方法，可用自定义控件实现分页
+        /// </summary>
+        /// <typeparam name="T">对模型类的哪个类型需要分页</typeparam>
+        /// <param name="ls">根据条件查询完之后的集合</param>
+        /// <param name="total">此集合按条件查询之前的总条数</param>
+        /// <returns></returns>
+        public MyPage<T> uponConditionPage<T>(List<T> ls, int total)
+        {
+            return ls.uponConditionPage<T>(total);
+        }
+        #endregion
     }
 }

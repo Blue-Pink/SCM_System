@@ -14,7 +14,7 @@
                 },
                 methods: {
                     LoadPage: function () {
-                        this.$http.get("http://localhost:50086/api/public/GetProductLendsAllAboutPage", {
+                        this.$http.get("http://localhost:8625/api/public/GetProductLendsAllAboutPage", {
                             params: {
                                 name: this.cname == "" ? "输入名称" : this.cname,
                                 index: this.index,
@@ -84,7 +84,6 @@
                         地址
                     </th>
                 </tr>
-
             </thead>
             <tbody>
                 <tr v-for="(o,i) in resource.ls">

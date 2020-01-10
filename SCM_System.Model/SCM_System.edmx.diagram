@@ -57,17 +57,29 @@
         <EntityTypeShape EntityType="SCMModel.Users" Width="1.5" PointX="4.75" PointY="18.75" />
         <EntityTypeShape EntityType="SCMModel.UsersRole" Width="1.5" PointX="18.75" PointY="7.75" />
         <EntityTypeShape EntityType="SCMModel.V_CD_CDD_P_D_U" Width="1.5" PointX="18.75" PointY="10.75" />
-        <EntityTypeShape EntityType="SCMModel.V_Dl_D_D" Width="1.5" PointX="18.75" PointY="14.75" />
-        <EntityTypeShape EntityType="SCMModel.V_Dl_D_D_U" Width="1.5" PointX="14.75" PointY="18.75" />
-        <EntityTypeShape EntityType="SCMModel.V_InDepot" Width="1.5" PointX="18.75" PointY="18.75" />
-        <EntityTypeShape EntityType="SCMModel.V_InOutDepotDetail" Width="1.5" PointX="6.75" PointY="19.75" />
-        <EntityTypeShape EntityType="SCMModel.V_OutDepot" Width="1.5" PointX="8.75" PointY="19.75" />
-        <EntityTypeShape EntityType="SCMModel.V_Products" Width="1.5" PointX="20.75" PointY="0.75" />
-        <EntityTypeShape EntityType="SCMModel.V_Sl_SD_P_U" Width="1.5" PointX="20.75" PointY="6.75" />
-        <EntityTypeShape EntityType="SCMModel.Vw_CL" Width="1.5" PointX="10.75" PointY="20.75" />
-        <EntityTypeShape EntityType="SCMModel.Vw_DPP" Width="1.5" PointX="20.75" PointY="11.75" />
-        <EntityTypeShape EntityType="SCMModel.V_DS_D" Width="1.5" PointX="0.75" PointY="21.75" />
-        <EntityTypeShape EntityType="SCMModel.V_DS_P_PT" Width="1.5" PointX="3.375" PointY="21.75" />
+        <EntityTypeShape EntityType="SCMModel.V_CusAndCusOrderAndClv" Width="1.5" PointX="18.75" PointY="14.75" />
+        <EntityTypeShape EntityType="SCMModel.V_CustomersAndLevel" Width="1.5" PointX="14.75" PointY="18.75" />
+        <EntityTypeShape EntityType="SCMModel.V_DepotsAndDepotsStock" Width="1.5" PointX="16.75" PointY="18.75" />
+        <EntityTypeShape EntityType="SCMModel.V_DepotsAndUsersAndDetailAndProducts" Width="1.5" PointX="18.75" PointY="18.75" />
+        <EntityTypeShape EntityType="SCMModel.V_Dl_D_D" Width="1.5" PointX="6.75" PointY="19.75" />
+        <EntityTypeShape EntityType="SCMModel.V_Dl_D_D_U" Width="1.5" PointX="8.75" PointY="19.75" />
+        <EntityTypeShape EntityType="SCMModel.V_DS_D" Width="1.5" PointX="20.75" PointY="0.75" />
+        <EntityTypeShape EntityType="SCMModel.V_DS_P_PT" Width="1.5" PointX="20.75" PointY="4.75" />
+        <EntityTypeShape EntityType="SCMModel.V_InDepot" Width="1.5" PointX="20.75" PointY="10.75" />
+        <EntityTypeShape EntityType="SCMModel.V_InOutDepotDetail" Width="1.5" PointX="10.75" PointY="20.75" />
+        <EntityTypeShape EntityType="SCMModel.V_LostsAndDetailAndUsersAndDepots" Width="1.5" PointX="20.75" PointY="15.75" />
+        <EntityTypeShape EntityType="SCMModel.V_OutDepot" Width="1.5" PointX="20.75" PointY="19.75" />
+        <EntityTypeShape EntityType="SCMModel.V_ProAndDepotAndProType" Width="1.5" PointX="0.75" PointY="21.75" />
+        <EntityTypeShape EntityType="SCMModel.V_Products" Width="1.5" PointX="2.75" PointY="21.75" />
+        <EntityTypeShape EntityType="SCMModel.V_QuotePriceAndDetailAndCustomers" Width="1.5" PointX="22.75" PointY="0.75" />
+        <EntityTypeShape EntityType="SCMModel.V_Sl_SD_P_U" Width="1.5" PointX="22.75" PointY="3.75" />
+        <EntityTypeShape EntityType="SCMModel.V_StockAndDetailAndProLendAndUsers" Width="1.5" PointX="22.75" PointY="8.75" />
+        <EntityTypeShape EntityType="SCMModel.V_StockDetailAndProAndColorAndTypes" Width="1.5" PointX="22.75" PointY="12.75" />
+        <EntityTypeShape EntityType="SCMModel.V_VProductsAndDepotStock" Width="1.5" PointX="12.75" PointY="22.75" />
+        <EntityTypeShape EntityType="SCMModel.Vw_CDU" Width="1.5" PointX="14.75" PointY="22.75" />
+        <EntityTypeShape EntityType="SCMModel.Vw_CL" Width="1.5" PointX="22.75" PointY="16.75" />
+        <EntityTypeShape EntityType="SCMModel.Vw_DPP" Width="1.5" PointX="16.75" PointY="22.75" />
+        <EntityTypeShape EntityType="SCMModel.Vw_ptc" Width="1.5" PointX="22.75" PointY="20.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

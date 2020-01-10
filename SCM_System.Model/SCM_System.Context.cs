@@ -79,17 +79,29 @@ namespace SCM_System.Model
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<UsersRole> UsersRole { get; set; }
         public virtual DbSet<V_CD_CDD_P_D_U> V_CD_CDD_P_D_U { get; set; }
+        public virtual DbSet<V_CusAndCusOrderAndClv> V_CusAndCusOrderAndClv { get; set; }
+        public virtual DbSet<V_CustomersAndLevel> V_CustomersAndLevel { get; set; }
+        public virtual DbSet<V_DepotsAndDepotsStock> V_DepotsAndDepotsStock { get; set; }
+        public virtual DbSet<V_DepotsAndUsersAndDetailAndProducts> V_DepotsAndUsersAndDetailAndProducts { get; set; }
         public virtual DbSet<V_Dl_D_D> V_Dl_D_D { get; set; }
         public virtual DbSet<V_Dl_D_D_U> V_Dl_D_D_U { get; set; }
-        public virtual DbSet<V_InDepot> V_InDepot { get; set; }
-        public virtual DbSet<V_InOutDepotDetail> V_InOutDepotDetail { get; set; }
-        public virtual DbSet<V_OutDepot> V_OutDepot { get; set; }
-        public virtual DbSet<V_Products> V_Products { get; set; }
-        public virtual DbSet<V_Sl_SD_P_U> V_Sl_SD_P_U { get; set; }
-        public virtual DbSet<Vw_CL> Vw_CL { get; set; }
-        public virtual DbSet<Vw_DPP> Vw_DPP { get; set; }
         public virtual DbSet<V_DS_D> V_DS_D { get; set; }
         public virtual DbSet<V_DS_P_PT> V_DS_P_PT { get; set; }
+        public virtual DbSet<V_InDepot> V_InDepot { get; set; }
+        public virtual DbSet<V_InOutDepotDetail> V_InOutDepotDetail { get; set; }
+        public virtual DbSet<V_LostsAndDetailAndUsersAndDepots> V_LostsAndDetailAndUsersAndDepots { get; set; }
+        public virtual DbSet<V_OutDepot> V_OutDepot { get; set; }
+        public virtual DbSet<V_ProAndDepotAndProType> V_ProAndDepotAndProType { get; set; }
+        public virtual DbSet<V_Products> V_Products { get; set; }
+        public virtual DbSet<V_QuotePriceAndDetailAndCustomers> V_QuotePriceAndDetailAndCustomers { get; set; }
+        public virtual DbSet<V_Sl_SD_P_U> V_Sl_SD_P_U { get; set; }
+        public virtual DbSet<V_StockAndDetailAndProLendAndUsers> V_StockAndDetailAndProLendAndUsers { get; set; }
+        public virtual DbSet<V_StockDetailAndProAndColorAndTypes> V_StockDetailAndProAndColorAndTypes { get; set; }
+        public virtual DbSet<V_VProductsAndDepotStock> V_VProductsAndDepotStock { get; set; }
+        public virtual DbSet<Vw_CDU> Vw_CDU { get; set; }
+        public virtual DbSet<Vw_CL> Vw_CL { get; set; }
+        public virtual DbSet<Vw_DPP> Vw_DPP { get; set; }
+        public virtual DbSet<Vw_ptc> Vw_ptc { get; set; }
     
         public virtual int proc_CFNO(ObjectParameter no)
         {
