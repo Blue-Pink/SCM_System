@@ -56,7 +56,7 @@
                         <td>{{t.PPDesc}}</td>
                         <td>{{t.PPTel}}</td>
 
-                        <td><a href="javascript:;" @@click="dl(t,index)">删除</a> | <a href="javascript:;" v-on:click="ShowPage(1)">修改</a></td>
+                        <td><a href="javascript:;" @@click="dl(t,index)">删除</a> | <a href="javascript:;" @@click="ShowPage(t)">修改</a></td>
 
                     </tr>
                     @*<tr>
@@ -155,6 +155,9 @@
                                 }
                     })
             },
+             ShowPage: function (t) {
+                window.location.href = "/Basic/supplierEdit?id="+t.PPID+"";
+            }
         }
     });
 

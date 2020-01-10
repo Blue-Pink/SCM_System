@@ -175,6 +175,12 @@
         methods: {
             EditData: function () {
                 console.log(this.Products);
+                this.$http.post("http://localhost:8625/api/Basic/UPuniversalModuelProducts/",this.Products)
+                    .then(d => {
+                        if (d.data > 0) {
+                            window.location.href = "/Basic/Product"
+                        }
+                    })
             }
         }
     })

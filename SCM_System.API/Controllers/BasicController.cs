@@ -40,7 +40,7 @@ namespace SCM_System.API.Controllers
         //供应商表
         public DAL_UniversalModuel<Depots> universalModuelDepots { get; set; }
         
-                [Inject]
+         [Inject]
         //通用模块
         //供应商表
         public DAL_UniversalModuel<ProductTypes> universalModuelProductTypes { get; set; }
@@ -117,9 +117,9 @@ namespace SCM_System.API.Controllers
         {
             return await universalModuelProducts.Delete_Key(id);
         }
-        [HttpGet]
+        [HttpPost]
         [Route("UPuniversalModuelProducts")]
-        public async Task<int> UPuniversalModuelCustomers(Products s)
+        public async Task<int> UPuniversalModuelProducts(Products s)
         {
             return await universalModuelProducts.Update_Key(s.ProID, s);
         }
@@ -158,19 +158,30 @@ namespace SCM_System.API.Controllers
             return await db.ProductSpec.ToListAsync();
         }
 
+
+        //供应商增删改查
         [HttpGet]
-        [Route("DeluniversalModuelProductLend/{id}")]
-        public async Task<int> DeluniversalModuelProductLend(string id)
+        [Route("DeluniversalModuelProductLend/{idd}")]
+        public async Task<int> DeluniversalModuelProductLend(string idd)
         {
-            return await universalModuelProductLend.Delete_Key(id);
+            return await universalModuelProductLend.Delete_Key(idd);
         }
-        [HttpGet]
+        [HttpPost]
         [Route("UPuniversalModuelProductLend")]
         public async Task<int> UPuniversalModuelProductLend(ProductLend s)
         {
             return await universalModuelProductLend.Update_Key(s.PPID,s);
         }
+        [HttpGet]
+        [Route("SeleKeyuniversalModuelProductLend/{idd}")]
+        public async Task<ProductLend> SeleKeyuniversalModuelProductLend(string idd)
+        {
+            return await universalModuelProductLend.Select_Key(idd);
+        }
 
+
+
+        //
         [HttpGet]
         [Route("DeluniversalModuelDepots/{id}")]
         public async Task<int> DeluniversalModuelDepots(string id)
@@ -190,13 +201,18 @@ namespace SCM_System.API.Controllers
         {
             return await universalModuelProductTypes.Delete_Key(id);
         }
-        [HttpGet]
+        [HttpPost]
         [Route("UPuniversalModuelProductTypes")]
         public async Task<int> UPuniversalModuelProductTypes(ProductTypes s)
         {
             return await universalModuelProductTypes.Update_Key(s.PTID, s);
         }
-
+        [HttpGet]
+        [Route("SeleKeyuniversalModuelProductTypes/{idd}")]
+        public async Task<ProductTypes> SeleKeyuniversalModuelProductTypes(int idd)
+        {
+            return await universalModuelProductTypes.Select_Key(idd);
+        }
 
         [HttpGet]
         [Route("GetuniversalModuelCustomerLevel")]

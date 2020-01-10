@@ -101,7 +101,7 @@
                 this.$http.post("http://localhost:8625/api/Basic/UPDATEuniversalModuelCustomers/", this.Customers)
                     .then(d => {
                         if (d.data > 0) {
-                            alert('ok')
+                            window.location.href = "/Basic/Customer"
                         }
                 })
             }
