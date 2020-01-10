@@ -76,18 +76,16 @@
                     </tr>
                 </thead>
                 <tbody>
-
-                    <tr v-for="(m,index) in data">
+                    <tr v-for="m in data">
                         <td>{{m.CDID}}</td>
                         <td>{{m.DepotName}}</td>
-                        <td>{{m.CDDate}}</td>
+                        <td>{{m.CDState}}</td>
                         <td>{{m.UsersName}}</td>
-                        <td>{{m.diff}}</td>
+                        <td>{{m.pl}}</td>
                         <td>{{m.CDDesc}}</td>
                         <td>{{m.CDState}}</td>
-                            <td><a href="#" @@click="sele(tm)">查看</a> | <a href="javascript:;">审核</a> | <a href="#" @@click="del(m,index)">删除</a> | <a href="/pdskc/CheckDepotEdit" onclick='    $("#div1").load("/pdskc/CheckDepotEdit.html")'>修改</a></td>
-                        </tr>
-                    
+                        <td><a href="#" onclick='$("#div1").load("/pdskc/CheckDepotDetail.html")'>查看</a> | <a href="javascript:;">审核</a> | <a href="javascript:;">删除</a> | <a href="#" onclick='    $("#div1").load("/pdskc/CheckDepotEdit.html")'>修改</a></td>
+                    </tr>
                 </tbody>
             </table>
             <div align="center">
@@ -104,13 +102,13 @@
                 ps: 3,
                 pi: 1,
                 total: 0,
+                CDState:'-1',
             },
             created: function () {
                 this.$http.get("http://localhost:8625/api/pdskc/GetVCDCDDP", { "params": { "ps": this.ps, "pi": this.pi } })
                     .then(result => {
                         this.data = result.data.data
                         this.total = result.data.total
-                        console.log(result.data.data)
                     })
             },
             methods: {
@@ -122,7 +120,6 @@
                     .then(d => {
                         this.data = d.data.data;
                         this.total = d.data.total;
-                        console.log(ps + "---" + pi);
                     })
             }
         }
