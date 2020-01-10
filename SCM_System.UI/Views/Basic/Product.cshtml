@@ -9,7 +9,7 @@
             <li><a href="#" onclick='$("#div1").load("/basic/Index")'>基础数据</a></li>
             <li><a href="#">商品资料</a></li>
 
-            <input style="float: right" class="btn btn-default btn-xs" type="submit" value="添加商品资料" v-on:click="ShowPage()">
+            <input style="float: right" class="btn btn-default btn-xs" type="submit" value="添加商品资料" @@click="ShowPages()">
 
         </ol>
     </div>
@@ -138,7 +138,7 @@
                     this.Products = d.data.data;
                     //this.ProductLend = d.data.data;
                     this.total = d.data.total;
-                    console.log(d.data.total);
+                    console.log(d.data.data);
                 })
             },
          methods: {
@@ -154,7 +154,6 @@
              dl: function(t,index) {
                         this.$http.get("http://localhost:8625/api/Basic/DeluniversalModuelProducts/"+t.ProID+"",)
                             .then(d => {
-                                
                                 if (d.data > 0) {
                                     this.Products.splice(index, 1);
                                 }
@@ -162,7 +161,10 @@
              },
              ShowPage: function (t) {
                 window.location.href = "/Basic/ProductEdit?id="+t.ProID+"";
-            }
+             },
+             ShowPages: function () {
+                 window.location.href = "/Basic/ProductAdd";
+             }
         }
         });
     $(function () {

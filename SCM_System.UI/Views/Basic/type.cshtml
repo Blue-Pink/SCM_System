@@ -5,7 +5,7 @@
             <li><a href="#" onclick='$("#div1").load("/basic/Index")'>基础数据</a></li>
             <li><a href="#">商品分类</a></li>
 
-            <input style="float: right" class="btn btn-default btn-xs" type="submit" value="添加类别" v-on:click="ShowPage()">
+            <input style="float: right" class="btn btn-default btn-xs" type="submit" value="添加类别" @@click="ShowPages()">
 
         </ol>
     </div>
@@ -111,7 +111,7 @@
                     })
             },
             dl: function (t, index) {
-                alert(t.PTID)
+                //alert(t.PTID)
                         this.$http.get("http://localhost:8625/api/Basic/DeluniversalModuelProductTypes/"+t.PTID+"",)
                             .then(d => {
                                 
@@ -122,6 +122,9 @@
             },
              ShowPage: function (t) {
                 window.location.href = "/Basic/typeedit?id="+t.PTID+"";
+            },
+             ShowPages: function () {
+                window.location.href = "/Basic/typeadd";
             }
         }
         });

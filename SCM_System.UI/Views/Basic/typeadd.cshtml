@@ -1,9 +1,9 @@
-﻿<div  id="app">
+﻿<div id="app">
     <div class="sub-heard-part">
         <ol class="breadcrumb m-b-0">
             <li><a href="#">基础数据</a></li>
             <li><a href="#">商品分类</a></li>
-            <li><a href="#">添加</a></li>
+            <li><a href="/Basic/type">添加</a></li>
         </ol>
     </div>
     <div class="graph">
@@ -12,16 +12,46 @@
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">类别名称:</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="txtBkName" @*v-model="RowData.BkName" *@ placeholder="输入名称">
+                        <input type="text" class="form-control" id="txtBkName" v-model="ProductTypes.PTName" placeholder="输入名称">
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button id="butAdd" type="button" class="btn btn-default" v-on:click="EditData()">添加</button>
+                        <button id="butAdd" type="button" class="btn btn-default" @@click="EditData()">添加</button>
                     </div>
                 </div>
             </form>
         </div>
     </div>
 </div>
+<script>
+    //id = window.location.href.split("id")[1];
+    //idd = id.split("=")[1];
+    //alert(idd);
 
+    var app = new Vue({
+        el: "#app",
+        data: {
+            ProductTypes: {},
+            options: []
+        },
+        created: function () {
+        //    this.$http.get("http://localhost:8625/api/Basic/SeleKeyuniversalModuelProductTypes/" + idd + "")
+        //        .then(d => {
+
+        //            this.ProductTypes = d.data;
+        //            console.log(d.data)
+        //        })
+        },
+        methods: {
+            EditData: function () {
+                this.$http.post("http://localhost:8625/api/Basic/INSERTuniversalProductTypes/", this.ProductTypes)
+                    .then(d => {
+                        if (d.data > 0) {
+                            window.location.href = "/Basic/type"
+                        }
+                })
+            }
+        }
+    })
+</script>

@@ -2,104 +2,155 @@
     <div class="sub-heard-part">
         <ol class="breadcrumb m-b-0">
             <li><a href="#">基础数据</a></li>
-            <li><a href="#">供应商</a></li>
-            <li><a href="#">添加</a></li>
+            <li><a href="/Basic/supplier">供应商</a></li>
+            <li><a href="#">编辑</a></li>
         </ol>
     </div>
     <div class="graph">
         <div class="row">
             <form class="form-horizontal col-md-offset-3 col-md-6 col-md-offset-3">
+                @*<div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">商品编号:</label>
+            <div class="col-sm-10">
+                <label>{{ProductLend.PPID}}</label>
+            </div>
+        </div>*@
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">商品编号:</label>
                     <div class="col-sm-10">
-                        <label>a5155a</label>
+                        <input type="text" class="form-control" id="txtBkName" v-model="ProductLend.PPID" placeholder="商品编号">
                     </div>
                 </div>
+                @*<div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">供应商名称:</label>
+            <div class="col-sm-10">
+                <select v-model="ProductLend.PPCompany" class="form-control">
+                    <option v-bind:value="华为">
+                        华为
+                    </option>
+                    <option v-bind:value="联想">
+                        联想
+                    </option>
+                    <option v-bind:value="三星">
+                        三星
+                    </option>
+                </select>
+            </div>
+
+        </div>*@
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">供应商名称:</label>
                     <div class="col-sm-10">
-                        <select class="form-control">
-                            <option>请选择</option>
-                        </select>
+                        <input type="text" class="form-control" id="txtBkName" v-model="ProductLend.PPName" placeholder="供应商名称">
                     </div>
-
                 </div>
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">公司名称:</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="txtBkName" @*v-model="RowData.BkName" *@ placeholder="公司名称">
+                        <input type="text" class="form-control" id="txtBkName" v-model="ProductLend.PPCompany" placeholder="公司名称">
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">拼英简码:</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" id="txtBkName" @*v-model="RowData.BkName" *@ placeholder="拼英简码">
-                    </div>
-                </div>
+                @*<div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">拼英简码:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="txtBkName" v-model="ProductLend.PPName" placeholder="拼英简码">
+            </div>
+        </div>*@
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">联系人:</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="txtBkName" @*v-model="RowData.BkName" *@ placeholder="联系人">
+                        <input type="text" class="form-control" id="txtBkName" v-model="ProductLend.PPMan" placeholder="联系人">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">联系电话:</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="txtBkName" @*v-model="RowData.BkName" *@ placeholder="联系电话">
+                        <input type="text" class="form-control" id="txtBkName" v-model="ProductLend.PPTel" placeholder="联系电话">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">地址:</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="txtBkName" @*v-model="RowData.BkName" *@ placeholder="地址">
+                        <input type="text" class="form-control" id="txtBkName" v-model="ProductLend.PPAddress" placeholder="地址">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">传真:</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="txtBkName" @*v-model="RowData.BkName" *@ placeholder="传真">
+                        <input type="text" class="form-control" id="txtBkName" v-model="ProductLend.PPFax" placeholder="传真">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">E-Mail:</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="txtBkName" @*v-model="RowData.BkName" *@ placeholder="E-Mail">
+                        <input type="text" class="form-control" id="txtBkName" v-model="ProductLend.PPEmail" placeholder="E-Mail">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">银行名称:</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="txtBkName" @*v-model="RowData.BkName" *@ placeholder="银行名称">
+                        <input type="text" class="form-control" id="txtBkName" v-model="ProductLend.PPBank" placeholder="银行名称">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">账号:</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="txtBkName" @*v-model="RowData.BkName" *@ placeholder="账号">
+                        <input type="text" class="form-control" id="txtBkName" v-model="ProductLend.PPGoods" placeholder="账号">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">备注:</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="txtBkName" @*v-model="RowData.BkName" *@ placeholder="备注">
+                        <input type="text" class="form-control" id="txtBkName" v-model="ProductLend.PPDesc" placeholder="备注">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">网址:</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="txtBkName" @*v-model="RowData.BkName" *@ placeholder="网址">
+                        <input type="text" class="form-control" id="txtBkName" v-model="ProductLend.PPUrl" placeholder="网址">
                     </div>
                 </div>
 
 
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button id="butAdd" type="button" class="btn btn-default" v-on:click="EditData()">添加</button>
+                        <button id="butAdd" type="button" class="btn btn-default" @@click="EditData()">添加</button>
                     </div>
                 </div>
             </form>
         </div>
     </div>
-
 </div>
+<script>
+    //id = window.location.href.split("id")[1];
+    //idd = id.split("=")[1];
+    //alert(idd);
+
+    var app = new Vue({
+        el: "#app",
+        data: {
+            ProductLend: {},
+            options: []
+        },
+        created: function () {
+            //this.$http.get("http://localhost:8625/api/Basic/SeleKeyuniversalModuelProductLend/" + idd + "")
+            //    .then(d => {
+
+            //        this.ProductLend = d.data;
+            //        console.log(d.data)
+            //    })
+        },
+        methods: {
+            EditData: function () {
+                console.log(this.ProductLend)
+                this.$http.post("http://localhost:8625/api/Basic/INSERTuniversalProductLend/", this.ProductLend)
+                    .then(d => {
+                        if (d.data > 0) {
+                            window.location.href = "/Basic/supplier"
+                        }
+                    })
+            }
+        }
+    })
+</script>

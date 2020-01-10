@@ -5,7 +5,7 @@
             <li><a href="#" onclick='$("#div1").load("/basic/Index")'>基础数据</a></li>
             <li><a href="#">供应商</a></li>
 
-            <input style="float: right" class="btn btn-default btn-xs" type="submit" value="添加供应商" v-on:click="ShowPage()">
+            <input style="float: right" class="btn btn-default btn-xs" type="submit" value="添加供应商" @@click="ShowPages()">
 
         </ol>
     </div>
@@ -157,6 +157,10 @@
             },
              ShowPage: function (t) {
                 window.location.href = "/Basic/supplierEdit?id="+t.PPID+"";
+            }
+             ,
+             ShowPages: function () {
+                window.location.href = "/Basic/supplieradd";
             }
         }
     });

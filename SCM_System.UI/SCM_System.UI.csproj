@@ -561,6 +561,7 @@
     <Content Include="Views\Basic\type.cshtml" />
     <Content Include="Views\Basic\typeadd.cshtml" />
     <Content Include="Views\Basic\typeedit.cshtml" />
+    <Content Include="Views\Basic\storeEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

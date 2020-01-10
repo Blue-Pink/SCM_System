@@ -123,6 +123,12 @@ namespace SCM_System.API.Controllers
         {
             return await universalModuelProducts.Update_Key(s.ProID, s);
         }
+        [HttpPost]
+        [Route("INSERTuniversalModuelProducts")]
+        public async Task<int> INSERTuniversalModuelProducts(Products s)
+        {
+            return await universalModuelProducts.Insert(s);
+        }
         [HttpGet]
         [Route("SeleKeyuniversalModuelProducts/{idd}")]
         public async Task<Products> SeleKeyuniversalModuelProducts(string idd)
@@ -172,6 +178,12 @@ namespace SCM_System.API.Controllers
         {
             return await universalModuelProductLend.Update_Key(s.PPID,s);
         }
+        [HttpPost]
+        [Route("INSERTuniversalProductLend")]
+        public async Task<int> INSERTuniversalProductLend(ProductLend s)
+        {
+            return await universalModuelProductLend.Insert(s);
+        }
         [HttpGet]
         [Route("SeleKeyuniversalModuelProductLend/{idd}")]
         public async Task<ProductLend> SeleKeyuniversalModuelProductLend(string idd)
@@ -181,7 +193,7 @@ namespace SCM_System.API.Controllers
 
 
 
-        //
+        //仓库模板
         [HttpGet]
         [Route("DeluniversalModuelDepots/{id}")]
         public async Task<int> DeluniversalModuelDepots(string id)
@@ -195,6 +207,8 @@ namespace SCM_System.API.Controllers
             return await universalModuelDepots.Update_Key(s.DepotID, s);
         }
 
+
+        //商品类型模板
         [HttpGet]
         [Route("DeluniversalModuelProductTypes/{id}")]
         public async Task<int> DeluniversalModuelProductTypes(int id)
@@ -207,6 +221,13 @@ namespace SCM_System.API.Controllers
         {
             return await universalModuelProductTypes.Update_Key(s.PTID, s);
         }
+        [HttpPost]
+        [Route("INSERTuniversalProductTypes")]
+        public async Task<int> INSERTuniversalProductTypes(ProductTypes s)
+        {
+            return await universalModuelProductTypes.Insert(s);
+        }
+
         [HttpGet]
         [Route("SeleKeyuniversalModuelProductTypes/{idd}")]
         public async Task<ProductTypes> SeleKeyuniversalModuelProductTypes(int idd)
