@@ -22,7 +22,7 @@
                 </div>
                 <div class="form-group">
                     <div class="input-group">
-                        <input class="btn btn-default btn-lg" type="submit" value="查询">
+                        <input class="btn btn-default btn-lg" type="button" value="查询" @@click="sele()">
                     </div>
                 </div>
 
@@ -161,6 +161,18 @@
              ,
              ShowPages: function () {
                 window.location.href = "/Basic/supplieradd";
+            },
+            sele: function () {
+            var name = $('#exampleInputAmount').val();
+                //alert(name)
+                this.$http.get("http://localhost:8625/api/Basic/GetProductLend", { "params": { "ps": this.ps, "pi": this.pi, "name": name } })
+                    .then(d => {
+                        console.log(name)
+                        console.log(d.data.data);
+                    this.ProductLend = d.data.data;
+                    this.total = d.data.total;
+                    console.log(this.ProductLend)
+                })
             }
         }
     });

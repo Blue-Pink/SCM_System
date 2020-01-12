@@ -26,7 +26,7 @@
                 </div>
                 <div class="form-group">
                     <div class="input-group">
-                        <input class="btn btn-default btn-lg" type="submit" value="查询">
+                        <input class="btn btn-default btn-lg" id="chaxun" type="button" value="查询"  @@click="sele()">
                     </div>
                 </div>
 
@@ -153,12 +153,16 @@
             pi: 1
         },
         created: function () {
-            this.$http.get("http://localhost:8625/api/Basic/GetCustomers", { "params": { "ps": this.ps, "pi": this.pi } })
-                .then(d => {
-                    this.ProductLend = d.data.data;
-                    this.total = d.data.total;
-                    console.log("VUE-first");
-                })
+           
+                this.$http.get("http://localhost:8625/api/Basic/GetCustomers", { "params": { "ps": this.ps, "pi": this.pi } })
+                    .then(d => {
+                        this.ProductLend = d.data.data;
+                        this.total = d.data.total;
+                        console.log("VUE-first");
+                    })
+           
+            
+                
         },
         methods: {
 
@@ -167,7 +171,7 @@
                     .then(d => {
                         this.ProductLend = d.data.data;
                         this.total = d.data.total;
-                        console.log(ps+"---"+pi);
+                        console.log(ps + "---" + pi + "+++" + d.data.total);
                     })
                     
             },
@@ -183,7 +187,20 @@
             },
             ShowPage: function (t) {
                 window.location.href = "/Basic/CustomerEdit?id="+t.CusID+"";
+            },
+            sele: function () {
+            var name = $('#exampleInputAmount').val();
+                //alert(name)
+                this.$http.get("http://localhost:8625/api/Basic/GetCustomerss", { "params": { "ps": this.ps, "pi": this.pi, "name": name } })
+                    .then(d => {
+                        console.log(name)
+                        console.log(d.data.data);
+                    this.ProductLend = d.data.data;
+                    this.total = d.data.total;
+                    console.log(this.ProductLend)
+                })
             }
+
         }
     });
 

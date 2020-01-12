@@ -1,12 +1,8 @@
 ﻿using Ninject;
 using SCM_System.DAL;
 using SCM_System.Model;
-using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 
@@ -115,6 +111,7 @@ namespace SCM_System.API.Controllers
         {
             return await universalModuelCustomers.Insert(s);
         }
+        
 
 
         //删除商品资料+修改
@@ -280,6 +277,18 @@ namespace SCM_System.API.Controllers
             var set = await pager_ProductTypes.Paging().ConfigureAwait(false);
             return new Dictionary<string, dynamic>() { { "data", set }, { "total", pager_ProductTypes.Count } };
         }
+        //PTName
+        [Route("GetProductTypes")]
+        public async Task<dynamic> GetProductTypes(int ps, int pi,string name)
+        {
+            pager_ProductTypes.IsAsc = true;
+            pager_ProductTypes.PageSize = ps;
+            pager_ProductTypes.PageIndex = pi;
+            pager_ProductTypes.WhereLambda = a => a.PTName.Contains(name);
+            pager_ProductTypes.OrderByLambda = a => a.PTID;
+            var set = await pager_ProductTypes.Paging().ConfigureAwait(false);
+            return new Dictionary<string, dynamic>() { { "data", set }, { "total", pager_ProductTypes.Count } };
+        }
 
         [Route("GetDepots")]
         public async Task<dynamic> GetDepots(int ps, int pi)
@@ -289,6 +298,19 @@ namespace SCM_System.API.Controllers
             pager_Depots.PageSize = ps;
             pager_Depots.PageIndex = pi;
             pager_Depots.WhereLambda = a => true;
+            pager_Depots.OrderByLambda = a => a.DepotID;
+            var set = await pager_Depots.Paging().ConfigureAwait(false);
+            return new Dictionary<string, dynamic>() { { "data", set }, { "total", pager_Depots.Count } };
+        }
+        //DepotName
+        [Route("GetDepots")]
+        public async Task<dynamic> GetDepots(int ps, int pi,string name)
+        {
+
+            pager_Depots.IsAsc = true;
+            pager_Depots.PageSize = ps;
+            pager_Depots.PageIndex = pi;
+            pager_Depots.WhereLambda = a => a.DepotName.Contains(name);
             pager_Depots.OrderByLambda = a => a.DepotID;
             var set = await pager_Depots.Paging().ConfigureAwait(false);
             return new Dictionary<string, dynamic>() { { "data", set }, { "total", pager_Depots.Count } };
@@ -306,6 +328,20 @@ namespace SCM_System.API.Controllers
             var set = await pager_Products.Paging().ConfigureAwait(false);
             return new Dictionary<string, dynamic>() { { "data", set }, { "total", pager_Products.Count } };
         }
+        //ProName
+        [Route("GetProducts")]
+        public async Task<dynamic> GetProducts(int ps, int pi,string name)
+        {
+
+            pager_Products.IsAsc = true;
+            pager_Products.PageSize = ps;
+            pager_Products.PageIndex = pi;
+            pager_Products.WhereLambda = a => a.ProName.Contains(name);
+            pager_Products.OrderByLambda = a => a.ProID;
+            var set = await pager_Products.Paging().ConfigureAwait(false);
+            return new Dictionary<string, dynamic>() { { "data", set }, { "total", pager_Products.Count } };
+        }
+
 
         [Route("GetProductLend")]
         public async Task<dynamic> GetProductLend(int ps, int pi)
@@ -315,6 +351,19 @@ namespace SCM_System.API.Controllers
             pager_ProductLend.PageSize = ps;
             pager_ProductLend.PageIndex = pi;
             pager_ProductLend.WhereLambda = a => true;
+            pager_ProductLend.OrderByLambda = a => a.PPID;
+            var set = await pager_ProductLend.Paging().ConfigureAwait(false);
+            return new Dictionary<string, dynamic>() { { "data", set }, { "total", pager_ProductLend.Count } };
+        }
+        //PPName
+        [Route("GetProductLend")]
+        public async Task<dynamic> GetProductLend(int ps, int pi,string name)
+        {
+
+            pager_ProductLend.IsAsc = true;
+            pager_ProductLend.PageSize = ps;
+            pager_ProductLend.PageIndex = pi;
+            pager_ProductLend.WhereLambda = a => a.PPName.Contains(name);
             pager_ProductLend.OrderByLambda = a => a.PPID;
             var set = await pager_ProductLend.Paging().ConfigureAwait(false);
             return new Dictionary<string, dynamic>() { { "data", set }, { "total", pager_ProductLend.Count } };
@@ -331,7 +380,23 @@ namespace SCM_System.API.Controllers
             var set = await pager_Vw_CL.Paging().ConfigureAwait(false);
             return new Dictionary<string, dynamic>() { { "data", set }, { "total", pager_Vw_CL.Count } };
         }
-
+        [Route("GetCustomerss")]
+        public async Task<dynamic> GetCustomerss(int ps, int pi,string name)
+        {
+            pager_Vw_CL.IsAsc = true;
+            pager_Vw_CL.PageSize = ps;
+            pager_Vw_CL.PageIndex = pi;
+            pager_Vw_CL.WhereLambda = a => a.CusName.Contains(name);
+            pager_Vw_CL.OrderByLambda = a => a.CusID;
+            var set = await pager_Vw_CL.Paging().ConfigureAwait(false);
+            return new Dictionary<string, dynamic>() { { "data", set }, { "total", pager_Vw_CL.Count } };
+        }
+        //[HttpGet]
+        //[Route("SeleKeyCustomersname/{name}")]
+        //public async Task<List<Customers>> SeleKeyCustomersname(string name)
+        //{
+        //    return await db.Customers.Where(a => a.CusName.Contains(name)).ToListAsync();
+        //}
 
         [Route("GetVw_DPP")]
         public async Task<dynamic> GetVw_DPP(int ps, int pi)
@@ -340,6 +405,17 @@ namespace SCM_System.API.Controllers
             pager_Vw_DPP.PageSize = ps;
             pager_Vw_DPP.PageIndex = pi;
             pager_Vw_DPP.WhereLambda = a => true;
+            pager_Vw_DPP.OrderByLambda = a => a.ProID;
+            var set = await pager_Vw_DPP.Paging().ConfigureAwait(false);
+            return new Dictionary<string, dynamic>() { { "data", set }, { "total", pager_Vw_DPP.Count } };
+        }
+        [Route("GetVw_DPP")]
+        public async Task<dynamic> GetVw_DPP(int ps, int pi,string name)
+        {
+            pager_Vw_DPP.IsAsc = true;
+            pager_Vw_DPP.PageSize = ps;
+            pager_Vw_DPP.PageIndex = pi;
+            pager_Vw_DPP.WhereLambda = a => a.ProName.Contains(name);
             pager_Vw_DPP.OrderByLambda = a => a.ProID;
             var set = await pager_Vw_DPP.Paging().ConfigureAwait(false);
             return new Dictionary<string, dynamic>() { { "data", set }, { "total", pager_Vw_DPP.Count } };
