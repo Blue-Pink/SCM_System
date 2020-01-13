@@ -35,6 +35,10 @@
 						UserLoginState:false//是否勾选记住密码
 			        }
                 },
+                created: function () {
+                    this.ls.UserLoginName = JSON.parse(document.cookie)["UserLoginName"]
+                    this.ls.UserLoginPwd = JSON.parse(document.cookie)["UserLoginPwd"]
+                },
 				methods: {
 
                     //登录按钮点击事件
@@ -52,9 +56,9 @@
 							return;
 						}
                         //跨域请求api
-                        this.$http.post("http://localhost:50086/api/System/UsersCheck", this.ls).then(c => {
-							//alert(c.data);
-							if (c.data) {
+                        this.$http.post("http://localhost:8625/api/System/PostLogin", this.ls).then(c => {
+                            if (c.data != null) {
+                                document.cookie = JSON.stringify(c.data);
 								window.location.href = "/Home/Index";
                                 //Home/Index拿到当前登录用户，弹出“欢迎XXX”
 							} else {

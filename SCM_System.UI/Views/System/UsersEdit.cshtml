@@ -1,21 +1,5 @@
-﻿<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>EditPage</title>
-
-    <link href="../css/bootstrap.min.css" rel="stylesheet" />
-
-    <link href="../css/style.css" rel='stylesheet' type='text/css' />
-    <link href="../css/font-awesome.css" rel="stylesheet">
-
-    <script src="../js/jquery-1.10.2.min.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
-    <script src="../js/vue-2.5.2.min.js"></script>
-    <script src="../js/axios.min.js"></script>
-</head>
-<body>
-    <div class="sub-heard-part">
+﻿
+    <div id="app" class="sub-heard-part">
         <ol class="breadcrumb m-b-0">
             <li><a href="#">系统管理</a></li>
             <li><a href="#">用户管理</a></li>
@@ -30,7 +14,7 @@
                         <label for="inputEmail3" class="col-sm-2 control-label">登陆名称:</label>
                         <div class="col-sm-10">
 
-                            <input type="text" class="form-control" id="txtBkName" @*v-model="RowData.BkName" *@ placeholder="客户名称">
+                            <input type="text" class="form-control" :value="users.UserLoginName"  placeholder="客户名称">
 
                         </div>
                     </div>
@@ -48,7 +32,7 @@
                     <div class="form-group">
                         <label for="inputEmail3" class="col-sm-2 control-label">密码:</label>
                         <div class="col-sm-10">
-                            <input type="password" class="form-control" id="txtBkName" @*v-model="RowData.BkName" *@ placeholder="公司名称">
+                            <input type="password" class="form-control" @*v-model="RowData.BkName" *@ placeholder="密码">
                         </div>
                     </div>
                     <div class="form-group">
@@ -61,7 +45,7 @@
                     <div class="form-group">
                         <label for="inputEmail3" class="col-sm-2 control-label">真实姓名:</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="txtBkName" @*v-model="RowData.BkName" *@ placeholder="备注">
+                            <input type="text" class="form-control" @*v-model="RowData.BkName" *@ placeholder="备注">
                         </div>
                     </div>
 
@@ -76,5 +60,14 @@
 
     </div>
 
-</body>
-</html>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                users: JSON.parse(document.cookie),
+            },
+            created: function () {
+                console.log(this.users)
+            }
+        })
+    </script>
