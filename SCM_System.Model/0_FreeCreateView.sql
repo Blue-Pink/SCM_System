@@ -165,7 +165,16 @@ drop view V_CusAndCusOrderAndClv
 go
 create view V_CusAndCusOrderAndClv
 as
-select od.CODID,ct.CusID,ct.CusName,od.COID,cl.CLName,od.CODDiscont,CODCount=od.CODDisPrice*od.CODSale from CustomerOrderDetail od inner join CustomerOrder co on od.COID=co.COID inner join Customers ct on co.CusID=ct.CusID inner join CustomerLevel cl on ct.CLID=cl.CLID
+select od.CODID,
+ct.CusID,
+ct.CusName,
+od.COID,
+cl.CLName,
+od.CODDiscont,
+CODCount=od.CODDisPrice*od.CODSale from CustomerOrderDetail od inner join 
+CustomerOrder co on od.COID=co.COID inner join 
+Customers ct on co.CusID=ct.CusID inner join
+CustomerLevel cl on ct.CLID=cl.CLID
 go
 
 

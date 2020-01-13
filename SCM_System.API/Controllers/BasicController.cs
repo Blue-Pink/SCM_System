@@ -284,7 +284,13 @@ namespace SCM_System.API.Controllers
             pager_ProductTypes.IsAsc = true;
             pager_ProductTypes.PageSize = ps;
             pager_ProductTypes.PageIndex = pi;
-            pager_ProductTypes.WhereLambda = a => a.PTName.Contains(name);
+            if (name != null)
+            {
+                pager_ProductTypes.WhereLambda = a => a.PTName.Contains(name);
+            }
+            else {
+                pager_ProductTypes.WhereLambda = a => true;
+            }
             pager_ProductTypes.OrderByLambda = a => a.PTID;
             var set = await pager_ProductTypes.Paging().ConfigureAwait(false);
             return new Dictionary<string, dynamic>() { { "data", set }, { "total", pager_ProductTypes.Count } };
@@ -310,7 +316,13 @@ namespace SCM_System.API.Controllers
             pager_Depots.IsAsc = true;
             pager_Depots.PageSize = ps;
             pager_Depots.PageIndex = pi;
-            pager_Depots.WhereLambda = a => a.DepotName.Contains(name);
+            if (name != null)
+            {
+                pager_Depots.WhereLambda = a => a.DepotName.Contains(name);
+            }
+            else {
+                pager_Depots.WhereLambda = a => true;
+            }
             pager_Depots.OrderByLambda = a => a.DepotID;
             var set = await pager_Depots.Paging().ConfigureAwait(false);
             return new Dictionary<string, dynamic>() { { "data", set }, { "total", pager_Depots.Count } };
@@ -336,7 +348,13 @@ namespace SCM_System.API.Controllers
             pager_Products.IsAsc = true;
             pager_Products.PageSize = ps;
             pager_Products.PageIndex = pi;
-            pager_Products.WhereLambda = a => a.ProName.Contains(name);
+            if (name != null)
+            {
+                pager_Products.WhereLambda = a => a.ProName.Contains(name);
+            }
+            else {
+                pager_Products.WhereLambda = a => true;
+            }
             pager_Products.OrderByLambda = a => a.ProID;
             var set = await pager_Products.Paging().ConfigureAwait(false);
             return new Dictionary<string, dynamic>() { { "data", set }, { "total", pager_Products.Count } };
@@ -363,7 +381,13 @@ namespace SCM_System.API.Controllers
             pager_ProductLend.IsAsc = true;
             pager_ProductLend.PageSize = ps;
             pager_ProductLend.PageIndex = pi;
-            pager_ProductLend.WhereLambda = a => a.PPName.Contains(name);
+            if (name != null)
+            {
+                pager_ProductLend.WhereLambda = a => a.PPName.Contains(name);
+            }
+            else {
+                pager_ProductLend.WhereLambda = a => true;
+            }
             pager_ProductLend.OrderByLambda = a => a.PPID;
             var set = await pager_ProductLend.Paging().ConfigureAwait(false);
             return new Dictionary<string, dynamic>() { { "data", set }, { "total", pager_ProductLend.Count } };
@@ -386,7 +410,13 @@ namespace SCM_System.API.Controllers
             pager_Vw_CL.IsAsc = true;
             pager_Vw_CL.PageSize = ps;
             pager_Vw_CL.PageIndex = pi;
-            pager_Vw_CL.WhereLambda = a => a.CusName.Contains(name);
+            if (name != null)
+            {
+                pager_Vw_CL.WhereLambda = a => a.CusName.Contains(name);
+            }
+            else {
+                pager_Vw_CL.WhereLambda = a => true;
+            }
             pager_Vw_CL.OrderByLambda = a => a.CusID;
             var set = await pager_Vw_CL.Paging().ConfigureAwait(false);
             return new Dictionary<string, dynamic>() { { "data", set }, { "total", pager_Vw_CL.Count } };
@@ -415,7 +445,13 @@ namespace SCM_System.API.Controllers
             pager_Vw_DPP.IsAsc = true;
             pager_Vw_DPP.PageSize = ps;
             pager_Vw_DPP.PageIndex = pi;
-            pager_Vw_DPP.WhereLambda = a => a.ProName.Contains(name);
+            if (name != null)
+            {
+                pager_Vw_DPP.WhereLambda = a => a.ProName.Contains(name);
+            }
+            else {
+                pager_Vw_DPP.WhereLambda = a => true;
+            }
             pager_Vw_DPP.OrderByLambda = a => a.ProID;
             var set = await pager_Vw_DPP.Paging().ConfigureAwait(false);
             return new Dictionary<string, dynamic>() { { "data", set }, { "total", pager_Vw_DPP.Count } };
